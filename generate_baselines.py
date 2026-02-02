@@ -7,14 +7,16 @@ Terraform configurations from the IaC-Eval datasets.
 
 Based on prompts from:
 - IaC-Eval (NeurIPS 2024): https://huggingface.co/datasets/autoiac-project/iac-eval
-- Multi-IaC-Eval: https://huggingface.co/datasets/AmazonScience/Multi-IaC-Eval
+- llm-iac.csv: Infrastructure as Code prompts dataset
 """
 
 import argparse
+import csv
 import json
 import os
 import re
-from datetime import datetime
+import time
+
 from pathlib import Path
 from typing import Literal
 from dotenv import load_dotenv
@@ -29,9 +31,10 @@ load_dotenv(".env")
 # Prompt Templates
 # =============================================================================
 
-# System prompt from IaC-Eval paper
-# Source: https://github.com/autoiac-project/iac-eval/blob/main/evaluation/prompt-templates/system-prompt.txt
-SYSTEM_PROMPT = """You are TerraformAI, an AI agent that builds and deploys Cloud Infrastructure written in Terraform HCL. Generate a description of the Terraform program you will define, followed by a single Terraform HCL program in response"""
+# Enhanced system prompt for best-practice Terraform generation
+SYSTEM_PROMPT = """You are TerraformAI, an expert AI assistant specialising in generating Terraform Infrastructure as Code. 
+Your role is to generate Terraform configurations for cloud infrastructure across AWS, GCP, and Azure based on user queries.
+"""
 
 # Few-shot examples from IaC-Eval paper
 # Source: https://github.com/autoiac-project/iac-eval/blob/main/evaluation/prompt-templates/few-shot.txt
@@ -106,6 +109,15 @@ Here is the actual prompt to answer:
 # Chain-of-Thought prompt suffix from IaC-Eval paper
 # Source: https://www.promptingguide.ai/techniques/cot#zero-shot-cot-prompting
 COT_SUFFIX = "\n\nLet's think step by step."
+
+
+# Zero-shot prompt prefix to provide context and formatting instructions
+ZERO_SHOT_PREFIX = """Please generate the Terraform configuration for the following request. 
+Provide the code in HCL format within a Markdown code block (using ```hcl).
+Do not include any additional explanation unless necessary for understanding the code.
+
+Request:
+"""
 
 
 # =============================================================================
@@ -184,30 +196,13 @@ PromptType = Literal["zero-shot", "few-shot", "cot"]
 def build_prompt(user_prompt: str, prompt_type: PromptType) -> str:
     """Build the final user prompt based on the prompt type."""
     if prompt_type == "zero-shot":
-        return user_prompt
+        return ZERO_SHOT_PREFIX + user_prompt
     elif prompt_type == "few-shot":
         return FEW_SHOT_PROMPT + user_prompt
     elif prompt_type == "cot":
         return user_prompt + COT_SUFFIX
     else:
         raise ValueError(f"Unknown prompt type: {prompt_type}")
-
-
-def build_multi_iac_prompt(initial_template: str, utterance: str, template_type: str) -> str:
-    """Build prompt for Multi-IaC-Eval modification tasks."""
-    return f"""You are given an existing {template_type} template and a modification request.
-Apply the requested changes to the template and return the complete updated template.
-
-## Current Template:
-```
-{initial_template}
-```
-
-## Modification Request:
-{utterance}
-
-## Updated Template:
-"""
 
 
 # =============================================================================
@@ -218,8 +213,8 @@ def extract_terraform_code(response: str) -> str:
     """Extract Terraform/HCL code from a response."""
     # Try to find code in markdown code blocks
     patterns = [
-        r"```(?:hcl|terraform|tf)\n(.*?)```",
-        r"```\n(.*?)```",
+        r"```(?:hcl|terraform|tf)\s*(.*?)\s*```",
+        r"```\s*(.*?)\s*```",
     ]
     
     for pattern in patterns:
@@ -241,49 +236,53 @@ def load_iac_eval_dataset(path: Path) -> list[dict]:
         return json.load(f)
 
 
-def load_multi_iac_eval_dataset(path: Path) -> list[dict]:
-    """Load the Multi-IaC-Eval dataset."""
-    with open(path) as f:
-        return json.load(f)
+def load_llm_iac_dataset(path: Path) -> list[dict]:
+    """Load the llm-iac.csv dataset."""
+    dataset = []
+    with open(path, 'r', encoding='utf-8') as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            dataset.append({
+                'id': row['ID'],
+                'category': row['Category'],
+                'cloud_provider': row['Cloud_Provider'],
+                'user_query': row['User_Query'],
+                'terraform_code': row['Terraform_Code']
+            })
+    return dataset
 
 
 # =============================================================================
 # Result Saving
 # =============================================================================
 
-def save_result(
-    output_dir: Path,
+def get_output_filename(
     dataset_name: str,
-    scenario_id: str,
     model_name: str,
     prompt_type: str,
-    prompt: str,
-    response: str,
-    extracted_code: str,
-    reference: str | None = None,
-):
-    """Save a generation result to a JSON file."""
-    output_dir.mkdir(parents=True, exist_ok=True)
-    
-    result = {
-        "dataset": dataset_name,
-        "scenario_id": scenario_id,
-        "model": model_name,
-        "prompt_type": prompt_type,
-        "prompt": prompt,
-        "response": response,
-        "extracted_code": extracted_code,
-        "reference": reference,
-        "timestamp": datetime.now().isoformat(),
-    }
-    
-    filename = f"{dataset_name}_{scenario_id}_{model_name}_{prompt_type}.json"
-    output_path = output_dir / filename
-    
+) -> str:
+    """Generate the output filename for a dataset/model/prompt combination."""
+    return f"{dataset_name}_{model_name}_{prompt_type}.json"
+
+
+def load_existing_results(output_path: Path) -> list[dict]:
+    """Load existing results from a JSON file if it exists."""
+    if output_path.exists():
+        with open(output_path, "r") as f:
+            return json.load(f)
+    return []
+
+
+def get_completed_scenario_ids(results: list[dict]) -> set[str]:
+    """Extract scenario IDs that have already been processed."""
+    return {r["scenario_id"] for r in results}
+
+
+def save_results(output_path: Path, results: list[dict]):
+    """Save all results to a JSON file."""
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
-        json.dump(result, f, indent=2)
-    
-    print(f"  Saved: {output_path}")
+        json.dump(results, f, indent=2)
 
 
 # =============================================================================
@@ -306,89 +305,135 @@ def run_iac_eval(
     print(f"Prompt type: {prompt_type}")
     print(f"{'='*60}\n")
     
-    for idx, scenario in enumerate(dataset):
-        scenario_id = f"iac_eval_{idx:04d}"
-        base_prompt = scenario["Prompt"]
-        reference = scenario.get("Reference output")
-        difficulty = scenario.get("Difficulty", "unknown")
+    for client in clients:
+        # Load existing results for this client
+        output_filename = get_output_filename("iac_eval", client.name, prompt_type)
+        output_path = output_dir / output_filename
+        results = load_existing_results(output_path)
+        completed_ids = get_completed_scenario_ids(results)
         
-        print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty})")
-        print(f"  Prompt: {base_prompt[:80]}...")
+        print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
         
-        user_prompt = build_prompt(base_prompt, prompt_type)
-        
-        for client in clients:
+        for idx, scenario in enumerate(dataset):
+            scenario_id = f"iac_eval_{idx:04d}"
+            
+            # Skip if already completed
+            if scenario_id in completed_ids:
+                print(f"[{idx+1}/{len(dataset)}] Skipping {scenario_id} (already exists)")
+                continue
+            
+            base_prompt = scenario["Prompt"]
+            reference = scenario.get("Reference output")
+            difficulty = scenario.get("Difficulty", "unknown")
+            
+            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty})")
+            print(f"  Prompt: {base_prompt[:80]}...")
+            
+            user_prompt = build_prompt(base_prompt, prompt_type)
+            
             print(f"  Generating with {client.name}...")
             try:
+                start_time = time.time()
                 response = client.generate(SYSTEM_PROMPT, user_prompt)
+                duration = round(time.time() - start_time, 2)
                 extracted_code = extract_terraform_code(response)
                 
-                save_result(
-                    output_dir=output_dir,
-                    dataset_name="iac_eval",
-                    scenario_id=scenario_id,
-                    model_name=client.name,
-                    prompt_type=prompt_type,
-                    prompt=user_prompt,
-                    response=response,
-                    extracted_code=extracted_code,
-                    reference=reference,
-                )
+                result = {
+                    "dataset": "iac_eval",
+                    "scenario_id": scenario_id,
+                    "model": client.name,
+                    "prompt_type": prompt_type,
+                    "prompt": user_prompt,
+                    "response": response,
+                    "extracted_code": extracted_code,
+                    "reference": reference,
+                    "generation_time": duration,
+                }
+
+                results.append(result)
+                
+                # Save after each successful generation for resume safety
+                save_results(output_path, results)
+                print(f"  Saved to: {output_path}")
+                
             except Exception as e:
                 print(f"    Error: {e}")
+        
+        print(f"Completed {client.name}: {len(results)} total results in {output_path}")
 
 
-def run_multi_iac_eval(
+def run_llm_iac(
     dataset: list[dict],
     clients: list,
     prompt_type: PromptType,
     output_dir: Path,
     samples: int | None = None,
 ):
-    """Run generation on Multi-IaC-Eval dataset."""
-    # Filter for Terraform tasks only
-    terraform_tasks = [d for d in dataset if d.get("type") == "terraform"]
-    
+    """Run generation on llm-iac.csv dataset."""
     if samples:
-        terraform_tasks = terraform_tasks[:samples]
+        dataset = dataset[:samples]
     
     print(f"\n{'='*60}")
-    print(f"Processing Multi-IaC-Eval dataset ({len(terraform_tasks)} Terraform scenarios)")
+    print(f"Processing llm-iac dataset ({len(dataset)} scenarios)")
     print(f"Prompt type: {prompt_type}")
     print(f"{'='*60}\n")
     
-    for idx, scenario in enumerate(terraform_tasks):
-        scenario_id = f"multi_iac_{scenario.get('source', idx)}"
-        initial = scenario["initial"]
-        utterance = scenario["utterance"]
-        expected = scenario["expected"]
-        template_type = scenario.get("type", "terraform")
+    for client in clients:
+        # Load existing results for this client
+        output_filename = get_output_filename("llm_iac", client.name, prompt_type)
+        output_path = output_dir / output_filename
+        results = load_existing_results(output_path)
+        completed_ids = get_completed_scenario_ids(results)
         
-        print(f"[{idx+1}/{len(terraform_tasks)}] Scenario: {scenario_id}")
-        print(f"  Utterance: {utterance[:80]}...")
+        print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
         
-        base_prompt = build_multi_iac_prompt(initial, utterance, template_type)
-        user_prompt = build_prompt(base_prompt, prompt_type)
-        
-        for client in clients:
+        for idx, scenario in enumerate(dataset):
+            scenario_id = f"llm_iac_{scenario['id']}"
+            
+            # Skip if already completed
+            if scenario_id in completed_ids:
+                print(f"[{idx+1}/{len(dataset)}] Skipping {scenario_id} (already exists)")
+                continue
+            
+            base_prompt = scenario['user_query']
+            reference = scenario['terraform_code']
+            category = scenario.get('category', 'unknown')
+            cloud_provider = scenario.get('cloud_provider', 'unknown')
+            
+            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} ({cloud_provider} - {category})")
+            print(f"  Prompt: {base_prompt[:80]}...")
+            
+            user_prompt = build_prompt(base_prompt, prompt_type)
+            
             print(f"  Generating with {client.name}...")
             try:
+                start_time = time.time()
                 response = client.generate(SYSTEM_PROMPT, user_prompt)
+                duration = round(time.time() - start_time, 2)
                 extracted_code = extract_terraform_code(response)
                 
-                save_result(
-                    output_dir=output_dir,
-                    dataset_name="multi_iac_eval",
-                    scenario_id=scenario_id,
-                    model_name=client.name,
-                    prompt_type=prompt_type,
-                    prompt=user_prompt,
-                    response=response,
-                    extracted_code=extracted_code,
-                    reference=expected,
-                )
+                result = {
+                    "dataset": "llm_iac",
+                    "scenario_id": scenario_id,
+                    "model": client.name,
+                    "prompt_type": prompt_type,
+                    "prompt": user_prompt,
+                    "response": response,
+                    "extracted_code": extracted_code,
+                    "reference": reference,
+                    "generation_time": duration,
+                }
+
+                results.append(result)
+                
+                # Save after each successful generation for resume safety
+                save_results(output_path, results)
+                print(f"  Saved to: {output_path}")
+                
             except Exception as e:
                 print(f"    Error: {e}")
+        
+        print(f"Completed {client.name}: {len(results)} total results in {output_path}")
 
 
 # =============================================================================
@@ -447,8 +492,8 @@ def main():
         return
     
     # Load datasets
-    iac_eval_path = Path("iac_eval_dataset.json")
-    multi_iac_eval_path = Path("multi_iac_eval_dataset.json")
+    iac_eval_path = Path("datasets/iac_eval_dataset.json")
+    llm_iac_path = Path("datasets/llm-iac.csv")
     
     if iac_eval_path.exists():
         iac_eval_dataset = load_iac_eval_dataset(iac_eval_path)
@@ -462,17 +507,17 @@ def main():
     else:
         print(f"Warning: {iac_eval_path} not found, skipping IaC-Eval")
     
-    if multi_iac_eval_path.exists():
-        multi_iac_eval_dataset = load_multi_iac_eval_dataset(multi_iac_eval_path)
-        run_multi_iac_eval(
-            dataset=multi_iac_eval_dataset,
+    if llm_iac_path.exists():
+        llm_iac_dataset = load_llm_iac_dataset(llm_iac_path)
+        run_llm_iac(
+            dataset=llm_iac_dataset,
             clients=clients,
             prompt_type=args.prompt_type,
             output_dir=output_dir,
             samples=args.samples,
         )
     else:
-        print(f"Warning: {multi_iac_eval_path} not found, skipping Multi-IaC-Eval")
+        print(f"Warning: {llm_iac_path} not found, skipping llm-iac")
     
     print("\n" + "="*60)
     print("Generation complete!")

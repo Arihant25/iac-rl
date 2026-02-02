@@ -47,9 +47,12 @@ uv run python generate_baselines.py --samples 5 --models claude
 
 ### Datasets
 
-The script processes both datasets automatically:
-- `iac_eval_dataset.json`
-- `multi_iac_eval_dataset.json`
+The script processes both datasets automatically from the `datasets/` folder:
+- **iac_eval_dataset.json**: IaC-Eval dataset from NeurIPS 2024
+  - Contains Terraform generation prompts with difficulty ratings and reference outputs
+- **llm-iac.csv**: Infrastructure as Code prompts dataset
+  - Columns: ID, Category, Cloud_Provider, User_Query, Terraform_Code
+  - Covers AWS, GCP, Azure and other cloud providers
 
 ### Output
 
