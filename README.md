@@ -18,7 +18,7 @@ export GOOGLE_API_KEY=...
 ### Usage
 
 ```bash
-uv run python generate_baselines.py [OPTIONS]
+uv run generate_baselines.py [OPTIONS]
 ```
 
 ### Options
@@ -33,16 +33,16 @@ uv run python generate_baselines.py [OPTIONS]
 
 ```bash
 # Run all models with zero-shot prompting
-uv run python generate_baselines.py
+uv run generate_baselines.py
 
 # Run with few-shot prompting (3 examples)
-uv run python generate_baselines.py --prompt-type few-shot
+uv run generate_baselines.py --prompt-type few-shot
 
 # Run with Chain-of-Thought prompting
-uv run python generate_baselines.py --prompt-type cot
+uv run generate_baselines.py --prompt-type cot
 
 # Test with 5 samples using only Claude
-uv run python generate_baselines.py --samples 5 --models claude
+uv run generate_baselines.py --samples 5 --models claude
 ```
 
 ### Datasets

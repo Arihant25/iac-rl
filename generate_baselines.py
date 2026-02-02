@@ -34,6 +34,8 @@ load_dotenv(".env")
 # Enhanced system prompt for best-practice Terraform generation
 SYSTEM_PROMPT = """You are TerraformAI, an expert AI assistant specialising in generating Terraform Infrastructure as Code. 
 Your role is to generate Terraform configurations for cloud infrastructure across AWS, GCP, and Azure based on user queries.
+
+IMPORTANT: Output exactly ONE code block containing all the Terraform/HCL code. Do not split the code into multiple code blocks.
 """
 
 # Few-shot examples from IaC-Eval paper
@@ -220,7 +222,7 @@ def extract_terraform_code(response: str) -> str:
     for pattern in patterns:
         matches = re.findall(pattern, response, re.DOTALL)
         if matches:
-            return matches[-1].strip()  # Return the last code block
+            return matches[0].strip()  # Return the first code block
     
     # If no code blocks, return the full response
     return response
@@ -289,6 +291,21 @@ def save_results(output_path: Path, results: list[dict]):
 # Main Generation Logic
 # =============================================================================
 
+def format_eta(seconds: float) -> str:
+    """Format seconds into a human-readable ETA string."""
+    if seconds < 0:
+        return "--"
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    if hours > 0:
+        return f"{hours}h {minutes}m {secs}s"
+    elif minutes > 0:
+        return f"{minutes}m {secs}s"
+    else:
+        return f"{secs}s"
+
+
 def run_iac_eval(
     dataset: list[dict],
     clients: list,
@@ -314,6 +331,10 @@ def run_iac_eval(
         
         print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
         
+        # ETA tracking
+        client_start_time = time.time()
+        processed_count = 0
+        
         for idx, scenario in enumerate(dataset):
             scenario_id = f"iac_eval_{idx:04d}"
             
@@ -326,7 +347,17 @@ def run_iac_eval(
             reference = scenario.get("Reference output")
             difficulty = scenario.get("Difficulty", "unknown")
             
-            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty})")
+            # Calculate ETA
+            remaining = len(dataset) - idx - 1 - (len(completed_ids) - processed_count)
+            if processed_count > 0:
+                elapsed = time.time() - client_start_time
+                avg_time = elapsed / processed_count
+                eta_seconds = remaining * avg_time
+                eta_str = f" | ETA: {format_eta(eta_seconds)}"
+            else:
+                eta_str = " | ETA: calculating..."
+            
+            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty}){eta_str}")
             print(f"  Prompt: {base_prompt[:80]}...")
             
             user_prompt = build_prompt(base_prompt, prompt_type)
@@ -351,6 +382,7 @@ def run_iac_eval(
                 }
 
                 results.append(result)
+                processed_count += 1
                 
                 # Save after each successful generation for resume safety
                 save_results(output_path, results)
@@ -359,7 +391,8 @@ def run_iac_eval(
             except Exception as e:
                 print(f"    Error: {e}")
         
-        print(f"Completed {client.name}: {len(results)} total results in {output_path}")
+        total_time = time.time() - client_start_time
+        print(f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})")
 
 
 def run_llm_iac(
@@ -387,6 +420,10 @@ def run_llm_iac(
         
         print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
         
+        # ETA tracking
+        client_start_time = time.time()
+        processed_count = 0
+        
         for idx, scenario in enumerate(dataset):
             scenario_id = f"llm_iac_{scenario['id']}"
             
@@ -400,7 +437,17 @@ def run_llm_iac(
             category = scenario.get('category', 'unknown')
             cloud_provider = scenario.get('cloud_provider', 'unknown')
             
-            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} ({cloud_provider} - {category})")
+            # Calculate ETA
+            remaining = len(dataset) - idx - 1 - (len(completed_ids) - processed_count)
+            if processed_count > 0:
+                elapsed = time.time() - client_start_time
+                avg_time = elapsed / processed_count
+                eta_seconds = remaining * avg_time
+                eta_str = f" | ETA: {format_eta(eta_seconds)}"
+            else:
+                eta_str = " | ETA: calculating..."
+            
+            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} ({cloud_provider} - {category}){eta_str}")
             print(f"  Prompt: {base_prompt[:80]}...")
             
             user_prompt = build_prompt(base_prompt, prompt_type)
@@ -425,6 +472,7 @@ def run_llm_iac(
                 }
 
                 results.append(result)
+                processed_count += 1
                 
                 # Save after each successful generation for resume safety
                 save_results(output_path, results)
@@ -433,7 +481,8 @@ def run_llm_iac(
             except Exception as e:
                 print(f"    Error: {e}")
         
-        print(f"Completed {client.name}: {len(results)} total results in {output_path}")
+        total_time = time.time() - client_start_time
+        print(f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})")
 
 
 # =============================================================================
