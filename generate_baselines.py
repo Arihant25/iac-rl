@@ -264,14 +264,20 @@ def get_output_filename(
     prompt_type: str,
 ) -> str:
     """Generate the output filename for a dataset/model/prompt combination."""
-    return f"{dataset_name}_{model_name}_{prompt_type}.json"
+    return f"{dataset_name}_{model_name}_{prompt_type}.csv"
 
 
 def load_existing_results(output_path: Path) -> list[dict]:
     """Load existing results from a JSON file if it exists."""
     if output_path.exists():
-        with open(output_path, "r") as f:
-            return json.load(f)
+        results = []
+        with open(output_path, "r", encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Unescape newlines when reading back into memory
+                processed_row = {k: unescape_newlines(v) for k, v in row.items()}
+                results.append(processed_row)
+        return results
     return []
 
 
@@ -280,11 +286,40 @@ def get_completed_scenario_ids(results: list[dict]) -> set[str]:
     return {r["scenario_id"] for r in results}
 
 
+def escape_newlines(value):
+    """Escape newlines in strings for CSV output."""
+    if isinstance(value, str):
+        return value.replace('\n', '\\n').replace('\r', '')
+    return value
+
+
+def unescape_newlines(value):
+    """Unescape newlines in strings from CSV input."""
+    if isinstance(value, str):
+        return value.replace('\\n', '\n')
+    return value
+
+
 def save_results(output_path: Path, results: list[dict]):
-    """Save all results to a JSON file."""
+    """Save all results to a CSV file."""
+    if not results:
+        return
+
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, "w") as f:
-        json.dump(results, f, indent=2)
+    
+    # distinct keys from all records
+    keys = set()
+    for entry in results:
+        keys.update(entry.keys())
+    fieldnames = sorted(list(keys))
+    
+    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+        writer.writeheader()
+        
+        for entry in results:
+            processed_entry = {k: escape_newlines(v) for k, v in entry.items()}
+            writer.writerow(processed_entry)
 
 
 # =============================================================================
