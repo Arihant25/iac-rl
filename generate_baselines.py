@@ -2,7 +2,7 @@
 """
 Generate IaC Baselines Script
 
-Calls Claude 4.5 Sonnet, Grok 4.1 Fast, and Gemini 3 Pro APIs to generate
+Calls Claude 4.5 Sonnet, Grok 4.1 Fast, and Gemini 3 Flash APIs to generate
 Terraform configurations from the IaC-Eval datasets.
 
 Based on prompts from:
@@ -173,8 +173,8 @@ class GeminiClient:
     
     def __init__(self):
         self.client = genai.Client()
-        self.model = "gemini-3-pro-preview"
-        self.name = "gemini-3-pro"
+        self.model = "gemini-3-flash-preview"
+        self.name = "gemini-3-flash"
     
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Gemini."""
@@ -209,6 +209,28 @@ class KimiClient:
                 "thinking": {"type": "disabled"}
             },
             max_tokens=32768
+        )
+        return response.choices[0].message.content
+
+
+class GLMClient:
+    """GLM API client using OpenAI-compatible API (Z.AI)."""
+    def __init__(self):
+        self.client = openai.OpenAI(
+            api_key=os.getenv("ZAI_API_KEY"),
+            base_url="https://api.z.ai/api/paas/v4/",
+        )
+        self.model = "glm-4.7"
+        self.name = "glm-4.7"
+
+    def generate(self, system_prompt: str, user_prompt: str):
+        """Generate a response from GLM."""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
         )
         return response.choices[0].message.content
 
@@ -562,8 +584,8 @@ def parse_args():
     parser.add_argument(
         "--models",
         type=str,
-        default="claude,grok,gemini,kimi",
-        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi)"
+        default="claude,grok,gemini,kimi,glm",
+        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi,glm)"
     )
     parser.add_argument(
         "--samples",
@@ -599,6 +621,10 @@ def main():
     if "kimi" in model_list:
         print("Initializing Kimi client...")
         clients.append(KimiClient())
+    
+    if "glm" in model_list:
+        print("Initializing GLM client...")
+        clients.append(GLMClient())
     
     if not clients:
         print("Error: No valid models specified")
