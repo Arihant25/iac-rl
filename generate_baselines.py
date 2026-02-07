@@ -180,12 +180,37 @@ class GeminiClient:
         """Generate a response from Gemini."""
         response = self.client.models.generate_content(
             model=self.model,
-            contents=user_prompt,
-            config=genai.types.GenerateContentConfig(
-                system_instruction=system_prompt,
-            )
+            contents=[
+                {"role": "user", "parts": [{"text": f"{system_prompt}\n\n{user_prompt}"}]}
+            ],
         )
         return response.text
+
+
+class KimiClient:
+    """Kimi API client using OpenAI-compatible API."""
+    def __init__(self):
+        self.client = openai.OpenAI(
+            api_key=os.getenv("MOONSHOT_API_KEY"),
+            base_url="https://api.moonshot.ai/v1",
+        )
+        self.model = "kimi-k2.5"
+        self.name = "kimi-k2.5"
+
+    def generate(self, system_prompt: str, user_prompt: str):
+        """Generate a response from Kimi."""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            extra_body={
+                "thinking": {"type": "disabled"}
+            },
+            max_tokens=32768
+        )
+        return response.choices[0].message.content
 
 
 # =============================================================================
@@ -537,8 +562,8 @@ def parse_args():
     parser.add_argument(
         "--models",
         type=str,
-        default="claude,grok,gemini",
-        help="Comma-separated list of models to use (default: claude,grok,gemini)"
+        default="claude,grok,gemini,kimi",
+        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi)"
     )
     parser.add_argument(
         "--samples",
@@ -570,6 +595,10 @@ def main():
     if "gemini" in model_list:
         print("Initializing Gemini client...")
         clients.append(GeminiClient())
+    
+    if "kimi" in model_list:
+        print("Initializing Kimi client...")
+        clients.append(KimiClient())
     
     if not clients:
         print("Error: No valid models specified")
