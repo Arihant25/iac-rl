@@ -22,6 +22,7 @@ from typing import Literal
 from dotenv import load_dotenv
 
 import anthropic
+from anthropic import AnthropicVertex
 import openai
 from google import genai
 
@@ -127,11 +128,20 @@ Request:
 # =============================================================================
 
 class ClaudeClient:
-    """Claude API client using Anthropic SDK."""
+    """Claude API client using Vertex AI."""
     
     def __init__(self):
-        self.client = anthropic.Anthropic()
-        self.model = "claude-sonnet-4-5-20250929"
+        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        location = os.environ.get("VERTEX_LOCATION") or os.environ.get("GOOGLE_CLOUD_REGION") or "asia-south1"
+        
+        if not project_id:
+            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
+            
+        self.client = AnthropicVertex(
+            project_id=project_id,
+            region="global", # 4.5 Sonnet requires global endpoint
+        )
+        self.model = "claude-sonnet-4-5@20250929" # Vertex AI Model ID
         self.name = "claude-4.5-sonnet"
     
     def generate(self, system_prompt: str, user_prompt: str) -> str:
@@ -214,17 +224,79 @@ class KimiClient:
 
 
 class GLMClient:
-    """GLM API client using OpenAI-compatible API (Z.AI)."""
+    """GLM API client using Vertex AI MaaS (OpenAI-compatible)."""
     def __init__(self):
+        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        location = os.environ.get("VERTEX_LOCATION") or os.environ.get("GOOGLE_CLOUD_REGION") or "asia-south1"
+        
+        if not project_id:
+            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
+
+        # Vertex AI MaaS OpenAI-compatible endpoint
+        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
+        
+        # Auth needs to be handled via Google credentials. 
+        # Ideally using `google-auth` to get a token, but openai client expects api_key.
+        # For Vertex AI MaaS with OpenAI client, we can use the access token as the API key.
+        import google.auth
+        import google.auth.transport.requests
+
+        creds, _ = google.auth.default()
+        if not creds.valid:
+            request = google.auth.transport.requests.Request()
+            creds.refresh(request)
+        
         self.client = openai.OpenAI(
-            api_key=os.getenv("ZAI_API_KEY"),
-            base_url="https://api.z.ai/api/paas/v4/",
+            api_key=creds.token,
+            base_url=base_url,
         )
-        self.model = "glm-4.7"
+        self.model = "glm-4.7-maas"
         self.name = "glm-4.7"
 
     def generate(self, system_prompt: str, user_prompt: str):
         """Generate a response from GLM."""
+        # Refresh token if needed (simple check, strictly should be done before each call or via auth callback if supported)
+        # Re-instantiating or refreshing logic could be improved, but for now assuming token valid for script duration
+        
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+        )
+        return response.choices[0].message.content
+
+
+class QwenClient:
+    """Qwen API client using Vertex AI MaaS (OpenAI-compatible)."""
+    def __init__(self):
+        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        # Qwen MaaS is only available in specific regions like us-south1
+        location = os.environ.get("QWEN_LOCATION") or "us-south1"
+        
+        if not project_id:
+            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
+
+        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
+        
+        import google.auth
+        import google.auth.transport.requests
+
+        creds, _ = google.auth.default()
+        if not creds.valid:
+            request = google.auth.transport.requests.Request()
+            creds.refresh(request)
+        
+        self.client = openai.OpenAI(
+            api_key=creds.token,
+            base_url=base_url,
+        )
+        self.model = "qwen/qwen3-235b-a22b-instruct-2507-maas"
+        self.name = "qwen3-235b"
+
+    def generate(self, system_prompt: str, user_prompt: str):
+        """Generate a response from Qwen."""
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
@@ -584,8 +656,8 @@ def parse_args():
     parser.add_argument(
         "--models",
         type=str,
-        default="claude,grok,gemini,kimi,glm",
-        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi,glm)"
+        default="claude,grok,gemini,kimi,glm,qwen",
+        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi,glm,qwen)"
     )
     parser.add_argument(
         "--samples",
@@ -625,6 +697,10 @@ def main():
     if "glm" in model_list:
         print("Initializing GLM client...")
         clients.append(GLMClient())
+
+    if "qwen" in model_list:
+        print("Initializing Qwen client...")
+        clients.append(QwenClient())
     
     if not clients:
         print("Error: No valid models specified")
