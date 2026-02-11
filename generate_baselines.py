@@ -21,8 +21,6 @@ from pathlib import Path
 from typing import Literal
 from dotenv import load_dotenv
 
-import anthropic
-from anthropic import AnthropicVertex
 import openai
 from google import genai
 
@@ -41,7 +39,7 @@ IMPORTANT: Output exactly ONE code block containing all the Terraform/HCL code. 
 
 # Few-shot examples from IaC-Eval paper
 # Source: https://github.com/autoiac-project/iac-eval/blob/main/evaluation/prompt-templates/few-shot.txt
-FEW_SHOT_PROMPT = """Here are a few examples:
+FEW_SHOT_PROMPT = """Here are a few examples of how to generate Terraform configurations:
 
 Example prompt 1: Create an AWS RDS instance with randomly generated id and password
 Example output 1: 
@@ -106,7 +104,10 @@ resource "aws_efs_replication_configuration" "example" {
 }
 ```
 
-Here is the actual prompt to answer:
+Now, please generate the Terraform configuration for the following request, following the same format as the examples above.
+Provide the code in HCL format within a Markdown code block (using ```hcl).
+
+Request:
 """
 
 # Chain-of-Thought prompt suffix from IaC-Eval paper
@@ -124,35 +125,42 @@ Request:
 
 
 # =============================================================================
+# Global Configuration
+# =============================================================================
+
+# Default location for Vertex AI resources
+LOCATION = "global" 
+
+# Project ID from environment or default
+PROJECT_ID = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+
+
+# =============================================================================
 # API Clients
 # =============================================================================
 
 class ClaudeClient:
-    """Claude API client using Vertex AI."""
+    """Claude API client using OpenRouter."""
     
     def __init__(self):
-        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
-        location = os.environ.get("VERTEX_LOCATION") or os.environ.get("GOOGLE_CLOUD_REGION") or "asia-south1"
-        
-        if not project_id:
-            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
-            
-        self.client = AnthropicVertex(
-            project_id=project_id,
-            region="global", # 4.5 Sonnet requires global endpoint
+        self.client = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
         )
-        self.model = "claude-sonnet-4-5@20250929" # Vertex AI Model ID
+        self.model = "anthropic/claude-sonnet-4.5"
         self.name = "claude-4.5-sonnet"
     
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Claude."""
-        response = self.client.messages.create(
+        response = self.client.chat.completions.create(
             model=self.model,
-            max_tokens=8192,
-            system=system_prompt,
-            messages=[{"role": "user", "content": user_prompt}]
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt}
+            ],
+            max_tokens=32000
         )
-        return response.content[0].text
+        return response.choices[0].message.content
 
 
 class GrokClient:
@@ -224,46 +232,28 @@ class KimiClient:
 
 
 class GLMClient:
-    """GLM API client using Vertex AI MaaS (OpenAI-compatible)."""
+    """GLM API client using OpenRouter."""
     def __init__(self):
-        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
-        location = os.environ.get("VERTEX_LOCATION") or os.environ.get("GOOGLE_CLOUD_REGION") or "asia-south1"
-        
-        if not project_id:
-            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
-
-        # Vertex AI MaaS OpenAI-compatible endpoint
-        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
-        
-        # Auth needs to be handled via Google credentials. 
-        # Ideally using `google-auth` to get a token, but openai client expects api_key.
-        # For Vertex AI MaaS with OpenAI client, we can use the access token as the API key.
-        import google.auth
-        import google.auth.transport.requests
-
-        creds, _ = google.auth.default()
-        if not creds.valid:
-            request = google.auth.transport.requests.Request()
-            creds.refresh(request)
-        
         self.client = openai.OpenAI(
-            api_key=creds.token,
-            base_url=base_url,
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
         )
-        self.model = "glm-4.7-maas"
+        self.model = "z-ai/glm-4.7"
         self.name = "glm-4.7"
 
     def generate(self, system_prompt: str, user_prompt: str):
         """Generate a response from GLM."""
-        # Refresh token if needed (simple check, strictly should be done before each call or via auth callback if supported)
-        # Re-instantiating or refreshing logic could be improved, but for now assuming token valid for script duration
-        
         response = self.client.chat.completions.create(
+            extra_headers={
+                "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
+                "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+            },
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
+            max_tokens=32000
         )
         return response.choices[0].message.content
 
@@ -271,14 +261,13 @@ class GLMClient:
 class QwenClient:
     """Qwen API client using Vertex AI MaaS (OpenAI-compatible)."""
     def __init__(self):
-        project_id = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+        if not PROJECT_ID:
+            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
+            
         # Qwen MaaS is only available in specific regions like us-south1
         location = os.environ.get("QWEN_LOCATION") or "us-south1"
         
-        if not project_id:
-            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
-
-        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{project_id}/locations/{location}/endpoints/openapi"
+        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{location}/endpoints/openapi"
         
         import google.auth
         import google.auth.transport.requests
@@ -321,7 +310,7 @@ def build_prompt(user_prompt: str, prompt_type: PromptType) -> str:
     elif prompt_type == "few-shot":
         return FEW_SHOT_PROMPT + user_prompt
     elif prompt_type == "cot":
-        return user_prompt + COT_SUFFIX
+        return ZERO_SHOT_PREFIX + user_prompt + COT_SUFFIX
     else:
         raise ValueError(f"Unknown prompt type: {prompt_type}")
 
@@ -656,8 +645,8 @@ def parse_args():
     parser.add_argument(
         "--models",
         type=str,
-        default="claude,grok,gemini,kimi,glm,qwen",
-        help="Comma-separated list of models to use (default: claude,grok,gemini,kimi,glm,qwen)"
+        default=None,
+        help="Comma-separated list of models to use (default: all models - claude,grok,gemini,kimi,glm,qwen)"
     )
     parser.add_argument(
         "--samples",
@@ -674,8 +663,9 @@ def main():
     # Setup output directory
     output_dir = Path("outputs")
     
-    # Initialize clients based on selected models
-    model_list = [m.strip().lower() for m in args.models.split(",")]
+    # Initialize clients based on selected models (default to all if not specified)
+    models_str = args.models if args.models else "claude,grok,gemini,kimi,glm,qwen"
+    model_list = [m.strip().lower() for m in models_str.split(",")]
     clients = []
     
     if "claude" in model_list:
