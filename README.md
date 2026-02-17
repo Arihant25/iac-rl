@@ -56,8 +56,54 @@ The script processes both datasets automatically from the `datasets/` folder:
 
 ### Output
 
-Results saved to `outputs/` as JSON files containing:
+Results saved to `outputs/` as CSV files containing:
 - Input prompt
 - Model response
 - Extracted Terraform code
 - Reference solution
+
+## Evaluating Outputs
+
+Run [TerraMetrics](https://github.com/stilab-ets/terametrics) on all generated outputs to extract quality metrics (structural, complexity, documentation, risk).
+
+Requires Java.
+
+### Usage
+
+```bash
+uv run evaluate_outputs.py [OPTIONS]
+```
+
+### Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--csv` | All CSVs in `outputs/` | Path to a specific CSV to evaluate |
+| `--samples` | All | Only process first N rows per CSV |
+| `--workers` | `4` | Number of parallel workers |
+| `--jar` | `terraform_metrics-1.0.jar` | Path to TerraMetrics JAR |
+| `--summary-only` | — | Regenerate summary from existing results |
+
+### Examples
+
+```bash
+# Full run
+uv run evaluate_outputs.py
+
+# Single CSV
+uv run evaluate_outputs.py --csv outputs/iac_eval_claude-4.5-sonnet_zero-shot.csv
+
+# Test with 5 rows, 8 workers
+uv run evaluate_outputs.py --samples 5 --workers 8
+
+# Regenerate summary only
+uv run evaluate_outputs.py --summary-only
+```
+
+### Output
+
+Results saved to `results/`:
+- **`*_metrics.csv`** — one per input CSV, with `gen_*` and `ref_*` metric columns for both generated and reference code
+- **`summary.csv`** — aggregated means per model/prompt_type/dataset
+
+Resume is automatic for both generation and evaluation: re-running skips any `scenario_id` already in the result CSV.
