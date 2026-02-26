@@ -25,8 +25,8 @@ uv run generate_baselines.py [OPTIONS]
 
 | Option | Values | Default | Description |
 |--------|--------|---------|-------------|
-| `--prompt-type` | `zero-shot`, `few-shot`, `cot` | `zero-shot` | Prompting strategy |
-| `--models` | Comma-separated list | `claude,grok,gemini,kimi,glm,qwen` | Models to use |
+| `--prompt-type` | `zero-shot`, `few-shot`, `cot`, `all` | `zero-shot` | Prompting strategy. Use `all` to run zero-shot, few-shot, and cot sequentially |
+| `--models` | Comma-separated list | `claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3` | Models to use |
 | `--samples` | Integer | All | Number of samples per dataset |
 
 ### Examples

@@ -16,12 +16,11 @@ import json
 import os
 import re
 import time
-
 from pathlib import Path
 from typing import Literal
-from dotenv import load_dotenv
 
 import openai
+from dotenv import load_dotenv
 from google import genai
 
 load_dotenv(".env")
@@ -124,24 +123,37 @@ Request:
 """
 
 
+# COT prompt prefix — intentionally omits "no extra explanation" so the model
+# can reason step by step before producing the final code block.
+COT_PREFIX = """Please generate the Terraform configuration for the following request.
+Think through the requirements step by step, then provide the final code in HCL
+format within a Markdown code block (using ```hcl).
+
+Request:
+"""
+
+
 # =============================================================================
 # Global Configuration
 # =============================================================================
 
 # Default location for Vertex AI resources
-LOCATION = "global" 
+LOCATION = "global"
 
 # Project ID from environment or default
-PROJECT_ID = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get("GOOGLE_CLOUD_PROJECT")
+PROJECT_ID = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get(
+    "GOOGLE_CLOUD_PROJECT"
+)
 
 
 # =============================================================================
 # API Clients
 # =============================================================================
 
+
 class ClaudeClient:
     """Claude API client using OpenRouter."""
-    
+
     def __init__(self):
         self.client = openai.OpenAI(
             base_url="https://openrouter.ai/api/v1",
@@ -149,57 +161,59 @@ class ClaudeClient:
         )
         self.model = "anthropic/claude-sonnet-4.5"
         self.name = "claude-4.5-sonnet"
-    
+
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Claude."""
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": user_prompt},
             ],
-            max_tokens=32000
+            max_tokens=32000,
         )
         return response.choices[0].message.content
 
 
 class GrokClient:
     """Grok API client using OpenAI-compatible API."""
-    
+
     def __init__(self):
         self.client = openai.OpenAI(
-            api_key=os.environ.get("XAI_API_KEY"),
-            base_url="https://api.x.ai/v1"
+            api_key=os.environ.get("XAI_API_KEY"), base_url="https://api.x.ai/v1"
         )
         self.model = "grok-4-1-fast-non-reasoning"
         self.name = "grok-4.1-fast"
-    
+
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Grok."""
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
-            ]
+                {"role": "user", "content": user_prompt},
+            ],
         )
         return response.choices[0].message.content
 
 
 class GeminiClient:
     """Gemini API client using Google GenAI SDK."""
-    
+
     def __init__(self):
         self.client = genai.Client()
         self.model = "gemini-3-flash-preview"
         self.name = "gemini-3-flash"
-    
+
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Gemini."""
         response = self.client.models.generate_content(
             model=self.model,
             contents=[
-                {"role": "user", "parts": [{"text": f"{system_prompt}\n\n{user_prompt}"}]}
+                {
+                    "role": "user",
+                    "parts": [{"text": f"{system_prompt}\n\n{user_prompt}"}],
+                }
             ],
         )
         return response.text
@@ -207,6 +221,7 @@ class GeminiClient:
 
 class KimiClient:
     """Kimi API client using OpenAI-compatible API."""
+
     def __init__(self):
         self.client = openai.OpenAI(
             api_key=os.getenv("MOONSHOT_API_KEY"),
@@ -221,18 +236,17 @@ class KimiClient:
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": user_prompt},
             ],
-            extra_body={
-                "thinking": {"type": "disabled"}
-            },
-            max_tokens=32768
+            extra_body={"thinking": {"type": "disabled"}},
+            max_tokens=32768,
         )
         return response.choices[0].message.content
 
 
 class GLMClient:
     """GLM API client using OpenRouter."""
+
     def __init__(self):
         self.client = openai.OpenAI(
             base_url="https://openrouter.ai/api/v1",
@@ -245,30 +259,105 @@ class GLMClient:
         """Generate a response from GLM."""
         response = self.client.chat.completions.create(
             extra_headers={
-                "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
-                "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+                "HTTP-Referer": "<YOUR_SITE_URL>",  # Optional. Site URL for rankings on openrouter.ai.
+                "X-Title": "<YOUR_SITE_NAME>",  # Optional. Site title for rankings on openrouter.ai.
             },
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": user_prompt},
             ],
-            max_tokens=32000
+            max_tokens=32000,
+        )
+        return response.choices[0].message.content
+
+
+class Phi4Client:
+    """Microsoft Phi-4 API client using OpenRouter."""
+
+    def __init__(self):
+        self.client = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
+        )
+        self.model = "microsoft/phi-4"
+        self.name = "phi-4"
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        """Generate a response from Phi-4."""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            max_tokens=32000,
+        )
+        return response.choices[0].message.content
+
+
+class Ministral8bClient:
+    """Mistral Ministral-8B API client using OpenRouter."""
+
+    def __init__(self):
+        self.client = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
+        )
+        self.model = "mistralai/ministral-8b-2512"
+        self.name = "ministral-8b"
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        """Generate a response from Ministral-8B."""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            max_tokens=32000,
+        )
+        return response.choices[0].message.content
+
+
+class Gemma3Client:
+    """Google Gemma-3-27B API client using OpenRouter."""
+
+    def __init__(self):
+        self.client = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
+        )
+        self.model = "google/gemma-3-27b-it:free"
+        self.name = "gemma-3-27b"
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        """Generate a response from Gemma-3-27B."""
+        response = self.client.chat.completions.create(
+            model=self.model,
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
+            ],
+            max_tokens=32000,
         )
         return response.choices[0].message.content
 
 
 class QwenClient:
     """Qwen API client using Vertex AI MaaS (OpenAI-compatible)."""
+
     def __init__(self):
         if not PROJECT_ID:
-            raise ValueError("VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set")
-            
+            raise ValueError(
+                "VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set"
+            )
+
         # Qwen MaaS is only available in specific regions like us-south1
         location = os.environ.get("QWEN_LOCATION") or "us-south1"
-        
+
         base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{location}/endpoints/openapi"
-        
+
         import google.auth
         import google.auth.transport.requests
 
@@ -276,7 +365,7 @@ class QwenClient:
         if not creds.valid:
             request = google.auth.transport.requests.Request()
             creds.refresh(request)
-        
+
         self.client = openai.OpenAI(
             api_key=creds.token,
             base_url=base_url,
@@ -290,7 +379,7 @@ class QwenClient:
             model=self.model,
             messages=[
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": user_prompt}
+                {"role": "user", "content": user_prompt},
             ],
         )
         return response.choices[0].message.content
@@ -310,7 +399,7 @@ def build_prompt(user_prompt: str, prompt_type: PromptType) -> str:
     elif prompt_type == "few-shot":
         return FEW_SHOT_PROMPT + user_prompt
     elif prompt_type == "cot":
-        return ZERO_SHOT_PREFIX + user_prompt + COT_SUFFIX
+        return COT_PREFIX + user_prompt + COT_SUFFIX
     else:
         raise ValueError(f"Unknown prompt type: {prompt_type}")
 
@@ -319,6 +408,7 @@ def build_prompt(user_prompt: str, prompt_type: PromptType) -> str:
 # Code Extraction
 # =============================================================================
 
+
 def extract_terraform_code(response: str) -> str:
     """Extract Terraform/HCL code from a response."""
     # Try to find code in markdown code blocks
@@ -326,12 +416,12 @@ def extract_terraform_code(response: str) -> str:
         r"```(?:hcl|terraform|tf)\s*(.*?)\s*```",
         r"```\s*(.*?)\s*```",
     ]
-    
+
     for pattern in patterns:
         matches = re.findall(pattern, response, re.DOTALL)
         if matches:
             return matches[0].strip()  # Return the first code block
-    
+
     # If no code blocks, return the full response
     return response
 
@@ -339,6 +429,7 @@ def extract_terraform_code(response: str) -> str:
 # =============================================================================
 # Dataset Loading
 # =============================================================================
+
 
 def load_iac_eval_dataset(path: Path) -> list[dict]:
     """Load the IaC-Eval dataset."""
@@ -349,22 +440,25 @@ def load_iac_eval_dataset(path: Path) -> list[dict]:
 def load_llm_iac_dataset(path: Path) -> list[dict]:
     """Load the llm-iac.csv dataset."""
     dataset = []
-    with open(path, 'r', encoding='utf-8') as f:
+    with open(path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            dataset.append({
-                'id': row['ID'],
-                'category': row['Category'],
-                'cloud_provider': row['Cloud_Provider'],
-                'user_query': row['User_Query'],
-                'terraform_code': row['Terraform_Code']
-            })
+            dataset.append(
+                {
+                    "id": row["ID"],
+                    "category": row["Category"],
+                    "cloud_provider": row["Cloud_Provider"],
+                    "user_query": row["User_Query"],
+                    "terraform_code": row["Terraform_Code"],
+                }
+            )
     return dataset
 
 
 # =============================================================================
 # Result Saving
 # =============================================================================
+
 
 def get_output_filename(
     dataset_name: str,
@@ -379,7 +473,7 @@ def load_existing_results(output_path: Path) -> list[dict]:
     """Load existing results from a JSON file if it exists."""
     if output_path.exists():
         results = []
-        with open(output_path, "r", encoding='utf-8') as f:
+        with open(output_path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 # Unescape newlines when reading back into memory
@@ -397,14 +491,14 @@ def get_completed_scenario_ids(results: list[dict]) -> set[str]:
 def escape_newlines(value):
     """Escape newlines in strings for CSV output."""
     if isinstance(value, str):
-        return value.replace('\n', '\\n').replace('\r', '')
+        return value.replace("\n", "\\n").replace("\r", "")
     return value
 
 
 def unescape_newlines(value):
     """Unescape newlines in strings from CSV input."""
     if isinstance(value, str):
-        return value.replace('\\n', '\n')
+        return value.replace("\\n", "\n")
     return value
 
 
@@ -414,17 +508,17 @@ def save_results(output_path: Path, results: list[dict]):
         return
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    
+
     # distinct keys from all records
     keys = set()
     for entry in results:
         keys.update(entry.keys())
     fieldnames = sorted(list(keys))
-    
-    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
         writer.writeheader()
-        
+
         for entry in results:
             processed_entry = {k: escape_newlines(v) for k, v in entry.items()}
             writer.writerow(processed_entry)
@@ -433,6 +527,7 @@ def save_results(output_path: Path, results: list[dict]):
 # =============================================================================
 # Main Generation Logic
 # =============================================================================
+
 
 def format_eta(seconds: float) -> str:
     """Format seconds into a human-readable ETA string."""
@@ -459,37 +554,39 @@ def run_iac_eval(
     """Run generation on IaC-Eval dataset."""
     if samples:
         dataset = dataset[:samples]
-    
-    print(f"\n{'='*60}")
+
+    print(f"\n{'=' * 60}")
     print(f"Processing IaC-Eval dataset ({len(dataset)} scenarios)")
     print(f"Prompt type: {prompt_type}")
-    print(f"{'='*60}\n")
-    
+    print(f"{'=' * 60}\n")
+
     for client in clients:
         # Load existing results for this client
         output_filename = get_output_filename("iac_eval", client.name, prompt_type)
         output_path = output_dir / output_filename
         results = load_existing_results(output_path)
         completed_ids = get_completed_scenario_ids(results)
-        
+
         print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
-        
+
         # ETA tracking
         client_start_time = time.time()
         processed_count = 0
-        
+
         for idx, scenario in enumerate(dataset):
             scenario_id = f"iac_eval_{idx:04d}"
-            
+
             # Skip if already completed
             if scenario_id in completed_ids:
-                print(f"[{idx+1}/{len(dataset)}] Skipping {scenario_id} (already exists)")
+                print(
+                    f"[{idx + 1}/{len(dataset)}] Skipping {scenario_id} (already exists)"
+                )
                 continue
-            
+
             base_prompt = scenario["Prompt"]
             reference = scenario.get("Reference output")
             difficulty = scenario.get("Difficulty", "unknown")
-            
+
             # Calculate ETA
             remaining = len(dataset) - idx - 1 - (len(completed_ids) - processed_count)
             if processed_count > 0:
@@ -499,19 +596,21 @@ def run_iac_eval(
                 eta_str = f" | ETA: {format_eta(eta_seconds)}"
             else:
                 eta_str = " | ETA: calculating..."
-            
-            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty}){eta_str}")
+
+            print(
+                f"[{idx + 1}/{len(dataset)}] Scenario: {scenario_id} (difficulty: {difficulty}){eta_str}"
+            )
             print(f"  Prompt: {base_prompt[:80]}...")
-            
+
             user_prompt = build_prompt(base_prompt, prompt_type)
-            
+
             print(f"  Generating with {client.name}...")
             try:
                 start_time = time.time()
                 response = client.generate(SYSTEM_PROMPT, user_prompt)
                 duration = round(time.time() - start_time, 2)
                 extracted_code = extract_terraform_code(response)
-                
+
                 result = {
                     "dataset": "iac_eval",
                     "scenario_id": scenario_id,
@@ -526,16 +625,18 @@ def run_iac_eval(
 
                 results.append(result)
                 processed_count += 1
-                
+
                 # Save after each successful generation for resume safety
                 save_results(output_path, results)
                 print(f"  Saved to: {output_path}")
-                
+
             except Exception as e:
                 print(f"    Error: {e}")
-        
+
         total_time = time.time() - client_start_time
-        print(f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})")
+        print(
+            f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})"
+        )
 
 
 def run_llm_iac(
@@ -548,38 +649,40 @@ def run_llm_iac(
     """Run generation on llm-iac.csv dataset."""
     if samples:
         dataset = dataset[:samples]
-    
-    print(f"\n{'='*60}")
+
+    print(f"\n{'=' * 60}")
     print(f"Processing llm-iac dataset ({len(dataset)} scenarios)")
     print(f"Prompt type: {prompt_type}")
-    print(f"{'='*60}\n")
-    
+    print(f"{'=' * 60}\n")
+
     for client in clients:
         # Load existing results for this client
         output_filename = get_output_filename("llm_iac", client.name, prompt_type)
         output_path = output_dir / output_filename
         results = load_existing_results(output_path)
         completed_ids = get_completed_scenario_ids(results)
-        
+
         print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
-        
+
         # ETA tracking
         client_start_time = time.time()
         processed_count = 0
-        
+
         for idx, scenario in enumerate(dataset):
             scenario_id = f"llm_iac_{scenario['id']}"
-            
+
             # Skip if already completed
             if scenario_id in completed_ids:
-                print(f"[{idx+1}/{len(dataset)}] Skipping {scenario_id} (already exists)")
+                print(
+                    f"[{idx + 1}/{len(dataset)}] Skipping {scenario_id} (already exists)"
+                )
                 continue
-            
-            base_prompt = scenario['user_query']
-            reference = scenario['terraform_code']
-            category = scenario.get('category', 'unknown')
-            cloud_provider = scenario.get('cloud_provider', 'unknown')
-            
+
+            base_prompt = scenario["user_query"]
+            reference = scenario["terraform_code"]
+            category = scenario.get("category", "unknown")
+            cloud_provider = scenario.get("cloud_provider", "unknown")
+
             # Calculate ETA
             remaining = len(dataset) - idx - 1 - (len(completed_ids) - processed_count)
             if processed_count > 0:
@@ -589,19 +692,21 @@ def run_llm_iac(
                 eta_str = f" | ETA: {format_eta(eta_seconds)}"
             else:
                 eta_str = " | ETA: calculating..."
-            
-            print(f"[{idx+1}/{len(dataset)}] Scenario: {scenario_id} ({cloud_provider} - {category}){eta_str}")
+
+            print(
+                f"[{idx + 1}/{len(dataset)}] Scenario: {scenario_id} ({cloud_provider} - {category}){eta_str}"
+            )
             print(f"  Prompt: {base_prompt[:80]}...")
-            
+
             user_prompt = build_prompt(base_prompt, prompt_type)
-            
+
             print(f"  Generating with {client.name}...")
             try:
                 start_time = time.time()
                 response = client.generate(SYSTEM_PROMPT, user_prompt)
                 duration = round(time.time() - start_time, 2)
                 extracted_code = extract_terraform_code(response)
-                
+
                 result = {
                     "dataset": "llm_iac",
                     "scenario_id": scenario_id,
@@ -616,21 +721,24 @@ def run_llm_iac(
 
                 results.append(result)
                 processed_count += 1
-                
+
                 # Save after each successful generation for resume safety
                 save_results(output_path, results)
                 print(f"  Saved to: {output_path}")
-                
+
             except Exception as e:
                 print(f"    Error: {e}")
-        
+
         total_time = time.time() - client_start_time
-        print(f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})")
+        print(
+            f"Completed {client.name}: {len(results)} total results in {output_path} (took {format_eta(total_time)})"
+        )
 
 
 # =============================================================================
 # CLI
 # =============================================================================
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -638,52 +746,56 @@ def parse_args():
     )
     parser.add_argument(
         "--prompt-type",
-        choices=["zero-shot", "few-shot", "cot"],
+        choices=["zero-shot", "few-shot", "cot", "all"],
         default="zero-shot",
-        help="Type of prompting strategy to use (default: zero-shot)"
+        help="Type of prompting strategy to use. Use 'all' to run zero-shot, few-shot, and cot sequentially (default: zero-shot)",
     )
     parser.add_argument(
         "--models",
         type=str,
         default=None,
-        help="Comma-separated list of models to use (default: all models - claude,grok,gemini,kimi,glm,qwen)"
+        help="Comma-separated list of models to use (default: all models - claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3)",
     )
     parser.add_argument(
         "--samples",
         type=int,
         default=None,
-        help="Number of samples to process per dataset (default: all)"
+        help="Number of samples to process per dataset (default: all)",
     )
     return parser.parse_args()
 
 
 def main():
     args = parse_args()
-    
+
     # Setup output directory
     output_dir = Path("outputs")
-    
+
     # Initialize clients based on selected models (default to all if not specified)
-    models_str = args.models if args.models else "claude,grok,gemini,kimi,glm,qwen"
+    models_str = (
+        args.models
+        if args.models
+        else "claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3"
+    )
     model_list = [m.strip().lower() for m in models_str.split(",")]
     clients = []
-    
+
     if "claude" in model_list:
         print("Initializing Claude client...")
         clients.append(ClaudeClient())
-    
+
     if "grok" in model_list:
         print("Initializing Grok client...")
         clients.append(GrokClient())
-    
+
     if "gemini" in model_list:
         print("Initializing Gemini client...")
         clients.append(GeminiClient())
-    
+
     if "kimi" in model_list:
         print("Initializing Kimi client...")
         clients.append(KimiClient())
-    
+
     if "glm" in model_list:
         print("Initializing GLM client...")
         clients.append(GLMClient())
@@ -691,43 +803,68 @@ def main():
     if "qwen" in model_list:
         print("Initializing Qwen client...")
         clients.append(QwenClient())
-    
+
+    if "phi4" in model_list:
+        print("Initializing Phi-4 client...")
+        clients.append(Phi4Client())
+
+    if "ministral" in model_list:
+        print("Initializing Ministral-8B client...")
+        clients.append(Ministral8bClient())
+
+    if "gemma3" in model_list:
+        print("Initializing Gemma-3-27B client...")
+        clients.append(Gemma3Client())
+
     if not clients:
         print("Error: No valid models specified")
         return
-    
+
+    # Determine which prompt types to run
+    prompt_types = (
+        ["zero-shot", "few-shot", "cot"]
+        if args.prompt_type == "all"
+        else [args.prompt_type]
+    )
+
     # Load datasets
     iac_eval_path = Path("datasets/iac_eval_dataset.json")
     llm_iac_path = Path("datasets/llm-iac.csv")
-    
-    if iac_eval_path.exists():
-        iac_eval_dataset = load_iac_eval_dataset(iac_eval_path)
-        run_iac_eval(
-            dataset=iac_eval_dataset,
-            clients=clients,
-            prompt_type=args.prompt_type,
-            output_dir=output_dir,
-            samples=args.samples,
-        )
-    else:
+
+    iac_eval_dataset = (
+        load_iac_eval_dataset(iac_eval_path) if iac_eval_path.exists() else None
+    )
+    llm_iac_dataset = (
+        load_llm_iac_dataset(llm_iac_path) if llm_iac_path.exists() else None
+    )
+
+    if not iac_eval_dataset:
         print(f"Warning: {iac_eval_path} not found, skipping IaC-Eval")
-    
-    if llm_iac_path.exists():
-        llm_iac_dataset = load_llm_iac_dataset(llm_iac_path)
-        run_llm_iac(
-            dataset=llm_iac_dataset,
-            clients=clients,
-            prompt_type=args.prompt_type,
-            output_dir=output_dir,
-            samples=args.samples,
-        )
-    else:
+    if not llm_iac_dataset:
         print(f"Warning: {llm_iac_path} not found, skipping llm-iac")
-    
-    print("\n" + "="*60)
+
+    for prompt_type in prompt_types:
+        if iac_eval_dataset:
+            run_iac_eval(
+                dataset=iac_eval_dataset,
+                clients=clients,
+                prompt_type=prompt_type,
+                output_dir=output_dir,
+                samples=args.samples,
+            )
+        if llm_iac_dataset:
+            run_llm_iac(
+                dataset=llm_iac_dataset,
+                clients=clients,
+                prompt_type=prompt_type,
+                output_dir=output_dir,
+                samples=args.samples,
+            )
+
+    print("\n" + "=" * 60)
     print("Generation complete!")
     print(f"Results saved to: {output_dir.absolute()}")
-    print("="*60)
+    print("=" * 60)
 
 
 if __name__ == "__main__":
