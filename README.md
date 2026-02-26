@@ -1,19 +1,16 @@
 # IaC-RL
 
 ## Generating Baselines
-Generate Terraform configurations from the IaC-Eval datasets using Claude, Grok, and Gemini APIs.
+Generate Terraform configurations from the IaC-Eval datasets using LLM APIs.
 
 ### Setup
 
 ```bash
 # Install dependencies
 uv sync
-
-# Set API keys
-export ANTHROPIC_API_KEY=...
-export XAI_API_KEY=...
-export GOOGLE_API_KEY=...
 ```
+
+Set API keys in `.env` (copy from `example.env`).
 
 ### Usage
 

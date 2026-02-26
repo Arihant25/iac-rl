@@ -134,19 +134,6 @@ Request:
 
 
 # =============================================================================
-# Global Configuration
-# =============================================================================
-
-# Default location for Vertex AI resources
-LOCATION = "global"
-
-# Project ID from environment or default
-PROJECT_ID = os.environ.get("VERTEX_PROJECT_ID") or os.environ.get(
-    "GOOGLE_CLOUD_PROJECT"
-)
-
-
-# =============================================================================
 # API Clients
 # =============================================================================
 
@@ -291,7 +278,7 @@ class Phi4Client:
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
             ],
-            max_tokens=32000,
+            max_tokens=12000,
         )
         return response.choices[0].message.content
 
@@ -345,32 +332,14 @@ class Gemma3Client:
 
 
 class QwenClient:
-    """Qwen API client using Vertex AI MaaS (OpenAI-compatible)."""
+    """Qwen API client using OpenRouter."""
 
     def __init__(self):
-        if not PROJECT_ID:
-            raise ValueError(
-                "VERTEX_PROJECT_ID or GOOGLE_CLOUD_PROJECT environment variable must be set"
-            )
-
-        # Qwen MaaS is only available in specific regions like us-south1
-        location = os.environ.get("QWEN_LOCATION") or "us-south1"
-
-        base_url = f"https://{location}-aiplatform.googleapis.com/v1beta1/projects/{PROJECT_ID}/locations/{location}/endpoints/openapi"
-
-        import google.auth
-        import google.auth.transport.requests
-
-        creds, _ = google.auth.default()
-        if not creds.valid:
-            request = google.auth.transport.requests.Request()
-            creds.refresh(request)
-
         self.client = openai.OpenAI(
-            api_key=creds.token,
-            base_url=base_url,
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
         )
-        self.model = "qwen/qwen3-235b-a22b-instruct-2507-maas"
+        self.model = "qwen/qwen3-235b-a22b-2507"
         self.name = "qwen3-235b"
 
     def generate(self, system_prompt: str, user_prompt: str):
@@ -753,7 +722,7 @@ def parse_args():
     parser.add_argument(
         "--models",
         type=str,
-        default=None,
+        default="claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3",
         help="Comma-separated list of models to use (default: all models - claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3)",
     )
     parser.add_argument(
@@ -771,13 +740,8 @@ def main():
     # Setup output directory
     output_dir = Path("outputs")
 
-    # Initialize clients based on selected models (default to all if not specified)
-    models_str = (
-        args.models
-        if args.models
-        else "claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3"
-    )
-    model_list = [m.strip().lower() for m in models_str.split(",")]
+    # Initialize clients based on selected models
+    model_list = [m.strip().lower() for m in args.models.split(",")]
     clients = []
 
     if "claude" in model_list:
