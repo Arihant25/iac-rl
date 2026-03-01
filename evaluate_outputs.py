@@ -20,7 +20,6 @@ from __future__ import annotations
 import argparse
 import csv
 import json
-import os
 import subprocess
 import sys
 import tempfile
@@ -109,6 +108,7 @@ DATA_METRICS = {
 # CSV helpers (matching generate_baselines.py escaping)
 # ─────────────────────────────────────────────────────────────
 
+
 def unescape_newlines(value: str) -> str:
     """Unescape \\n back to real newlines (matching generate_baselines.py)."""
     return value.replace("\\n", "\n")
@@ -125,7 +125,10 @@ def escape_newlines(value: Any) -> Any:
 # TerraMetrics runner
 # ─────────────────────────────────────────────────────────────
 
-def run_terrametrics_on_code(code: str, jar_path: Path) -> Tuple[bool, Optional[Dict[str, Any]], str]:
+
+def run_terrametrics_on_code(
+    code: str, jar_path: Path
+) -> Tuple[bool, Optional[Dict[str, Any]], str]:
     """
     Write code to a temp .tf file, run the JAR, parse the JSON result.
     Returns (success, parsed_json_or_None, error_message).
@@ -141,10 +144,14 @@ def run_terrametrics_on_code(code: str, jar_path: Path) -> Tuple[bool, Optional[
         tf_path.write_text(code, encoding="utf-8")
 
         cmd = [
-            "java", "-jar", str(jar_path),
-            "--file", str(tf_path),
+            "java",
+            "-jar",
+            str(jar_path),
+            "--file",
+            str(tf_path),
             "-b",
-            "--target", str(json_path),
+            "--target",
+            str(json_path),
         ]
 
         try:
@@ -183,6 +190,7 @@ def run_terrametrics_on_code(code: str, jar_path: Path) -> Tuple[bool, Optional[
 # ─────────────────────────────────────────────────────────────
 # Metric extraction
 # ─────────────────────────────────────────────────────────────
+
 
 def _agg(data_blocks: List[Dict], key: str, method: str) -> Optional[float]:
     """Aggregate a field across data blocks."""
@@ -231,14 +239,19 @@ def get_all_metric_columns() -> List[str]:
 # Result CSV I/O
 # ─────────────────────────────────────────────────────────────
 
+
 def get_result_columns() -> List[str]:
     """Return the full ordered column list for the result CSV."""
     meta_cols = ["scenario_id", "model", "prompt_type", "dataset"]
     metric_names = get_all_metric_columns()
     gen_cols = [f"gen_{m}" for m in metric_names]
     ref_cols = [f"ref_{m}" for m in metric_names]
-    status_cols = ["gen_terametrics_ok", "gen_terametrics_error",
-                   "ref_terametrics_ok", "ref_terametrics_error"]
+    status_cols = [
+        "gen_terametrics_ok",
+        "gen_terametrics_error",
+        "ref_terametrics_ok",
+        "ref_terametrics_error",
+    ]
     return meta_cols + status_cols + gen_cols + ref_cols
 
 
@@ -246,6 +259,7 @@ def load_existing_results(result_path: Path) -> Dict[str, Dict]:
     """Load already-computed results, keyed by scenario_id."""
     existing = {}
     if result_path.exists():
+        csv.field_size_limit(10 * 1024 * 1024)  # 10 MB limit
         with open(result_path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -259,7 +273,9 @@ def save_results(result_path: Path, columns: List[str], rows: List[Dict]):
     """Save results to CSV."""
     result_path.parent.mkdir(parents=True, exist_ok=True)
     with open(result_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=columns, quoting=csv.QUOTE_ALL, extrasaction="ignore")
+        writer = csv.DictWriter(
+            f, fieldnames=columns, quoting=csv.QUOTE_ALL, extrasaction="ignore"
+        )
         writer.writeheader()
         for row in rows:
             writer.writerow(row)
@@ -268,6 +284,7 @@ def save_results(result_path: Path, columns: List[str], rows: List[Dict]):
 # ─────────────────────────────────────────────────────────────
 # Process a single row
 # ─────────────────────────────────────────────────────────────
+
 
 def process_row(row: Dict[str, str], jar_path: Path) -> Dict[str, Any]:
     """Run TerraMetrics on both extracted_code and reference for one CSV row."""
@@ -315,6 +332,7 @@ def process_row(row: Dict[str, str], jar_path: Path) -> Dict[str, Any]:
 # Process a single CSV file
 # ─────────────────────────────────────────────────────────────
 
+
 def process_csv(
     csv_path: Path,
     jar_path: Path,
@@ -329,10 +347,10 @@ def process_csv(
 
     # Load existing results for resume
     existing = load_existing_results(result_path)
-    print(f"\n{'='*70}")
+    print(f"\n{'=' * 70}")
     print(f"  CSV: {csv_path.name}")
     print(f"  Already completed: {len(existing)} rows")
-    print(f"{'='*70}")
+    print(f"{'=' * 70}")
 
     # Read input CSV
     all_rows = []
@@ -361,8 +379,7 @@ def process_csv(
 
     with ThreadPoolExecutor(max_workers=workers) as executor:
         future_to_row = {
-            executor.submit(process_row, row, jar_path): row
-            for row in todo_rows
+            executor.submit(process_row, row, jar_path): row for row in todo_rows
         }
 
         for future in as_completed(future_to_row):
@@ -378,11 +395,13 @@ def process_csv(
                 rate = done_count / elapsed if elapsed > 0 else 0
                 remaining = len(todo_rows) - done_count
                 eta = remaining / rate if rate > 0 else 0
-                eta_str = f"{int(eta//60)}m{int(eta%60)}s" if eta > 0 else "--"
+                eta_str = f"{int(eta // 60)}m{int(eta % 60)}s" if eta > 0 else "--"
 
                 gen_ok = "✓" if result.get("gen_terametrics_ok") else "✗"
                 ref_ok = "✓" if result.get("ref_terametrics_ok") else "✗"
-                print(f"  [{done_count}/{len(todo_rows)}] {sid}  gen={gen_ok} ref={ref_ok}  ETA: {eta_str}")
+                print(
+                    f"  [{done_count}/{len(todo_rows)}] {sid}  gen={gen_ok} ref={ref_ok}  ETA: {eta_str}"
+                )
 
                 # Save periodically (every 10 rows) for resume safety
                 if done_count % 10 == 0:
@@ -394,13 +413,16 @@ def process_csv(
     # Final save
     save_results(result_path, columns, all_results)
     total_time = time.time() - start_time
-    print(f"  Done! {done_count} rows processed in {total_time:.1f}s → {result_path.name}")
+    print(
+        f"  Done! {done_count} rows processed in {total_time:.1f}s → {result_path.name}"
+    )
     return result_path
 
 
 # ─────────────────────────────────────────────────────────────
 # Summary aggregation
 # ─────────────────────────────────────────────────────────────
+
 
 def build_summary(results_dir: Path) -> Path:
     """Aggregate all per-file result CSVs into a single summary CSV with means."""
@@ -414,7 +436,11 @@ def build_summary(results_dir: Path) -> Path:
         with open(csv_file, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
-                key = (row.get("dataset", ""), row.get("model", ""), row.get("prompt_type", ""))
+                key = (
+                    row.get("dataset", ""),
+                    row.get("model", ""),
+                    row.get("prompt_type", ""),
+                )
                 groups.setdefault(key, []).append(row)
 
     # Compute means
@@ -445,7 +471,9 @@ def build_summary(results_dir: Path) -> Path:
                             vals.append(float(v))
                         except (ValueError, TypeError):
                             pass
-                summary[f"mean_{col}"] = round(sum(vals) / len(vals), 6) if vals else None
+                summary[f"mean_{col}"] = (
+                    round(sum(vals) / len(vals), 6) if vals else None
+                )
 
         summary_rows.append(summary)
 
@@ -471,6 +499,7 @@ def build_summary(results_dir: Path) -> Path:
 # ─────────────────────────────────────────────────────────────
 # CLI
 # ─────────────────────────────────────────────────────────────
+
 
 def parse_args():
     parser = argparse.ArgumentParser(
@@ -533,7 +562,7 @@ def main():
         print(f"No CSV files found in {OUTPUTS_DIR}")
         sys.exit(1)
 
-    print(f"TerraMetrics Evaluation")
+    print("TerraMetrics Evaluation")
     print(f"  JAR: {jar_path}")
     print(f"  CSVs: {len(csv_files)} files")
     print(f"  Workers: {args.workers}")

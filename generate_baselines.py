@@ -315,7 +315,7 @@ class Gemma3Client:
             base_url="https://openrouter.ai/api/v1",
             api_key=os.environ.get("OPENROUTER_API_KEY"),
         )
-        self.model = "google/gemma-3-27b-it:free"
+        self.model = "google/gemma-3-27b-it"
         self.name = "gemma-3-27b"
 
     def generate(self, system_prompt: str, user_prompt: str) -> str:
@@ -441,6 +441,7 @@ def get_output_filename(
 def load_existing_results(output_path: Path) -> list[dict]:
     """Load existing results from a JSON file if it exists."""
     if output_path.exists():
+        csv.field_size_limit(10 * 1024 * 1024)  # 10 MB limit
         results = []
         with open(output_path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
