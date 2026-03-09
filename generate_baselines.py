@@ -438,6 +438,115 @@ def get_output_filename(
     return f"{dataset_name}_{model_name}_{prompt_type}.csv"
 
 
+def run_paraphrases(
+    paraphrases_path: Path,
+    clients: list,
+    prompt_type: PromptType,
+    output_dir: Path,
+    samples: int | None = None,
+):
+    """Generate Terraform for each paraphrased prompt in a paraphrases JSON file.
+
+    The paraphrase file is produced by srs.py and contains entries with fields:
+      {"prompt": <original>, "paraphrase": <single paraphrase>, "dataset": <name>}
+
+    Outputs are saved to:
+      outputs/{dataset}_paraphrased_{model}_{prompt_type}.csv
+    with scenario_id = paraphrased_{idx:04d} for resume support.
+    """
+    if not paraphrases_path.exists():
+        print(f"Warning: {paraphrases_path} not found, skipping.")
+        return
+
+    with open(paraphrases_path, "r", encoding="utf-8") as f:
+        entries = json.load(f)
+
+    if samples:
+        entries = entries[:samples]
+
+    # Infer dataset name from filename stem (e.g. iac_eval_paraphrases -> iac_eval)
+    dataset_name = paraphrases_path.stem.replace("_paraphrases", "")
+    paraphrased_dataset_name = f"{dataset_name}_paraphrased"
+
+    print(f"\n{'=' * 60}")
+    print(f"Processing paraphrases from {paraphrases_path.name} ({len(entries)} entries)")
+    print(f"Prompt type: {prompt_type}")
+    print(f"{'=' * 60}\n")
+
+    for client in clients:
+        output_filename = get_output_filename(paraphrased_dataset_name, client.name, prompt_type)
+        output_path = output_dir / output_filename
+        results = load_existing_results(output_path)
+        completed_ids = get_completed_scenario_ids(results)
+
+        print(f"\n--- {client.name} ({len(completed_ids)} already completed) ---")
+
+        client_start_time = time.time()
+        processed_count = 0
+
+        for idx, entry in enumerate(entries):
+            scenario_id = f"paraphrased_{idx:04d}"
+
+            if scenario_id in completed_ids:
+                print(f"[{idx + 1}/{len(entries)}] Skipping {scenario_id} (already exists)")
+                continue
+
+            paraphrase_prompt = entry.get("paraphrase") or entry.get("paraphrases", [""])[0]
+            original_prompt = entry.get("prompt", "")
+
+            if not paraphrase_prompt:
+                print(f"[{idx + 1}/{len(entries)}] {scenario_id}: no paraphrase found, skipping")
+                continue
+
+            # ETA
+            remaining = len(entries) - idx - 1
+            if processed_count > 0:
+                elapsed = time.time() - client_start_time
+                eta_seconds = remaining * (elapsed / processed_count)
+                eta_str = f" | ETA: {format_eta(eta_seconds)}"
+            else:
+                eta_str = " | ETA: calculating..."
+
+            print(f"[{idx + 1}/{len(entries)}] {scenario_id}{eta_str}")
+            print(f"  Paraphrase: {paraphrase_prompt[:80]}...")
+
+            user_prompt = build_prompt(paraphrase_prompt, prompt_type)
+
+            print(f"  Generating with {client.name}...")
+            try:
+                start_time = time.time()
+                response = client.generate(SYSTEM_PROMPT, user_prompt)
+                duration = round(time.time() - start_time, 2)
+                extracted_code = extract_terraform_code(response)
+
+                result = {
+                    "dataset": paraphrased_dataset_name,
+                    "scenario_id": scenario_id,
+                    "model": client.name,
+                    "prompt_type": prompt_type,
+                    "original_prompt": original_prompt,
+                    "prompt": user_prompt,
+                    "response": response,
+                    "extracted_code": extracted_code,
+                    "reference": entry.get("reference", ""),  # from paraphrase JSON (for evaluate_outputs.py)
+                    "generation_time": duration,
+                }
+
+                results.append(result)
+                processed_count += 1
+                save_results(output_path, results)
+                print(f"  Saved to: {output_path}")
+
+            except Exception as e:
+                print(f"    Error: {e}")
+
+        total_time = time.time() - client_start_time
+        print(
+            f"Completed {client.name}: {len(results)} total results in {output_path} "
+            f"(took {format_eta(total_time)})"
+        )
+
+
 def load_existing_results(output_path: Path) -> list[dict]:
     """Load existing results from a JSON file if it exists."""
     if output_path.exists():
@@ -732,6 +841,17 @@ def parse_args():
         default=None,
         help="Number of samples to process per dataset (default: all)",
     )
+    parser.add_argument(
+        "--paraphrases",
+        type=str,
+        default=None,
+        help=(
+            "Path to a paraphrases JSON file produced by srs.py "
+            "(e.g. datasets/iac_eval_paraphrases.json). "
+            "When set, generates Terraform for each paraphrased prompt instead of the "
+            "original datasets, saving outputs to outputs/{dataset}_paraphrased_{model}_{prompt_type}.csv"
+        ),
+    )
     return parser.parse_args()
 
 
@@ -792,7 +912,24 @@ def main():
         else [args.prompt_type]
     )
 
-    # Load datasets
+    # --- Paraphrase mode ---
+    if args.paraphrases:
+        paraphrases_path = Path(args.paraphrases)
+        for prompt_type in prompt_types:
+            run_paraphrases(
+                paraphrases_path=paraphrases_path,
+                clients=clients,
+                prompt_type=prompt_type,
+                output_dir=output_dir,
+                samples=args.samples,
+            )
+        print("\n" + "=" * 60)
+        print("Paraphrase generation complete!")
+        print(f"Results saved to: {output_dir.absolute()}")
+        print("=" * 60)
+        return
+
+    # --- Normal mode: original datasets ---
     iac_eval_path = Path("datasets/iac_eval_dataset.json")
     llm_iac_path = Path("datasets/llm-iac.csv")
 
