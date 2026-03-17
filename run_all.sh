@@ -4,6 +4,13 @@
 
 set -e
 
+# Load environment variables
+if [ -f .env ]; then
+    set -a
+    source .env
+    set +a
+fi
+
 # Configuration
 MODELS="claude,grok,gemini,kimi,glm,qwen,phi4,ministral,gemma3"
 PROMPT_TYPES="zero-shot few-shot cot"

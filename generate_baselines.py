@@ -21,7 +21,6 @@ from typing import Literal
 
 import openai
 from dotenv import load_dotenv
-from google import genai
 
 load_dotenv(".env")
 
@@ -185,25 +184,26 @@ class GrokClient:
 
 
 class GeminiClient:
-    """Gemini API client using Google GenAI SDK."""
+    """Gemini API client using OpenRouter."""
 
     def __init__(self):
-        self.client = genai.Client()
-        self.model = "gemini-3-flash-preview"
+        self.client = openai.OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.environ.get("OPENROUTER_API_KEY"),
+        )
+        self.model = "google/gemini-3-flash-preview"
         self.name = "gemini-3-flash"
 
     def generate(self, system_prompt: str, user_prompt: str) -> str:
         """Generate a response from Gemini."""
-        response = self.client.models.generate_content(
+        response = self.client.chat.completions.create(
             model=self.model,
-            contents=[
-                {
-                    "role": "user",
-                    "parts": [{"text": f"{system_prompt}\n\n{user_prompt}"}],
-                }
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": user_prompt},
             ],
         )
-        return response.text
+        return response.choices[0].message.content
 
 
 class KimiClient:
