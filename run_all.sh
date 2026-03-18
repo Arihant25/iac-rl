@@ -71,15 +71,30 @@ done
 # Phase 4: Semantic Robustness Score (SRS)
 # ---------------------------------------------------------
 echo -e "\n[Phase 4] Compute Semantic Robustness Scores (SRS/ICS)"
+# Map short model names to the exact model identifiers used in `outputs/`
+declare -A MODEL_MAP=(
+    [claude]=claude-4.5-sonnet
+    [grok]=grok-4.1-fast
+    [gemini]=gemini-3-flash
+    [kimi]=kimi-k2.5
+    [glm]=glm-4.7
+    [qwen]=qwen3-235b
+    [phi4]=phi-4
+    [ministral]=ministral-8b
+    [gemma3]=gemma-3-27b
+)
+
 for model in ${MODELS//,/ }; do
-    for pt in $PROMPT_TYPES; do
-        echo "Computing SRS for: $model ($pt)"
-        # srs.py uses the model mappings formatted precisely as saved in the outputs
-        uv run srs.py \
-          --model "$model" \
-          --prompt-type "$pt" \
-          $EXTRA_ARGS
-    done
+        # Use mapped full model name when available (fallback to the original)
+        full_model="${MODEL_MAP[$model]:-$model}"
+        for pt in $PROMPT_TYPES; do
+                echo "Computing SRS for: $full_model ($pt)"
+                # srs.py expects the exact model name as used in the filenames under outputs/
+                uv run srs.py \
+                    --model "$full_model" \
+                    --prompt-type "$pt" \
+                    $EXTRA_ARGS
+        done
 done
 
 # ---------------------------------------------------------
