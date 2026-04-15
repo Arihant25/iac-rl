@@ -172,3 +172,18 @@ uv run srs.py --model claude-4.5-sonnet --prompt-type few-shot [--samples N]
 - **`results/final_results.json`** — per-entry and aggregate SRS/ICS results
 
 All three steps are fully **idempotent** — re-running resumes from where it left off.
+
+## Analyzing Results
+
+`results_analyzer.py` reproduces all statistics reported in the paper's Results section from `results/final_results.json`.
+
+```bash
+uv run results_analyzer.py
+```
+
+Output includes:
+- **Table 1** — per-dataset mean/median ICS and SRS with ICS=0 and ICS=1 percentages
+- **ICS distribution** — breakdown by score bucket (0, 0.5, 1.0, and intermediate ranges)
+- **SRS distribution** — SRS=1 counts and low-SRS (<0.7) counts per dataset
+- **Overall aggregates** — cross-dataset mean ICS and SRS
+- **Low-SRS prompts** — the specific prompts cited in the paper's Results §5.2
