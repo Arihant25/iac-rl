@@ -1,0 +1,126 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"paraphrased_0000","glm-4.7","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0001","glm-4.7","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0004","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0003","glm-4.7","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0002","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0005","glm-4.7","zero-shot","llm_iac_paraphrased","True","5","","5","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0006","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0007","glm-4.7","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0008","glm-4.7","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0010","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0009","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0013","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0014","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0011","glm-4.7","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0015","glm-4.7","zero-shot","llm_iac_paraphrased","True","4","","4","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0012","glm-4.7","zero-shot","llm_iac_paraphrased","True","16","","16","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0019","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""\""dev_environment\"" module is not found"",""message"":""The module directory \""modules\\env_setup\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":23,""column"":1},""end"":{""line"":23,""column"":25}}},{""summary"":""\""prod_env","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""dev_environment\"" module is not found"",""message"":""The module directory \""modules\\env_setup\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":23,""column"":1},""end"":{""line"":23,""column"":25}}},{""summary"":""\""prod_env","True","14","0","9","3","2","0",""
+"paraphrased_0017","glm-4.7","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0022","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid default value for variable"",""message"":""This default value is not compatible with the variable's type constraint: element \""subnet-1\"": object required."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":54,""column"":13},""end"":{""line"":57,""colum","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid default value for variable"",""message"":""This default value is not compatible with the variable's type constraint: element \""subnet-1\"": object required."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":54,""column"":13},""end"":{""line"":57,""colum","True","0","0","0","0","0","0",""
+"paraphrased_0018","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","True","1","0","0","0","1","0",""
+"paraphrased_0032","glm-4.7","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","2","0","1","0","1","0",""
+"paraphrased_0033","glm-4.7","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0041","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","24","0","4","16","4","0",""
+"paraphrased_0056","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","runtime: failed to create new OS thread (have 12 already; errno=1455)
+fatal error: runtime.newosproc
+runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368e1f21?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:"
+"paraphrased_0058","glm-4.7","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff731408081?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7d9a7ffb78 sp=0x7d9a7ffb48 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1f0, 0x87?, 0x7ff73af0e918)
+	/opt/hostedtool"
+"paraphrased_0068","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 8] Not enough memory resources are available to process this command"
+"paraphrased_0060","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; connection error: desc = \""transport: error while dialing: dial tcp 127.0.0.1:10723: socket: Not enough memory resources are available to process this command.\"""",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; connection error: desc = \""transport: error while dialing: dial tcp 127.0.0.1:10723: socket: Not enough memory resources are available to process this command.\"""",""severity"":""error""}]}","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+goroutine 3 gp=0xc000002c40 m=10 mp=0xc000e30008 [running]:
+runtime.throw({0x7ff73695309a?, 0xc000002c40?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc0000c1d80 sp=0xc0000c1d50 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+"
+"paraphrased_0070","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x47b1bffac8 sp=0x47b1bffa98 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x47b1bffc50?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0071","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x39ea9ff608?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x39ea9ff5d8 sp=0x39ea9ff5a8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1110, 0x7ff73aeadf00?, 0x7ff73af0e920)
+	/opt/h"
+"paraphrased_0069","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0024ae000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x385c3ff770 sp=0x385c3ff740 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0024ae000, 0x2000)
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/mem_windows.go:83 +0x1bb fp=0x"
+"paraphrased_0073","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x2c033ff728 sp=0x2c033ff6f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x2c033ff8b0?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0074","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x840b1ff6d8 sp=0x840b1ff6a8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x840b1ff860?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0072","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000180000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4e83ff790 sp=0x4e83ff760 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000180000, 0x"
+"paraphrased_0057","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; error reading from server: read tcp 127.0.0.1:54140-\u003e127.0.0.1:10744: wsarecv: An existing connection was forcibly closed by the remote host."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; error reading from server: read tcp 127.0.0.1:54140-\u003e127.0.0.1:10744: wsarecv: An existing connection was forcibly closed by the remote host."",""severity"":""error""}]}","True","2","0","2","0","0","0",""
+"paraphrased_0075","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x2f927ffb58 sp=0x2f927ffb28 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x2f927ffce0?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0076","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xbd5c5ff738 sp=0xbd5c5ff708 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xbd5c5ff8c0?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0081","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service"
+"paraphrased_0077","glm-4.7","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf4937ff7d8 sp=0xf4937ff7a8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0083","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","[WinError 8] Not enough memory resources are available to process this command","0","0","0","[WinError 8] Not enough memory resources are available to process this command","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x5a913ff908 sp=0x5a913ff8d8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0082","glm-4.7","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"

@@ -1,0 +1,229 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"paraphrased_0005","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""set_identifier\"" was already set at main.tf:77,3-17. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":86,""column"":3},""end"":{""line"":86,""column"":17}}},{""summary"":""Attr","0","0","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""set_identifier\"" was already set at main.tf:77,3-17. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":86,""column"":3},""end"":{""line"":86,""column"":17}}},{""summary"":""Attr","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0001","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0010","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","3","0","1","1","1","0",""
+"paraphrased_0008","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0009","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","1","0","1","0","0","0",""
+"paraphrased_0013","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","True","16","0","10","2","4","0",""
+"paraphrased_0012","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0015","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0014","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0016","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0019","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0017","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0020","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0021","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0022","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0023","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0024","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","4","","4","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0025","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0026","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0027","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0028","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0029","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0030","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0032","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","True","7","0","5","0","2","0",""
+"paraphrased_0031","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0033","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0034","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0035","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0036","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0037","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0038","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0039","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0040","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0041","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0042","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0043","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0044","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0045","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0046","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0047","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0048","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0049","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0050","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0051","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0052","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0053","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0054","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0056","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0055","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0060","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","14","1","6","2","5","0",""
+"paraphrased_0057","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","3","0","2","0","1","0",""
+"paraphrased_0058","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","True","10","0","7","1","2","0",""
+"paraphrased_0059","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","4","0","1","1","2","0",""
+"paraphrased_0061","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","True","3","0","1","1","1","0",""
+"paraphrased_0064","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","5","1","0","1","3","0",""
+"paraphrased_0063","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","6","0","4","0","2","0",""
+"paraphrased_0062","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","4","0","1","2","1","0",""
+"paraphrased_0067","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","15","1","6","3","5","0",""
+"paraphrased_0065","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","True","15","1","5","2","7","0",""
+"paraphrased_0068","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0069","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","1","0","1","0","0","0",""
+"paraphrased_0066","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","2","0","0","1","1","0",""
+"paraphrased_0071","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0070","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0072","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0075","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0073","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0076","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0074","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0077","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0078","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0079","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0080","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0081","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0082","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0083","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0084","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0085","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0086","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0087","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0088","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","8","2","1","5","0","0",""
+"paraphrased_0089","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0091","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0090","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0093","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0092","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0094","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0096","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0095","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0099","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0097","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0101","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","8","2","1","5","0","0",""
+"paraphrased_0098","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0100","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0102","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0104","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0103","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0105","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0106","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0107","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0109","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0108","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0110","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0111","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0112","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0114","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0113","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0115","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0116","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0117","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0118","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","7","0","5","0","2","0",""
+"paraphrased_0119","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","2","0","0","1","1","0",""
+"paraphrased_0120","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","8","0","5","1","2","0",""
+"paraphrased_0137","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","2","0","2","0","0","0",""
+"paraphrased_0144","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","True","6","1","1","1","3","0",""
+"paraphrased_0147","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","6","1","1","1","3","0",""
+"paraphrased_0155","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","tflint timed out","0","0","0","tflint timed out","True","1","0","0","0","1","0",""
+"paraphrased_0154","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0162","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc003ce4000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7cefff600 sp=0x7cefff5d0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc003ce4000, 0x"
+"paraphrased_0172","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x57e6fff878 sp=0x57e6fff848 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0175","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","runtime: failed to create new OS thread (have 5 already; errno=1455)
+fatal error: runtime.newosproc
+
+runtime stack:
+runtime.throw({0x7ff7368e1f21?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4c7e9ff858 sp=0x4c7e9ff828 pc=0x7ff7313ff7cd
+runtime.newosproc(0x0?)
+	/o"
+"paraphrased_0174","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000125000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1a427ffb60 sp=0x1a427ffb30 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000120000,"
+"paraphrased_0177","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff73aa9db00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xfe88fff6c0 sp=0xfe88fff690 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0xf0, 0x7ff73aa9db00?, 0x7ff73af0e918)
+	/opt/h"
+"paraphrased_0178","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xe0509ffb08 sp=0xe0509ffad8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xe0509ffc90?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0163","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","2","","2","0","0","","True","6","0","0","3","3","0",""
+"paraphrased_0176","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x9?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd5495ffbc0 sp=0xd5495ffb90 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/mheap."
+"paraphrased_0179","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc33afff3b8 sp=0xc33afff388 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0182","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0183","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9fdb3ff728 sp=0x9fdb3ff6f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x9fdb3ff8b0?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0180","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0173","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","True","5","1","0","1","3","0",""
+"paraphrased_0185","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0181","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0",""
+"paraphrased_0192","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9f931ff498 sp=0x9f931ff468 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0189","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1e139ff8c8 sp=0x1e139ff898 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x1e139ffa50?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0188","grok-4.1-fast","zero-shot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 524288 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc00087c000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc5593ff5d0 sp=0xc5593ff5a0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc00087c000"
+"paraphrased_0190","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x86c75ff518 sp=0x86c75ff4e8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0193","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000901000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7a6abff7c0 sp=0x7a6abff790 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000900000, "
+"paraphrased_0191","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b3c99?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd2763ff580 sp=0xd2763ff550 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+	/opt/hostedtoolcache/go/1.25.7/x64/src/run"
+"paraphrased_0194","grok-4.1-fast","zero-shot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""

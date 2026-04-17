@@ -1,0 +1,244 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"paraphrased_0000","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0003","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","2","0","0","1","1","0",""
+"paraphrased_0005","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0001","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0006","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0007","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0002","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0008","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","2","0","0","0","2","0",""
+"paraphrased_0013","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0009","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0010","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0012","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0011","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0015","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","13","0","3","5","5","0",""
+"paraphrased_0016","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0017","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0018","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0019","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""\""dev_environment\"" module is not found"",""message"":""The module directory \""modules\\environment\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":18,""column"":1},""end"":{""line"":18,""column"":25}}},{""summary"":""\""iam\"" ","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""dev_environment\"" module is not found"",""message"":""The module directory \""modules\\environment\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":18,""column"":1},""end"":{""line"":18,""column"":25}}},{""summary"":""\""iam\"" ","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0020","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0023","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0022","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0021","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0024","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","1","0","0","1","0","0",""
+"paraphrased_0025","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0032","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0026","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0027","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0031","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","2","0","1","1","0","0",""
+"paraphrased_0028","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0029","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0030","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0033","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0034","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0035","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0036","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0037","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0038","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""\""aks_cluster\"" module is not found"",""message"":""The module directory \""modules\\aks\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":128,""column"":1},""end"":{""line"":128,""column"":21}}},{""summary"":""\""monitoring\"" mod","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""aks_cluster\"" module is not found"",""message"":""The module directory \""modules\\aks\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":128,""column"":1},""end"":{""line"":128,""column"":21}}},{""summary"":""\""monitoring\"" mod","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0039","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0040","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0041","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0043","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0042","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0044","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0045","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0046","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0047","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0048","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0049","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0050","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0053","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","5","2","2","1","0","0",""
+"paraphrased_0051","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0052","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0056","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","6","5","1","0","0","0",""
+"paraphrased_0055","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","8","0","4","0","4","0",""
+"paraphrased_0054","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0057","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","7","1","4","1","1","0",""
+"paraphrased_0061","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","9","1","0","4","4","0",""
+"paraphrased_0059","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","1","1","0","0","0","0",""
+"paraphrased_0060","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","6","1","0","2","3","0",""
+"paraphrased_0058","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","2","1","1","0","0","0",""
+"paraphrased_0064","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","1","0","0","0","1","0",""
+"paraphrased_0063","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0062","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0065","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0070","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","3","0","0","1","2","0",""
+"paraphrased_0066","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0068","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0067","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0069","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0072","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0071","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0073","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0074","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0075","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0076","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0077","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0078","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0079","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0080","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0081","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0082","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0083","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0086","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid expression"",""message"":""Expected the start of an expression, but found an invalid expression token."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":539,""column"":72},""end"":{""line"":539,""column"":73}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid expression"",""message"":""Expected the start of an expression, but found an invalid expression token."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":539,""column"":72},""end"":{""line"":539,""column"":73}}}]}","True","0","0","0","0","0","0",""
+"paraphrased_0084","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0085","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0087","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""\""aws_primary\"" module is not found"",""message"":""The module directory \""modules\\aws_region\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":106,""column"":1},""end"":{""line"":106,""column"":21}}},{""summary"":""\""aws_secon","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""aws_primary\"" module is not found"",""message"":""The module directory \""modules\\aws_region\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":106,""column"":1},""end"":{""line"":106,""column"":21}}},{""summary"":""\""aws_secon","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0088","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0089","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0091","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","3","","3","0","0","","True","1","0","0","1","0","0",""
+"paraphrased_0090","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","True","0","0","0","0","0","0",""
+"paraphrased_0095","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","15","1","7","1","6","0",""
+"paraphrased_0092","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0093","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0094","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","6","","6","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0096","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0097","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0098","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0099","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0100","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0101","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0103","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0102","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0104","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0105","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0106","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0107","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0108","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0109","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0110","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0111","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0112","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0113","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","True","17","7","7","1","2","0",""
+"paraphrased_0138","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""\""consul\"" module is not found"",""message"":""The module directory \""modules\\consul\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":377,""column"":1},""end"":{""line"":377,""column"":16}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""consul\"" module is not found"",""message"":""The module directory \""modules\\consul\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":377,""column"":1},""end"":{""line"":377,""column"":16}}}]}","True","15","3","5","1","6","0",""
+"paraphrased_0134","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","2","","2","0","0","","True","6","2","0","3","1","0",""
+"paraphrased_0159","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff731408081?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x8c50dffaf8 sp=0x8c50dffac8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x198, 0x87?, 0x7ff73af0e918)
+	/opt/hostedtool"
+"paraphrased_0172","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xb3317ffa00 sp=0xb3317ff9d0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x0?, 0x7ff73af0e920)
+	/opt/hostedtoolcache/go/1.2"
+"paraphrased_0171","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"paraphrased_0174","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0175","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf52b1ff668 sp=0xf52b1ff638 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0178","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"paraphrased_0176","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x80c00039dfff?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x26859ff448 sp=0x26859ff418 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009b218?, 0x7ff73af0e920)
+	/opt/h"
+"paraphrased_0180","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0173","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xc0000c9808?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa9be9ff730 sp=0xa9be9ff700 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0xa9be9ff7a0?, 0x7ff73af0e920)
+	/opt/host"
+"paraphrased_0177","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 16384 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000206000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3d34bff9a0 sp=0x3d34bff970 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000206000,"
+"paraphrased_0181","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x5e3f9ff838 sp=0x5e3f9ff808 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x5e3f9ff9c0?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0182","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xe3395ff578 sp=0xe3395ff548 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0185","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xdc5ffff758 sp=0xdc5ffff728 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0186","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc001ea0000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1989dffad0 sp=0x1989dffaa0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc001ea0000, "
+"paraphrased_0191","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0192","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0193","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0194","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0195","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0196","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0188","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0",""
+"paraphrased_0187","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; pipe: Insufficient system resources exist to complete the requested service."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; pipe: Insufficient system resources exist to complete the requested service."",""severity"":""error""}]}","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x1fdad760dd0?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"paraphrased_0190","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0001f2000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x23d91ff890 sp=0x23d91ff860 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0001f2000, "
+"paraphrased_0198","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x93ff7ff848 sp=0x93ff7ff818"
+"paraphrased_0199","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x2000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa1405ff920 sp=0xa1405ff8f0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x7ff7313b3c5c?, 0x7ff73af0e920)
+	/opt/hostedto"
+"paraphrased_0201","claude-4.5-sonnet","zero-shot","llm_iac_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"

@@ -1,0 +1,170 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"paraphrased_0000","kimi-k2.5","cot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0001","kimi-k2.5","cot","iac_eval_paraphrased","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0003","kimi-k2.5","cot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0002","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0004","kimi-k2.5","cot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0006","kimi-k2.5","cot","iac_eval_paraphrased","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0005","kimi-k2.5","cot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0007","kimi-k2.5","cot","iac_eval_paraphrased","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"paraphrased_0039","kimi-k2.5","cot","iac_eval_paraphrased","True","2","","2","0","0","","True","8","0","5","0","3","0",""
+"paraphrased_0055","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; connection error: desc = \""transport: error while dialing: dial tcp 127.0.0.1:10726: bind: winapi error #10055\"""",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to get TFLint version constraints to \""terraform\"" plugin; connection error: desc = \""transport: error while dialing: dial tcp 127.0.0.1:10726: bind: winapi error #10055\"""",""severity"":""error""}]}","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0018cb000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x90681ff880 sp=0x90681ff850 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0018ca000, "
+"paraphrased_0064","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0001ac000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x8d2b1ff700 sp=0x8d2b1ff6d0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0001ac000, "
+"paraphrased_0070","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9edebff6b8 sp=0x9edebff688 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0065","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x4b3ffff908?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4b3ffff880 sp=0x4b3ffff850 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x0?, 0x7ff73af0e920)
+	/opt/hostedtoolcac"
+"paraphrased_0066","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6ca6bff578 sp=0x6ca6bff548 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc0000a2418?, 0x7ff73af0e920)
+	/o"
+"paraphrased_0069","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x2dd662f1960?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"paraphrased_0072","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0068","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0001c2000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1662dff668 sp=0x1662dff638 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0001c2000,"
+"paraphrased_0071","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0004ae000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xe7eb7ffa38 sp=0xe7eb7ffa08 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0004ae000,"
+"paraphrased_0073","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0067","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff73aa9db00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x12f4dff800 sp=0x12f4dff7d0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0xf0, 0x7ff73aa9db00?, 0x7ff73af0e918)
+	/opt/h"
+"paraphrased_0074","kimi-k2.5","cot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xe2f13ff498?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xe2f13ff468 sp=0xe2f13ff438 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1110, 0xc0000c9008?, 0x7ff73af0e920)
+	/opt/hos"
+"paraphrased_0081","kimi-k2.5","cot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0078","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xaa52bff998 sp=0xaa52bff968 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0083","kimi-k2.5","cot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x593ffff988 sp=0x593ffff958 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0077","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000464000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf8ee1ffd90 sp=0xf8ee1ffd60 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000464000, "
+"paraphrased_0076","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xef35fff8b8 sp=0xef35fff888 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009d818?, 0x7ff73af0e920)
+	/o"
+"paraphrased_0075","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3eb1fff8d8 sp=0x3eb1fff8a8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009d818?, 0x7ff73af0e920)
+	/o"
+"paraphrased_0082","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0079","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0085","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0087","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service"
+"paraphrased_0084","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0080","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0011a0000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xde07fff570 sp=0xde07fff540 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0011a0000,"
+"paraphrased_0086","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000152000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa0f2dffa60 sp=0xa0f2dffa30 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000152000, "
+"paraphrased_0088","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: The paging file is too small for this operation to complete."",""severity"":""error""}]}","False","0","0","0","0","0","0",""
+"paraphrased_0089","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xfffffffffffffade?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6f089ff828 sp=0x6f089ff7f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x7ff7313bbabb?, 0x7ff73af0e920)
+	/"
+"paraphrased_0092","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xbe74bff4c8 sp=0xbe74bff498 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009d818?, 0x7ff73af0e920)
+	/o"
+"paraphrased_0095","kimi-k2.5","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc3173ff318 sp=0xc3173ff2e8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0094","kimi-k2.5","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x2b4967325c0?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"paraphrased_0096","kimi-k2.5","cot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x1c973f92880?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"

@@ -1,0 +1,136 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"iac_eval_0000","glm-4.7","zero-shot","iac_eval","False","0","empty code","0","0","0","empty code","False","0","0","0","0","0","0","empty code"
+"iac_eval_0003","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0002","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0009","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0010","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0008","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0004","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0012","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0014","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0016","glm-4.7","zero-shot","iac_eval","False","0","empty code","0","0","0","empty code","False","0","0","0","0","0","0","empty code"
+"iac_eval_0017","glm-4.7","zero-shot","iac_eval","False","0","empty code","0","0","0","empty code","False","0","0","0","0","0","0","empty code"
+"iac_eval_0005","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0019","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0020","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0015","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4c6fdff578 sp=0x4c6fdff548 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0022","glm-4.7","zero-shot","iac_eval","False","0","Mingw-w64 runtime failure:
+  VirtualProtect failed with code 0x5af","0","0","0","Mingw-w64 runtime failure:
+  VirtualProtect failed with code 0x5af","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0011","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3f445ff228 sp=0x3f445ff1f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"iac_eval_0013","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa8af9ff828 sp=0xa8af9ff7f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"iac_eval_0025","glm-4.7","zero-shot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6d91bff4a8 sp=0x6d91bff478 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0018","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1520bff8e8 sp=0x1520bff8b8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x7ff7313bbabb?, 0x7ff73af0e920)
+	/"
+"iac_eval_0026","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0028","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0021","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xf9a69ff488?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf9a69ff400 sp=0xf9a69ff3d0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x0?, 0x7ff73af0e920)
+	/opt/hostedtoolcac"
+"iac_eval_0030","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3fb0fff9a8 sp=0x3fb0fff978 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0031","glm-4.7","zero-shot","iac_eval","False","0","empty code","0","0","0","empty code","False","0","0","0","0","0","0","empty code"
+"iac_eval_0032","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x5e4fdff7f8 sp=0x5e4fdff7c8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0024","glm-4.7","zero-shot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0034","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xfc315ff5a8 sp=0xfc315ff578 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xfc315ff730?, 0x7ff73af0e920)
+	/opt/ho"
+"iac_eval_0035","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0036","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0027","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xb5613ffa18 sp=0xb5613ff9e8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0033","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x37de9ff988 sp=0x37de9ff958 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"iac_eval_0037","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x31a8bff358 sp=0x31a8bff328 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"iac_eval_0006","glm-4.7","zero-shot","iac_eval","False","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 24576 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000ef2000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7c315ff660 sp=0x7c315ff630 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000ef2000,"
+"iac_eval_0001","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 65536 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc001086000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9278bffc60 sp=0x9278bffc30 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc001086000,"
+"iac_eval_0040","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0043","glm-4.7","zero-shot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service"
+"iac_eval_0038","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"iac_eval_0041","glm-4.7","zero-shot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: failed to create new OS thread (have 5 already; errno=1455)
+fatal error: runtime.newosproc
+
+runtime stack:
+runtime.throw({0x7ff7368e1f21?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf94e3ffa78 sp=0xf94e3ffa48 pc=0x7ff7313ff7cd
+runtime.newosproc(0x0?)
+	/o"
+"iac_eval_0042","glm-4.7","zero-shot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"

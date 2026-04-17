@@ -1,0 +1,83 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"paraphrased_0005","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xaa22bff788 sp=0xaa22bff758 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0008","ministral-8b","cot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7d1afff808 sp=0x7d1afff7d8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0009","ministral-8b","cot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x55027ff608 sp=0x55027ff5d8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"paraphrased_0010","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa6a3fff9e8 sp=0xa6a3fff9b8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xa6a3fffb70?, 0x7ff73af0e920)
+	/opt/ho"
+"paraphrased_0011","ministral-8b","cot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0012","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0013","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0001","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0004","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4b927ff468 sp=0x4b927ff438 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009fe18?, 0x7ff73af0e920)
+	/o"
+"paraphrased_0014","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0002","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0000","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"paraphrased_0003","ministral-8b","cot","iac_eval_paraphrased","False","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""type\"" was already set at main.tf:189,5-9. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":195,""column"":5},""end"":{""line"":195,""column"":9}}},{""summary"":""Attribute red","0","0","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""type\"" was already set at main.tf:189,5-9. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":195,""column"":5},""end"":{""line"":195,""column"":9}}},{""summary"":""Attribute red","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: runtime: cannot allocate memory
+
+goroutine 3 gp=0xc000002c40 m=13 mp=0xc003280808 [running]:
+runtime.throw({0x7ff73695309a?, 0x7ff7313bbb77?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc0000c1d80 sp=0xc0000c1d50"
+"paraphrased_0017","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","panic: Failed to load ws2_32.dll: The paging file is too small for this operation to complete. [recovered, repanicked]
+
+goroutine 1 [running]:
+internal/poll.init.OnceFunc.func4.1.1()
+	/opt/hostedtoolcache/go/1.25.7/x64/src/sync/oncefunc.go:30 +0x75
+panic({0x7ff735efdf00?, 0xc0004c64b0?})
+	/opt/hoste"
+"paraphrased_0018","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 24576 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc001210000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x37c9ffd40 sp=0x37c9ffd10 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc001210000, 0"
+"paraphrased_0022","ministral-8b","cot","iac_eval_paraphrased","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0023","ministral-8b","cot","iac_eval_paraphrased","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"paraphrased_0016","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc001c20000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x4e227ffcc0 sp=0x4e227ffc90 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc001c20000, "
+"paraphrased_0020","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6ecc3ff658 sp=0x6ecc3ff628 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"paraphrased_0025","ministral-8b","cot","iac_eval_paraphrased","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: bcryptprimitives.dll not found
+runtime: panic before malloc heap initialized
+
+runtime stack:
+runtime.throw({0x7ff73694bf18?, 0x7ff73aa7e0c0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x61dabff910 sp=0x61dabff8e0 pc=0x7ff7313ff7cd
+runtime.loadOptionalSyscal"

@@ -1,0 +1,3 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"iac_eval_0000","ministral-8b","zero-shot","iac_eval","True","2","","2","0","0","","True","1","0","0","0","1","0",""
+"iac_eval_0001","ministral-8b","zero-shot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"

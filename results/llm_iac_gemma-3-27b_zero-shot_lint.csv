@@ -1,0 +1,242 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"llm_iac_5","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_1","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_10","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_7","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_11","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","12","3","2","5","2","0",""
+"llm_iac_12","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","29","2","23","0","4","0",""
+"llm_iac_8","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""This character is not used within the language."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":109,""column"":42},""end"":{""line"":109,""column"":43}}},{""summary"":""Invalid character"",""message"":""This character is not used wi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""This character is not used within the language."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":109,""column"":42},""end"":{""line"":109,""column"":43}}},{""summary"":""Invalid character"",""message"":""This character is not used wi","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_9","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","4","0","1","1","2","0",""
+"llm_iac_14","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_13","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_17","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_18","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_20","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_19","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_21","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_22","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_23","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_24","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_25","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","8","0","3","3","2","0",""
+"llm_iac_26","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_27","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_28","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_29","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_30","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_31","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","3","0","2","1","0","0",""
+"llm_iac_32","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_33","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_34","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":89,""column"":23},""end"":{""line"":89,""column"":24}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":89,""column"":23},""end"":{""line"":89,""column"":24}}}]}","True","0","0","0","0","0","0",""
+"llm_iac_35","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_36","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_37","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_38","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_39","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_40","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_41","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_42","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_43","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_44","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_45","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_46","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_47","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_48","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_50","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","4","0","4","0","0","0",""
+"llm_iac_49","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_51","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_52","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_53","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_54","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_55","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_56","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_57","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_58","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_61","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","8","0","0","4","4","0",""
+"llm_iac_59","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","4","1","1","0","2","0",""
+"llm_iac_60","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","9","1","0","2","6","0",""
+"llm_iac_62","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","9","1","4","0","4","0",""
+"llm_iac_63","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_65","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","6","0","1","4","1","0",""
+"llm_iac_64","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","0","1","1","0",""
+"llm_iac_66","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","1","0","1","0",""
+"llm_iac_67","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","7","1","0","4","2","0",""
+"llm_iac_68","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","3","0","0","2","1","0",""
+"llm_iac_69","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_70","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_71","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_72","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_73","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_74","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_75","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_76","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_77","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_78","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_79","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_80","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_81","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_82","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_83","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_84","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_85","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_86","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_87","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_88","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_89","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_92","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","12","0","3","6","3","0",""
+"llm_iac_90","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_91","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_93","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","9","0","6","3","0","0",""
+"llm_iac_94","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_96","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_95","gemma-3-27b","zero-shot","llm_iac","True","5","","5","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_99","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_97","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_98","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_100","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_101","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","19","0","2","13","4","0",""
+"llm_iac_102","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_104","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_103","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_105","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_107","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_106","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_108","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_109","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_110","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_111","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_112","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_113","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_114","gemma-3-27b","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_115","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_116","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","3","1","0","1","1","0",""
+"llm_iac_117","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_118","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","16","1","1","10","4","0",""
+"llm_iac_119","gemma-3-27b","zero-shot","llm_iac","True","3","","3","0","0","","True","7","1","0","3","3","0",""
+"llm_iac_142","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid string literal"",""message"":""Template sequences are not allowed in this string. To include a literal \""$\"", double it (as \""$$\"") to escape it."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":189,""column"":35},""end"":{""line"":189,""column"":37}}}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid string literal"",""message"":""Template sequences are not allowed in this string. To include a literal \""$\"", double it (as \""$$\"") to escape it."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":189,""column"":35},""end"":{""line"":189,""column"":37}}}","True","0","0","0","0","0","0",""
+"llm_iac_139","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","9","0","0","4","5","0",""
+"llm_iac_141","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","16","0","0","12","4","0",""
+"llm_iac_148","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","1","0","1","0",""
+"llm_iac_156","gemma-3-27b","zero-shot","llm_iac","True","1","","1","0","0","","True","10","0","1","6","3","0",""
+"llm_iac_164","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000bb1000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd48c3ff630 sp=0xd48c3ff600 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000bb0000, "
+"llm_iac_176","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xbccadff448 sp=0xbccadff418 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"llm_iac_180","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"llm_iac_181","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3cae7ffb88 sp=0x3cae7ffb58 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x3cae7ffd10?, 0x7ff73af0e920)
+	/opt/ho"
+"llm_iac_174","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x50a31ff288 sp=0x50a31ff258 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_177","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xb635bff868 sp=0xb635bff838 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_183","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x688b9ff608 sp=0x688b9ff5d8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_175","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x25375f50bd0?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"llm_iac_184","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000534000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa4c05ff468 sp=0xa4c05ff438 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000530000,"
+"llm_iac_186","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"llm_iac_188","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x407b9ff548 sp=0x407b9ff518 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_185","gemma-3-27b","zero-shot","llm_iac","False","0","fatal error: runtime: cannot allocate memory
+","0","0","0","fatal error: runtime: cannot allocate memory
+","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xca22dffc18 sp=0xca22dffbe8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xca22dffda0?, 0x7ff73af0e920)
+	/opt/ho"
+"llm_iac_178","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0027dc000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xcd091ff6a0 sp=0xcd091ff670 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0027dc000, "
+"llm_iac_187","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc001eea000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x758c5ff9b0 sp=0x758c5ff980 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc001eea000, "
+"llm_iac_190","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000190000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6e727ff9b0 sp=0x6e727ff980 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000190000, "
+"llm_iac_191","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9d125ffbb8 sp=0x9d125ffb88 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"llm_iac_195","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff731408081?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc8f97ff9d8 sp=0xc8f97ff9a8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0xc0, 0x87?, 0x7ff73af0e918)
+	/opt/hostedtoolc"
+"llm_iac_197","gemma-3-27b","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_198","gemma-3-27b","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_199","gemma-3-27b","zero-shot","llm_iac","False","0","[WinError 1450] Insufficient system resources exist to complete the requested service","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_196","gemma-3-27b","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x27fd4f1fa40?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"llm_iac_194","gemma-3-27b","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: failed to create new OS thread (have 5 already; errno=1455)
+fatal error: runtime.newosproc
+
+runtime stack:
+runtime.throw({0x7ff7368e1f21?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd3a71ff788 sp=0xd3a71ff758 pc=0x7ff7313ff7cd
+runtime.newosproc(0x0?)
+	/o"

@@ -1,0 +1,195 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"iac_eval_0000","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0001","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0002","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0003","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0004","glm-4.7","cot","iac_eval","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0005","glm-4.7","cot","iac_eval","True","5","","5","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0006","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0007","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"iac_eval_0024","glm-4.7","cot","iac_eval","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""A block definition must have block content delimited by \""{\"" and \""}\"", starting on the same line as the block header."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":76,""column"":55},""end"":{""line"":77,""column"":","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""A block definition must have block content delimited by \""{\"" and \""}\"", starting on the same line as the block header."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":76,""column"":55},""end"":{""line"":77,""column"":","True","0","0","0","0","0","0",""
+"iac_eval_0037","glm-4.7","cot","iac_eval","False","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""git_clone_depth\"" was already set at main.tf:76,5-20. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":79,""column"":5},""end"":{""line"":79,""column"":20}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""git_clone_depth\"" was already set at main.tf:76,5-20. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":79,""column"":5},""end"":{""line"":79,""column"":20}}}]}","True","0","0","0","0","0","0",""
+"iac_eval_0032","glm-4.7","cot","iac_eval","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"iac_eval_0033","glm-4.7","cot","iac_eval","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"iac_eval_0035","glm-4.7","cot","iac_eval","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"iac_eval_0042","glm-4.7","cot","iac_eval","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"iac_eval_0057","glm-4.7","cot","iac_eval","True","2","","2","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 262144 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc00292d000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9cd1dffa00 sp=0x9cd1dff9d0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc00292c000"
+"iac_eval_0065","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"iac_eval_0066","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf3635ff3a8 sp=0xf3635ff378 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0067","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0068","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0069","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0070","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0071","glm-4.7","cot","iac_eval","False","0","[WinError 8] Not enough memory resources are available to process this command","0","0","0","[WinError 8] Not enough memory resources are available to process this command","False","0","0","0","0","0","0","[WinError 8] Not enough memory resources are available to process this command"
+"iac_eval_0072","glm-4.7","cot","iac_eval","False","0","[WinError 1450] Insufficient system resources exist to complete the requested service","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service","False","0","0","0","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service"
+"iac_eval_0058","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+goroutine 3 gp=0xc000002c40 m=6 mp=0xc000500008 [running]:
+runtime.throw({0x7ff73695309a?, 0xc000002c40?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc0000c1d80 sp=0xc0000c1d50 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+	"
+"iac_eval_0061","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x498a3ff5f8 sp=0x498a3ff5c8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0075","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0059","glm-4.7","cot","iac_eval","True","1","","1","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x288?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x7ef7ffc98 sp=0x7ef7ffc68 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0x7ff735def540?, 0x7ff73af0e920)
+	/opt/hostedtool"
+"iac_eval_0077","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0076","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000427000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x247e3ff770 sp=0x247e3ff740 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000426000, "
+"iac_eval_0078","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xfffffffffffff800?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x8047bff7e0 sp=0x8047bff7b0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x0?, 0x7ff73af0e920)
+	/opt/hostedt"
+"iac_eval_0079","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x1200?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1207dff728 sp=0x1207dff6f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc00009fe18?, 0x7ff73af0e920)
+	/opt/hostedtoo"
+"iac_eval_0085","glm-4.7","cot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: Insufficient system resources exist to complete the requested service."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; fork/exec C:\\Users\\Arihant\\bin\\tflint.exe: Insufficient system resources exist to complete the requested service."",""severity"":""error""}]}","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000b5a000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x50e97ffa50 sp=0x50e97ffa20 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000b5a000, "
+"iac_eval_0086","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0006d8000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3763ff6c0 sp=0x3763ff690 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0006d8000, 0x"
+"iac_eval_0087","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"iac_eval_0088","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x2000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xb9f5dff7f0 sp=0xb9f5dff7c0 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x7ff7313b3c5c?, 0x7ff73af0e920)
+	/opt/hostedto"
+"iac_eval_0084","glm-4.7","cot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","True","0","0","0","0","0","0",""
+"iac_eval_0089","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa8b8dff698 sp=0xa8b8dff668 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc0000a4a18?, 0x7ff73af0e920)
+	/o"
+"iac_eval_0091","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0000d8000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd5c7ffcc0 sp=0xd5c7ffc90 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0000d8000, 0"
+"iac_eval_0096","glm-4.7","cot","iac_eval","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0099","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x5c667ff5d8 sp=0x5c667ff5a8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0098","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xcac97ff638 sp=0xcac97ff608 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0100","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"iac_eval_0102","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0103","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0104","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0105","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 8] Not enough memory resources are available to process this command"
+"iac_eval_0101","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x60419ff878 sp=0x60419ff848 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0107","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x9cb87ff728 sp=0x9cb87ff6f8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"iac_eval_0106","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0108","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0110","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0112","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0109","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0113","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000278000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xcd993ffbc0 sp=0xcd993ffb90 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000278000, "
+"iac_eval_0114","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0",""
+"iac_eval_0093","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000f1e000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xb14bfff640 sp=0xb14bfff610 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000f1e000, "
+"iac_eval_0095","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0010fe000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1c769ffb40 sp=0x1c769ffb10 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0010fe000, "
+"iac_eval_0111","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000e20000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x1fab7ffcb0 sp=0x1fab7ffc80 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000e20000, "
+"iac_eval_0119","glm-4.7","cot","iac_eval","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"iac_eval_0117","glm-4.7","cot","iac_eval","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"

@@ -1,0 +1,178 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"llm_iac_1","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_3","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_6","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_0","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_4","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_7","gemini-3-flash","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_2","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_5","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_14","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_8","gemini-3-flash","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_10","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_13","gemini-3-flash","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_15","gemini-3-flash","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_12","gemini-3-flash","zero-shot","llm_iac","True","8","","8","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_9","gemini-3-flash","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_11","gemini-3-flash","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_19","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""\""environment_s3\"" module is not found"",""message"":""The module directory \""modules\\s3_env\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":93,""column"":1},""end"":{""line"":93,""column"":24}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""environment_s3\"" module is not found"",""message"":""The module directory \""modules\\s3_env\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":93,""column"":1},""end"":{""line"":93,""column"":24}}}]}","True","19","0","14","2","3","0",""
+"llm_iac_26","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_35","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Argument or block definition required"",""message"":""An argument or block definition is required here. To set an argument, use the equals sign \""=\"" to introduce the argument value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":99,""column"":5},""end""","0","0","0","{""issues"":[],""errors"":[{""summary"":""Argument or block definition required"",""message"":""An argument or block definition is required here. To set an argument, use the equals sign \""=\"" to introduce the argument value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":99,""column"":5},""end""","True","0","0","0","0","0","0",""
+"llm_iac_40","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","True","7","1","3","1","2","0",""
+"llm_iac_41","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","24","0","4","16","4","0",""
+"llm_iac_42","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_43","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","True","3","0","0","0","3","0",""
+"llm_iac_44","gemini-3-flash","zero-shot","llm_iac","True","2","","2","0","0","","True","6","1","3","1","1","0",""
+"llm_iac_46","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_47","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_50","gemini-3-flash","zero-shot","llm_iac","True","2","","2","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_53","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","9","2","1","1","5","0",""
+"llm_iac_57","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_64","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to check ruleset; error reading from server: read tcp 127.0.0.1:56414-\u003e127.0.0.1:10723: wsarecv: An existing connection was forcibly closed by the remote host."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to check ruleset; error reading from server: read tcp 127.0.0.1:56414-\u003e127.0.0.1:10723: wsarecv: An existing connection was forcibly closed by the remote host."",""severity"":""error""}]}","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0005b8000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x66dffffac0 sp=0x66dffffa90 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0005b8000, "
+"llm_iac_65","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xc1d0bff858?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc1d0bff828 sp=0xc1d0bff7f8 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1110, 0xc000f01008?, 0x7ff73af0e920)
+	/opt/hos"
+"llm_iac_68","gemini-3-flash","zero-shot","llm_iac","False","0","tflint timed out","0","0","0","tflint timed out","False","0","0","0","0","0","0","panic: nil TLS
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).setErrno(0x20?, {0x7ff735bc58a0?, 0x7ff737a51ae8?})
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:173 +0x125
+modernc.org/libc.Xcalloc(0x0, 0x6f?, 0x1e5b4101950?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/mem.go:61 +0"
+"llm_iac_75","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xfffffffffffff800?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xefdf9ff688 sp=0xefdf9ff658 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0x7ff73aec2cc0?, 0x7ff73af0e920)
+	"
+"llm_iac_66","gemini-3-flash","zero-shot","llm_iac","True","1","","1","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc004a4c000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xde33dff7d0 sp=0xde33dff7a0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc004a4c000, "
+"llm_iac_77","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0000ca000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x77ba7ff850 sp=0x77ba7ff820 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0000ca000, "
+"llm_iac_78","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"llm_iac_82","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_80","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x3f40fffb98 sp=0x3f40fffb68 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x3f40fffd20?, 0x7ff73af0e920)
+	/opt/ho"
+"llm_iac_85","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x5a117ff638 sp=0x5a117ff608 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0x5a117ff7c0?, 0x7ff73af0e920)
+	/opt/ho"
+"llm_iac_84","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"llm_iac_88","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_86","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000108000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xdb537ff6a0 sp=0xdb537ff670 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000108000, "
+"llm_iac_89","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313b794d?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xc7817ff288 sp=0xc7817ff258 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x3fc0, 0x0?, 0x7ff73af0e908)
+	/opt/hostedtool"
+"llm_iac_92","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_90","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xf3525ff358 sp=0xf3525ff328 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_94","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_95","gemini-3-flash","zero-shot","llm_iac","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_96","gemini-3-flash","zero-shot","llm_iac","False","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_97","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_98","gemini-3-flash","zero-shot","llm_iac","False","0","can't start new thread","0","0","0","can't start new thread","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313c497b?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xbe83bffc38 sp=0xbe83bffc08 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x100, 0xbe83bffdc0?, 0x7ff73af0e920)
+	/opt/ho"
+"llm_iac_99","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0001a4000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xa2421ffd40 sp=0xa2421ffd10 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0001a4000, "
+"llm_iac_87","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","panic: OOM
+
+goroutine 1 [running]:
+modernc.org/libc.(*TLS).Alloc(0xc000012000, 0xc000012000?)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/etc.go:299 +0x1fd
+modernc.org/libc.newTLS(0x0)
+	/home/runner/go/pkg/mod/modernc.org/libc@v1.66.10/pthread.go:66 +0x74
+modernc.org/libc.NewTLS(...)
+	/home/r"
+"llm_iac_91","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc000108000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x86507ffd20 sp=0x86507ffcf0 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc000108000, "
+"llm_iac_102","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_103","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0",""
+"llm_iac_100","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc00010a000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xd4f97ffc80 sp=0xd4f97ffc50 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc00010a000, "
+"llm_iac_93","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","True","22","0","6","16","0","0",""
+"llm_iac_107","gemini-3-flash","zero-shot","llm_iac","False","0","[WinError 1455] The paging file is too small for this operation to complete","0","0","0","[WinError 1455] The paging file is too small for this operation to complete","False","0","0","0","0","0","0","[WinError 1455] The paging file is too small for this operation to complete"
+"llm_iac_105","gemini-3-flash","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: bcryptprimitives.dll not found
+runtime: panic before malloc heap initialized
+
+runtime stack:
+runtime.throw({0x7ff73694bf18?, 0x7ff73aa7e0c0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x78187ffda0 sp=0x78187ffd70 pc=0x7ff7313ff7cd
+runtime.loadOptionalSyscal"
+"llm_iac_108","gemini-3-flash","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","[WinError 1450] Insufficient system resources exist to complete the requested service"

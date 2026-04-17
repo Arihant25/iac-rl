@@ -1,0 +1,155 @@
+"scenario_id","model","prompt_type","dataset","gen_tflint_ok","gen_tflint_total","gen_tflint_error","gen_tflint_warning","gen_tflint_notice","gen_tflint_info","gen_tflint_error","gen_trivy_ok","gen_trivy_total","gen_trivy_critical","gen_trivy_high","gen_trivy_medium","gen_trivy_low","gen_trivy_unknown","gen_trivy_error"
+"llm_iac_0","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""port\"" was already set at main.tf:119,5-9. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":120,""column"":5},""end"":{""line"":120,""column"":9}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""port\"" was already set at main.tf:119,5-9. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":120,""column"":5},""end"":{""line"":120,""column"":9}}}]}","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_6","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_5","phi-4","zero-shot","llm_iac","True","4","","4","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_7","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to check ruleset; failed to check \""terraform_module_version\"" rule: main.tf:49,13-21: Invalid version constraint; This string does not use correct version constraint syntax."",""severity"":""error""}]}","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to check ruleset; failed to check \""terraform_module_version\"" rule: main.tf:49,13-21: Invalid version constraint; This string does not use correct version constraint syntax."",""severity"":""error""}]}","True","9","0","7","0","2","0",""
+"llm_iac_8","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_10","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","2","0","2","0","0","0",""
+"llm_iac_9","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_11","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","14","2","6","6","0","0",""
+"llm_iac_12","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","True","4","0","1","1","2","0",""
+"llm_iac_13","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid expression"",""message"":""Expected the start of an expression, but found an invalid expression token."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":32,""column"":26},""end"":{""line"":32,""column"":27}}},{""summary"":""Missing argument separator"",""mes","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid expression"",""message"":""Expected the start of an expression, but found an invalid expression token."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":32,""column"":26},""end"":{""line"":32,""column"":27}}},{""summary"":""Missing argument separator"",""mes","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_14","phi-4","zero-shot","llm_iac","True","4","","4","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_16","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","6","0","3","2","1","0",""
+"llm_iac_15","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_17","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_18","phi-4","zero-shot","llm_iac","True","4","","4","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_19","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""\""env\"" module is not found"",""message"":""The module directory \""modules\\environments\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":81,""column"":1},""end"":{""line"":81,""column"":13}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""env\"" module is not found"",""message"":""The module directory \""modules\\environments\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":81,""column"":1},""end"":{""line"":81,""column"":13}}}]}","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_20","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_21","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_22","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_23","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_24","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""The equals sign \""=\"" indicates an argument definition, and must not be used when defining a block."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":135,""column"":22},""end"":{""line"":135,""column"":23}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""The equals sign \""=\"" indicates an argument definition, and must not be used when defining a block."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":135,""column"":22},""end"":{""line"":135,""column"":23}}}]}","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_25","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":138,""column"":24},""end"":{""line"":138,""column"":25}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":138,""column"":24},""end"":{""line"":138,""column"":25}}}]}","True","0","0","0","0","0","0",""
+"llm_iac_27","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not be split over multiple lines. To produce a multi-line string, either use the \\n escape to represent a newline character or use the \""heredoc\"" multi-line template syntax."",""severity"":""error"",""range"":{""fi","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_26","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_28","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_32","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""timeout_sec\"" was already set at main.tf:33,3-14. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":41,""column"":3},""end"":{""line"":41,""column"":14}}},{""summary"":""Attribu","0","0","0","{""issues"":[],""errors"":[{""summary"":""Attribute redefined"",""message"":""The argument \""timeout_sec\"" was already set at main.tf:33,3-14. Each argument may be set only once."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":41,""column"":3},""end"":{""line"":41,""column"":14}}},{""summary"":""Attribu","True","0","0","0","0","0","0",""
+"llm_iac_29","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_30","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","True","2","0","1","0","1","0",""
+"llm_iac_31","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","2","0","1","1","0","0",""
+"llm_iac_34","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","5","0","0","4","1","0",""
+"llm_iac_33","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","True","6","1","0","4","1","0",""
+"llm_iac_36","phi-4","zero-shot","llm_iac","True","5","","5","0","0","","True","11","0","7","2","2","0",""
+"llm_iac_35","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_37","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_38","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""\""private_cluster\"" module is not found"",""message"":""The module directory \""modules\\aks-private-cluster\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":5,""column"":1},""end"":{""line"":5,""column"":25}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""\""private_cluster\"" module is not found"",""message"":""The module directory \""modules\\aks-private-cluster\"" does not exist or cannot be read."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":5,""column"":1},""end"":{""line"":5,""column"":25}}}]}","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_39","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_40","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_41","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_42","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_43","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_44","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_45","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_46","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_47","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_48","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_49","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","16","1","7","2","6","0",""
+"llm_iac_51","phi-4","zero-shot","llm_iac","True","4","","4","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_50","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_52","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_53","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_55","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""Single quotes are not valid. Use double quotes (\"") to enclose strings."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":74,""column"":32},""end"":{""line"":74,""column"":33}}},{""summary"":""Invalid character"",""message"":""Single ","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""Single quotes are not valid. Use double quotes (\"") to enclose strings."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":74,""column"":32},""end"":{""line"":74,""column"":33}}},{""summary"":""Invalid character"",""message"":""Single ","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_54","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_56","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_57","phi-4","zero-shot","llm_iac","True","3","","3","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_58","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_59","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","False","0","0","0","0","0","0","trivy timed out"
+"llm_iac_60","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","9","1","0","2","6","0",""
+"llm_iac_62","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Missing item separator"",""message"":""Expected a comma to mark the beginning of the next item."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":69,""column"":3},""end"":{""line"":69,""column"":11}}},{""summary"":""Attribute redefined"",""message"":""The argument \""s","0","0","0","{""issues"":[],""errors"":[{""summary"":""Missing item separator"",""message"":""Expected a comma to mark the beginning of the next item."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":69,""column"":3},""end"":{""line"":69,""column"":11}}},{""summary"":""Attribute redefined"",""message"":""The argument \""s","True","0","0","0","0","0","0",""
+"llm_iac_63","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""The \"";\"" character is not valid. Use newlines to separate arguments and blocks, and commas to separate items in collection values."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":102,""column"":25},""end"":{""line"":102,""c","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""The \"";\"" character is not valid. Use newlines to separate arguments and blocks, and commas to separate items in collection values."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":102,""column"":25},""end"":{""line"":102,""c","True","0","0","0","0","0","0",""
+"llm_iac_64","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""This character is not used within the language."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":28,""column"":44},""end"":{""line"":28,""column"":45}}},{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not ","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid character"",""message"":""This character is not used within the language."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":28,""column"":44},""end"":{""line"":28,""column"":45}}},{""summary"":""Invalid multi-line string"",""message"":""Quoted strings may not ","True","0","0","0","0","0","0",""
+"llm_iac_66","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Unclosed configuration block"",""message"":""There is no closing brace for this block before the end of the file. This may be caused by incorrect brace nesting elsewhere in this file."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":15,""column"":55},""en","0","0","0","{""issues"":[],""errors"":[{""summary"":""Unclosed configuration block"",""message"":""There is no closing brace for this block before the end of the file. This may be caused by incorrect brace nesting elsewhere in this file."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":15,""column"":55},""en","True","0","0","0","0","0","0",""
+"llm_iac_69","phi-4","zero-shot","llm_iac","False","0","tflint timed out","0","0","0","tflint timed out","True","4","0","0","3","1","0",""
+"llm_iac_71","phi-4","zero-shot","llm_iac","True","2","","2","0","0","","True","10","0","6","0","4","0",""
+"llm_iac_78","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Extra characters after interpolation expression"",""message"":""Expected a closing brace to end the interpolation expression, but found extra characters.\n\nThis can happen when you include interpolation syntax for another language, such as shell scripting, but forget ","0","0","0","{""issues"":[],""errors"":[{""summary"":""Extra characters after interpolation expression"",""message"":""Expected a closing brace to end the interpolation expression, but found extra characters.\n\nThis can happen when you include interpolation syntax for another language, such as shell scripting, but forget ","True","0","0","0","0","0","0",""
+"llm_iac_75","phi-4","zero-shot","llm_iac","True","8","","8","0","0","","True","0","0","0","0","0","0",""
+"llm_iac_79","phi-4","zero-shot","llm_iac","True","4","","4","0","0","","True","2","0","0","2","0","0",""
+"llm_iac_83","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid attribute name"",""message"":""An attribute name is required after a dot."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":34,""column"":48},""end"":{""line"":34,""column"":49}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid attribute name"",""message"":""An attribute name is required after a dot."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":34,""column"":48},""end"":{""line"":34,""column"":49}}}]}","True","0","0","0","0","0","0",""
+"llm_iac_88","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":71,""column"":18},""end"":{""line"":71,""column"":19}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Missing key/value separator"",""message"":""Expected an equals sign (\""=\"") to mark the beginning of the attribute value."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":71,""column"":18},""end"":{""line"":71,""column"":19}}}]}","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0021e4000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x8988bffb30 sp=0x8988bffb00 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0021e4000, "
+"llm_iac_89","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xca48dff2c8 sp=0xca48dff298 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_92","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"
+"llm_iac_91","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: bcryptprimitives.dll not found
+runtime: panic before malloc heap initialized
+"
+"llm_iac_93","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Missing argument separator"",""message"":""A comma is required to separate each function argument from the next."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":3,""column"":3},""end"":{""line"":3,""column"":10}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Missing argument separator"",""message"":""A comma is required to separate each function argument from the next."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":3,""column"":3},""end"":{""line"":3,""column"":10}}}]}","False","0","0","0","0","0","0","fatal error: out of memory allocating heap arena map
+
+runtime stack:
+runtime.throw({0x7ff73698c423?, 0x0?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x47c5fff2e8 sp=0x47c5fff2b8 pc=0x7ff7313ff7cd
+runtime.(*mheap).sysAlloc(0x7ff73aec2cc0, 0x4?, 0x7ff73aed30c0, 0x7ff73aed"
+"llm_iac_94","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0001be000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xad951ffd50 sp=0xad951ffd20 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0001be000, "
+"llm_iac_96","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xfffffffffffff800?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x2323dff790 sp=0x2323dff760 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x800, 0x0?, 0x7ff73af0e920)
+	/opt/hostedt"
+"llm_iac_97","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","runtime: VirtualAlloc of 8192 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc00008a000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x6fad3ff2b0 sp=0x6fad3ff280 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc00008a000, "
+"llm_iac_95","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x9?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0x35943ffad0 sp=0x35943ffaa0 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/mheap."
+"llm_iac_99","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0x7ff7313a8f34?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xcb461ff710 sp=0xcb461ff6e0 pc=0x7ff7313ff7cd
+runtime.newArenaMayUnlock()
+	/opt/hostedtoolcache/go/1.25.7/x64/src/run"
+"llm_iac_100","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","0","0","0","{""issues"":[],""errors"":[{""message"":""Failed to initialize plugins; Unrecognized remote plugin message: \nFailed to read any lines from plugin's stdout\nThis usually means\n  the plugin was not compiled for this architecture,\n  the plugin is missing dynamic-link libraries necessary to run,\n  the plug","False","0","0","0","0","0","0","runtime: VirtualAlloc of 32768 bytes failed with errno=1455
+fatal error: out of memory
+
+runtime stack:
+runtime.throw({0x7ff7368bf803?, 0xc0004bc000?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xe5b35ff528 sp=0xe5b35ff4f8 pc=0x7ff7313ff7cd
+runtime.sysUsedOS(0xc0004bc000,"
+"llm_iac_101","phi-4","zero-shot","llm_iac","True","0","","0","0","0","","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+
+runtime stack:
+runtime.throw({0x7ff73695309a?, 0xffffffffffffee00?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1094 +0x4d fp=0xdd99ff648 sp=0xdd99ff618 pc=0x7ff7313ff7cd
+runtime.persistentalloc1(0x1200, 0xc0000a2418?, 0x7ff73af0e920)
+	/opt"
+"llm_iac_102","phi-4","zero-shot","llm_iac","False","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""The equals sign \""=\"" indicates an argument definition, and must not be used when defining a block."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":11,""column"":34},""end"":{""line"":11,""column"":35}}}]}","0","0","0","{""issues"":[],""errors"":[{""summary"":""Invalid block definition"",""message"":""The equals sign \""=\"" indicates an argument definition, and must not be used when defining a block."",""severity"":""error"",""range"":{""filename"":""main.tf"",""start"":{""line"":11,""column"":34},""end"":{""line"":11,""column"":35}}}]}","False","0","0","0","0","0","0","fatal error: runtime: cannot allocate memory
+fatal error: unexpected signal during runtime execution
+panic during panic
+[signal 0xc0000005 code=0x0 addr=0x4 pc=0x7ff7313d8658]
+
+runtime stack:
+runtime.throw({0x7ff7369a042d?, 0x7ff737a51a60?})
+	/opt/hostedtoolcache/go/1.25.7/x64/src/runtime/panic.go:1"

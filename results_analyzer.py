@@ -9,14 +9,23 @@ Reproduces the statistics reported in the Results section of the paper:
   - Low-SRS prompt examples cited in the paper
 
 Also generates publication-quality figures (300 DPI PDF) for inclusion in the paper:
-  - figures/fig_ics_distribution.pdf  — stacked bar: ICS bucket breakdown per dataset
-  - figures/fig_srs_distribution.pdf  — histogram of SRS values per dataset
-  - figures/fig_ics_vs_srs.pdf        — scatter of ICS vs SRS coloured by dataset
+  ICS / SRS
+    figures/fig_ics_distribution.pdf  — stacked bar: ICS bucket breakdown per dataset
+    figures/fig_srs_distribution.pdf  — histogram of SRS values per dataset
+    figures/fig_ics_vs_srs.pdf        — scatter of ICS vs SRS coloured by dataset
+  Hard-gate validation & TerraMetrics (from results/summary.csv)
+    figures/fig_validation_rate.pdf   — hard-gate pass rate per model × dataset
+    figures/fig_structural_quality.pdf— gen vs ref structural metrics per dataset
+    figures/fig_risk_indicators.pdf   — security-smell indicators per model (heatmap)
 
-Input:  results/final_results.json
+Note: TFLint and Trivy output is not present in results/summary.csv; those figures
+      would require running linting/security scans and adding the columns.
+
+Input:  results/final_results.json  +  results/summary.csv
 Output: printed report + figures/ directory
 """
 
+import csv
 import json
 import statistics
 from pathlib import Path
@@ -28,6 +37,7 @@ import matplotlib.patches as mpatches
 import numpy as np
 
 RESULTS_PATH = Path("results/final_results.json")
+SUMMARY_PATH = Path("results/summary.csv")
 FIGURES_DIR = Path("figures")
 
 # Colorblind-friendly palette (Wong 2011)
@@ -297,11 +307,433 @@ def fig_ics_vs_srs(stats: list[dict]) -> None:
         _save(fig, FIGURES_DIR / "fig_ics_vs_srs.pdf")
 
 
+# ---------------------------------------------------------------------------
+# Summary CSV helpers
+# ---------------------------------------------------------------------------
+
+MODEL_SHORT = {
+    "claude-4.5-sonnet": "Claude",
+    "gemini-3-flash":    "Gemini",
+    "gemma-3-27b":       "Gemma",
+    "glm-4.7":           "GLM",
+    "grok-4.1-fast":     "Grok",
+    "kimi-k2.5":         "Kimi",
+    "ministral-8b":      "Mistral",
+    "phi-4":             "Phi-4",
+    "qwen3-235b":        "Qwen3",
+}
+
+# Prompt-strategy colours
+PT_COLORS = {
+    "zero-shot": "#4477AA",
+    "few-shot":  "#EE6677",
+    "cot":       "#228833",
+}
+
+
+def load_summary() -> list[dict]:
+    with open(SUMMARY_PATH, newline="") as f:
+        rows = list(csv.DictReader(f))
+    for r in rows:
+        for k, v in r.items():
+            try:
+                r[k] = float(v)
+            except (ValueError, TypeError):
+                pass
+    return rows
+
+
+def fig_validation_rate(summary: list[dict]) -> None:
+    """
+    Hard-gate TerraMetrics parse/validation success rate per model,
+    grouped by base dataset (iac_eval vs llm_iac), for all three prompt
+    strategies side-by-side within each model group.
+    """
+    base_datasets = ["iac_eval", "llm_iac"]
+    prompt_types  = ["zero-shot", "few-shot", "cot"]
+    models = list(MODEL_SHORT.keys())
+    model_labels = [MODEL_SHORT[m] for m in models]
+
+    with plt.rc_context(FIG_STYLE):
+        fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.2), sharey=True)
+
+        for ax, ds in zip(axes, base_datasets):
+            x = np.arange(len(models))
+            width = 0.26
+            offsets = np.array([-1, 0, 1]) * width
+
+            for offset, pt in zip(offsets, prompt_types):
+                rates = []
+                for m in models:
+                    row = next(
+                        (r for r in summary
+                         if r["dataset"] == ds and r["model"] == m and r["prompt_type"] == pt),
+                        None,
+                    )
+                    rates.append(float(row["gen_success_rate"]) * 100 if row else 0.0)
+
+                bars = ax.bar(x + offset, rates, width,
+                              color=PT_COLORS[pt], label=pt,
+                              edgecolor="white", linewidth=0.3)
+
+            ax.set_title("IaC-Eval" if ds == "iac_eval" else "llm-iac")
+            ax.set_xticks(x)
+            ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
+            ax.set_ylim(96, 101)
+            ax.yaxis.set_major_formatter(
+                plt.FuncFormatter(lambda v, _: f"{v:.0f}%")
+            )
+            ax.grid(axis="y", linestyle="--", alpha=0.4)
+            ax.set_axisbelow(True)
+            if ax is axes[0]:
+                ax.set_ylabel("Pass rate (%)")
+
+        handles = [
+            mpatches.Patch(color=PT_COLORS[pt], label=pt) for pt in prompt_types
+        ]
+        fig.legend(handles=handles, loc="upper center",
+                   bbox_to_anchor=(0.5, 1.02), ncol=3, frameon=False)
+        fig.suptitle("Hard-gate Validation Pass Rate by Model and Prompting Strategy",
+                     y=1.08, fontsize=11)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_validation_rate.pdf")
+
+
+def fig_structural_quality(summary: list[dict]) -> None:
+    """
+    Gen vs. Ref comparison of four key TerraMetrics structural metrics,
+    aggregated across all models and prompt types per base dataset.
+    Shows whether LLMs over/under-generate compared to reference configs.
+    """
+    metrics = [
+        ("mean_gen_num_resources",      "mean_ref_num_resources",      "Num Resources"),
+        ("mean_gen_num_lines_of_code",  "mean_ref_num_lines_of_code",  "Lines of Code"),
+        ("mean_gen_avgMccabeCC",        "mean_ref_avgMccabeCC",        "Avg McCabe CC"),
+        ("mean_gen_maxDepthNestedBlocks","mean_ref_maxDepthNestedBlocks","Max Nesting Depth"),
+    ]
+    base_datasets = ["iac_eval", "llm_iac"]
+    ds_labels = {"iac_eval": "IaC-Eval", "llm_iac": "llm-iac"}
+
+    with plt.rc_context(FIG_STYLE):
+        fig, axes = plt.subplots(1, len(metrics), figsize=(8.5, 3.0))
+
+        for ax, (gen_col, ref_col, label) in zip(axes, metrics):
+            gen_vals, ref_vals = [], []
+            for ds in base_datasets:
+                rows = [r for r in summary
+                        if isinstance(r["dataset"], str) and r["dataset"] == ds]
+                gen_vals.append(np.mean([float(r[gen_col]) for r in rows if r[gen_col] != ""]))
+                ref_vals.append(float(rows[0][ref_col]) if rows else 0.0)
+
+            x = np.arange(len(base_datasets))
+            width = 0.35
+            ax.bar(x - width / 2, gen_vals, width, label="Generated",
+                   color="#0072B2", alpha=0.85, edgecolor="white")
+            ax.bar(x + width / 2, ref_vals, width, label="Reference",
+                   color="#009E73", alpha=0.85, edgecolor="white")
+
+            ax.set_title(label, fontsize=9)
+            ax.set_xticks(x)
+            ax.set_xticklabels([ds_labels[d] for d in base_datasets], fontsize=8)
+            ax.grid(axis="y", linestyle="--", alpha=0.4)
+            ax.set_axisbelow(True)
+
+        handles = [
+            mpatches.Patch(color="#0072B2", label="Generated"),
+            mpatches.Patch(color="#009E73", label="Reference"),
+        ]
+        fig.legend(handles=handles, loc="upper center",
+                   bbox_to_anchor=(0.5, 1.02), ncol=2, frameon=False)
+        fig.suptitle("Structural Quality: Generated vs. Reference (TerraMetrics)",
+                     y=1.08, fontsize=11)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_structural_quality.pdf")
+
+
+def fig_risk_indicators(summary: list[dict]) -> None:
+    """
+    Heatmap of per-model security-smell / risk indicators on iac_eval (zero-shot).
+    Metrics: wildcard-suffix strings, star strings, deprecated functions.
+    Lower values are better; reference baseline annotated per column.
+    """
+    risk_cols = [
+        ("mean_gen_numWildCardSuffixString_sum", "mean_ref_numWildCardSuffixString_sum",
+         "Wildcard\nSuffix Strings"),
+        ("mean_gen_numStarString_sum",           "mean_ref_numStarString_sum",
+         "Star Strings\n(* perms)"),
+        ("mean_gen_numDeprecatedFunctions_sum",  "mean_ref_numDeprecatedFunctions_sum",
+         "Deprecated\nFunctions"),
+        ("mean_gen_numEmptyString_sum",          "mean_ref_numEmptyString_sum",
+         "Empty\nStrings"),
+    ]
+    models = list(MODEL_SHORT.keys())
+    model_labels = [MODEL_SHORT[m] for m in models]
+
+    prompt_type = "zero-shot"
+    dataset = "iac_eval"
+
+    rows_zs = [r for r in summary
+               if isinstance(r["dataset"], str)
+               and r["dataset"] == dataset
+               and r["prompt_type"] == prompt_type]
+
+    # Build matrix: rows = models, cols = risk metrics
+    matrix = np.zeros((len(models), len(risk_cols)))
+    ref_vals = np.zeros(len(risk_cols))
+    col_labels = []
+
+    for j, (gen_col, ref_col, lbl) in enumerate(risk_cols):
+        col_labels.append(lbl)
+        ref_row = next((r for r in rows_zs), None)
+        ref_vals[j] = float(ref_row[ref_col]) if ref_row else 0.0
+        for i, m in enumerate(models):
+            row = next((r for r in rows_zs if r["model"] == m), None)
+            matrix[i, j] = float(row[gen_col]) if row else 0.0
+
+    with plt.rc_context(FIG_STYLE):
+        fig, ax = plt.subplots(figsize=(6.5, 3.2))
+
+        im = ax.imshow(matrix, aspect="auto", cmap="YlOrRd")
+        plt.colorbar(im, ax=ax, label="Mean count per config", pad=0.02)
+
+        ax.set_xticks(range(len(col_labels)))
+        ax.set_xticklabels(col_labels, fontsize=8)
+        ax.set_yticks(range(len(model_labels)))
+        ax.set_yticklabels(model_labels, fontsize=9)
+
+        # Annotate cells
+        for i in range(len(models)):
+            for j in range(len(risk_cols)):
+                ax.text(j, i, f"{matrix[i, j]:.2f}", ha="center", va="center",
+                        fontsize=7.5,
+                        color="white" if matrix[i, j] > matrix[:, j].max() * 0.6 else "black")
+
+        # Reference baseline as text below x-axis
+        for j, rv in enumerate(ref_vals):
+            ax.text(j, len(models) - 0.3, f"ref={rv:.2f}",
+                    ha="center", va="bottom", fontsize=6.5,
+                    color="gray", style="italic")
+
+        ax.set_title(
+            "Risk Indicators per Model — IaC-Eval, Zero-Shot (TerraMetrics)",
+            fontsize=10,
+        )
+        ax.tick_params(top=False, bottom=True, labeltop=False, labelbottom=True)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_risk_indicators.pdf")
+
+
+# ---------------------------------------------------------------------------
+# Lint / Security figures  (from results/lint_security_summary.csv)
+# ---------------------------------------------------------------------------
+
+LINT_SUMMARY_PATH = Path("results/lint_security_summary.csv")
+
+
+def load_lint_summary() -> list[dict]:
+    with open(LINT_SUMMARY_PATH, newline="") as f:
+        rows = list(csv.DictReader(f))
+    for r in rows:
+        for k, v in r.items():
+            try:
+                r[k] = float(v)
+            except (ValueError, TypeError):
+                pass
+    return rows
+
+
+def fig_tflint_violations(lint_summary: list[dict]) -> None:
+    """
+    Grouped bar chart: mean TFLint violations per config per model,
+    stacked by severity (ERROR + WARNING), grouped by dataset.
+    """
+    base_datasets = ["iac_eval", "llm_iac"]
+    ds_labels = {"iac_eval": "IaC-Eval", "llm_iac": "llm-iac"}
+    models = list(MODEL_SHORT.keys())
+    model_labels = [MODEL_SHORT[m] for m in models]
+    prompt_type = "zero-shot"
+
+    SEV_COLORS = {"error": "#d62728", "warning": "#ff7f0e",
+                  "notice": "#aec7e8", "info": "#c7c7c7"}
+    show_sevs = ["error", "warning", "notice"]
+
+    with plt.rc_context(FIG_STYLE):
+        fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.2), sharey=True)
+
+        for ax, ds in zip(axes, base_datasets):
+            x = np.arange(len(models))
+            width = 0.55
+
+            bottoms = np.zeros(len(models))
+            for sev in show_sevs:
+                vals = []
+                for m in models:
+                    row = next(
+                        (r for r in lint_summary
+                         if isinstance(r.get("dataset"), str)
+                         and r["dataset"] == ds
+                         and r.get("model") == m
+                         and r.get("prompt_type") == prompt_type),
+                        None,
+                    )
+                    vals.append(float(row[f"mean_tflint_{sev}"]) if row else 0.0)
+
+                vals = np.array(vals)
+                ax.bar(x, vals, width, bottom=bottoms,
+                       color=SEV_COLORS[sev], label=sev.capitalize(),
+                       edgecolor="white", linewidth=0.3)
+                bottoms += vals
+
+            ax.set_title(ds_labels[ds])
+            ax.set_xticks(x)
+            ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
+            ax.grid(axis="y", linestyle="--", alpha=0.4)
+            ax.set_axisbelow(True)
+            if ax is axes[0]:
+                ax.set_ylabel("Mean violations per config")
+
+        handles = [mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize())
+                   for s in show_sevs]
+        fig.legend(handles=handles, loc="upper center",
+                   bbox_to_anchor=(0.5, 1.02), ncol=3, frameon=False)
+        fig.suptitle("TFLint Violations per Config by Model (Zero-Shot)",
+                     y=1.08, fontsize=11)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_tflint_violations.pdf")
+
+
+def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
+    """
+    Grouped bar chart: mean Trivy misconfigurations per config per model,
+    stacked by severity (CRITICAL, HIGH, MEDIUM), for zero-shot only.
+    """
+    base_datasets = ["iac_eval", "llm_iac"]
+    ds_labels = {"iac_eval": "IaC-Eval", "llm_iac": "llm-iac"}
+    models = list(MODEL_SHORT.keys())
+    model_labels = [MODEL_SHORT[m] for m in models]
+    prompt_type = "zero-shot"
+
+    SEV_COLORS = {
+        "critical": "#7b0000", "high": "#d62728",
+        "medium": "#ff7f0e",   "low": "#ffbb78",
+    }
+    show_sevs = ["critical", "high", "medium", "low"]
+
+    with plt.rc_context(FIG_STYLE):
+        fig, axes = plt.subplots(1, 2, figsize=(8.5, 3.2), sharey=True)
+
+        for ax, ds in zip(axes, base_datasets):
+            x = np.arange(len(models))
+            width = 0.55
+            bottoms = np.zeros(len(models))
+
+            for sev in show_sevs:
+                vals = []
+                for m in models:
+                    row = next(
+                        (r for r in lint_summary
+                         if isinstance(r.get("dataset"), str)
+                         and r["dataset"] == ds
+                         and r.get("model") == m
+                         and r.get("prompt_type") == prompt_type),
+                        None,
+                    )
+                    vals.append(float(row[f"mean_trivy_{sev}"]) if row else 0.0)
+
+                vals = np.array(vals)
+                ax.bar(x, vals, width, bottom=bottoms,
+                       color=SEV_COLORS[sev], label=sev.capitalize(),
+                       edgecolor="white", linewidth=0.3)
+                bottoms += vals
+
+            ax.set_title(ds_labels[ds])
+            ax.set_xticks(x)
+            ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
+            ax.grid(axis="y", linestyle="--", alpha=0.4)
+            ax.set_axisbelow(True)
+            if ax is axes[0]:
+                ax.set_ylabel("Mean misconfigs per config")
+
+        handles = [mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize())
+                   for s in show_sevs]
+        fig.legend(handles=handles, loc="upper center",
+                   bbox_to_anchor=(0.5, 1.02), ncol=4, frameon=False)
+        fig.suptitle("Trivy Security Misconfigurations per Config by Model (Zero-Shot)",
+                     y=1.08, fontsize=11)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_trivy_misconfigs.pdf")
+
+
+def fig_lint_vs_prompting(lint_summary: list[dict]) -> None:
+    """
+    Line chart: mean total TFLint violations across prompting strategies
+    (zero-shot, few-shot, cot) for each model, aggregated over both datasets.
+    Shows whether prompting strategy influences linting quality.
+    """
+    models = list(MODEL_SHORT.keys())
+    model_labels = [MODEL_SHORT[m] for m in models]
+    prompt_types = ["zero-shot", "few-shot", "cot"]
+    pt_labels = {"zero-shot": "Zero-Shot", "few-shot": "Few-Shot", "cot": "CoT"}
+    base_datasets = ["iac_eval", "llm_iac"]
+
+    with plt.rc_context(FIG_STYLE):
+        fig, ax = plt.subplots(figsize=(6.5, 3.5))
+        x = np.arange(len(models))
+        width = 0.26
+        offsets = np.array([-1, 0, 1]) * width
+
+        for offset, pt in zip(offsets, prompt_types):
+            vals = []
+            for m in models:
+                # Average total violations over both base datasets
+                total, count = 0.0, 0
+                for ds in base_datasets:
+                    row = next(
+                        (r for r in lint_summary
+                         if isinstance(r.get("dataset"), str)
+                         and r["dataset"] == ds
+                         and r.get("model") == m
+                         and r.get("prompt_type") == pt),
+                        None,
+                    )
+                    if row:
+                        total += float(row.get("mean_tflint_total", 0))
+                        count += 1
+                vals.append(total / count if count else 0.0)
+
+            ax.bar(x + offset, vals, width,
+                   color=PT_COLORS[pt], label=pt_labels[pt],
+                   edgecolor="white", linewidth=0.3)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
+        ax.set_ylabel("Mean TFLint violations per config")
+        ax.set_title("TFLint Violations by Model and Prompting Strategy")
+        ax.legend(frameon=False)
+        ax.grid(axis="y", linestyle="--", alpha=0.4)
+        ax.set_axisbelow(True)
+        fig.tight_layout()
+        _save(fig, FIGURES_DIR / "fig_lint_vs_prompting.pdf")
+
+
 def generate_figures(stats: list[dict]) -> None:
     print("\n=== Generating figures ===")
     fig_ics_distribution(stats)
     fig_srs_distribution(stats)
     fig_ics_vs_srs(stats)
+
+    summary = load_summary()
+    fig_validation_rate(summary)
+    fig_structural_quality(summary)
+    fig_risk_indicators(summary)
+
+    if LINT_SUMMARY_PATH.exists():
+        lint_summary = load_lint_summary()
+        fig_tflint_violations(lint_summary)
+        fig_trivy_misconfigs(lint_summary)
+        fig_lint_vs_prompting(lint_summary)
+    else:
+        print(f"  Skipping lint/security figures — {LINT_SUMMARY_PATH} not found yet.")
 
 
 # ---------------------------------------------------------------------------
