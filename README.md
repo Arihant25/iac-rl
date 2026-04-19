@@ -105,6 +105,44 @@ Results saved to `results/`:
 
 Resume is automatic for both generation and evaluation: re-running skips any `scenario_id` already in the result CSV.
 
+## Terraform CLI Validation
+
+Runs `terraform fmt` and `terraform validate` on every generated configuration in `outputs/*.csv`. `terraform plan` is intentionally excluded — it requires live cloud credentials and network access to provider APIs, which cannot be produced in a reproducible, offline-verifiable way for a benchmark.
+
+Requires the `terraform` binary on `$PATH` (or `TERRAFORM_EXE` set to its location).
+
+### Usage
+
+```bash
+uv run evaluate_terraform.py [OPTIONS]
+```
+
+### Options
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--csv` | All CSVs in `outputs/` | Path to a specific CSV to evaluate |
+| `--samples` | All | Only process first N rows per CSV |
+| `--workers` | `4` | Number of parallel workers |
+| `--summary-only` | — | Rebuild `results/terraform_summary.csv` from existing `*_tf.csv` files |
+
+### How it works
+
+For each row, a temporary directory is created and the generated Terraform is written to `main.tf`. The script then runs:
+
+1. `terraform fmt -check=true -diff=false -write=false` — formatting compliance
+2. `terraform init -backend=false -input=false -get=false` — populates the provider cache (offline; no backend, no modules)
+3. `terraform validate -json` — static validation of the configuration
+
+A shared `TF_PLUGIN_CACHE_DIR` (at `.terraform-plugin-cache/`) is used so each provider is downloaded once and reused across all runs. `TF_IN_AUTOMATION`, `TF_INPUT=0`, and `CHECKPOINT_DISABLE` are set to keep runs non-interactive and offline.
+
+### Output
+
+- **`results/{stem}_tf.csv`** — per input CSV, with `fmt_ok`, `init_ok`, `validate_ok`, error counts, and first error messages
+- **`results/terraform_summary.csv`** — aggregated pass rates per `(dataset, model, prompt_type)`
+
+Resume is automatic: already-processed `scenario_id`s are skipped, and results are flushed to disk every 50 rows so interrupting the run loses at most ~50 entries per CSV.
+
 ## Semantic Robustness Score (SRS)
 
 Measures how consistently a model's Terraform output satisfies the original intent across semantically equivalent prompt phrasings. Uses rule-based **Intent Coverage Score (ICS)**:
