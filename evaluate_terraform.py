@@ -130,7 +130,7 @@ def run_terraform(code: str) -> Dict[str, Any]:
             # `terraform fmt -check` returns 0 if formatted, 3 if changes needed, nonzero on error
             out["fmt_ok"] = r.returncode == 0
             if r.returncode not in (0, 3):
-                out["fmt_error"] = (r.stderr or r.stdout or "").strip()[:300]
+                out["fmt_error"] = (r.stderr or r.stdout or "").strip().replace("\n", " ")[:300]
         except subprocess.TimeoutExpired:
             out["fmt_error"] = "fmt timed out"
             return out
@@ -148,7 +148,7 @@ def run_terraform(code: str) -> Dict[str, Any]:
             )
             out["init_ok"] = r.returncode == 0
             if not out["init_ok"]:
-                out["init_error"] = (r.stderr or r.stdout or "").strip()[:400]
+                out["init_error"] = (r.stderr or r.stdout or "").strip().replace("\n", " ")[:400]
                 return out
         except subprocess.TimeoutExpired:
             out["init_error"] = "init timed out"
@@ -170,7 +170,7 @@ def run_terraform(code: str) -> Dict[str, Any]:
                     msgs = [d.get("summary", "") for d in diags if d.get("severity") == "error"]
                     out["validate_error"] = " | ".join(msgs)[:400]
             except json.JSONDecodeError:
-                out["validate_error"] = (r.stderr or r.stdout or "").strip()[:400]
+                out["validate_error"] = (r.stderr or r.stdout or "").strip().replace("\n", " ")[:400]
         except subprocess.TimeoutExpired:
             out["validate_error"] = "validate timed out"
 
