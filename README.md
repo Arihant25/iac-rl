@@ -123,8 +123,30 @@ uv run evaluate_terraform.py [OPTIONS]
 |--------|---------|-------------|
 | `--csv` | All CSVs in `outputs/` | Path to a specific CSV to evaluate |
 | `--samples` | All | Only process first N rows per CSV |
-| `--workers` | `4` | Number of parallel workers |
+| `--workers` | `4` | Number of parallel row workers per CSV |
+| `--file-workers` | `1` | Number of CSV files to process concurrently |
 | `--summary-only` | — | Rebuild `results/terraform_summary.csv` from existing `*_tf.csv` files |
+
+### Examples
+
+```bash
+# Full run (sequential across CSV files)
+uv run evaluate_terraform.py
+
+# Parallel rows within each CSV
+uv run evaluate_terraform.py --workers 8
+
+# Parallel across CSV files and rows (total concurrency ~= file-workers * workers)
+uv run evaluate_terraform.py --file-workers 3 --workers 4
+
+# Single CSV
+uv run evaluate_terraform.py --csv outputs/iac_eval_claude-4.5-sonnet_zero-shot.csv
+
+# Rebuild summary only
+uv run evaluate_terraform.py --summary-only
+```
+
+For large runs, start conservatively and scale up after checking CPU, memory, and Terraform provider download behavior.
 
 ### How it works
 
