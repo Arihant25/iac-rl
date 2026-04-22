@@ -388,7 +388,7 @@
 "llm_iac_394","qwen3-235b","zero-shot","llm_iac","False","","True","","True","0","0",""
 "llm_iac_399","qwen3-235b","zero-shot","llm_iac","False","","True","","True","0","0",""
 "llm_iac_400","qwen3-235b","zero-shot","llm_iac","False","","True","","True","0","0",""
-"llm_iac_392","qwen3-235b","zero-shot","llm_iac","False","","False","Error: Failed to query available provider packages  Could not retrieve the list of available versions for provider hashicorp/ibm: provider registry registry.terraform.io does not have a provider named registry.terraform.io/hashicorp/ibm  All modules should specify their required_providers so that external consumers will get the correct providers when using a module. To see which modules are curren","False","0","0",""
+"llm_iac_392","qwen3-235b","zero-shot","llm_iac","False","","False","Error: Failed to query available provider packages  Could not retrieve the list of available versions for provider hashicorp/digitalocean: provider registry registry.terraform.io does not have a provider named registry.terraform.io/hashicorp/digitalocean  Did you intend to use digitalocean/digitalocean? If so, you must specify that source address in each module which requires that provider. To see","False","0","0",""
 "llm_iac_401","qwen3-235b","zero-shot","llm_iac","False","","True","","True","0","3",""
 "llm_iac_398","qwen3-235b","zero-shot","llm_iac","False","","True","","True","0","0",""
 "llm_iac_402","qwen3-235b","zero-shot","llm_iac","False","","True","","False","1","0","Unsupported argument"
