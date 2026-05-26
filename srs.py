@@ -80,7 +80,7 @@ def retry_with_backoff(retries=3, backoff_in_seconds=1):
 # =============================================================================
 
 RESOURCE_MAP = {
-    # AWS general
+    # AWS compute
     "s3 bucket": "aws_s3_bucket",
     "s3": "aws_s3_bucket",
     "vpc": "aws_vpc",
@@ -89,29 +89,74 @@ RESOURCE_MAP = {
     "security group": "aws_security_group",
     "lambda": "aws_lambda_function",
     "load balancer": "aws_lb",
+    "application load balancer": "aws_lb",
     "elb": "aws_lb",
+    "alb": "aws_lb",
+    "nlb": "aws_lb",
     "autoscaling": "aws_autoscaling_group",
-    # AWS services
+    "auto scaling": "aws_autoscaling_group",
+    # AWS data
     "rds": "aws_db_instance",
     "database": "aws_db_instance",
     "db instance": "aws_db_instance",
+    "dynamodb": "aws_dynamodb_table",
+    "elasticache": "aws_elasticache_cluster",
+    "redshift": "aws_redshift_cluster",
+    # AWS networking
     "route 53": "aws_route53_zone",
     "route53": "aws_route53_zone",
     "dns record": "aws_route53_record",
+    "nat gateway": "aws_nat_gateway",
+    "internet gateway": "aws_internet_gateway",
+    "igw": "aws_internet_gateway",
+    "route table": "aws_route_table",
+    "transit gateway": "aws_ec2_transit_gateway",
+    "vpn": "aws_vpn_gateway",
+    "peering": "aws_vpc_peering_connection",
+    # AWS monitoring/management
     "cloudwatch": "aws_cloudwatch_log_group",
-    "iam role": "aws_iam_role",
-    "iam policy": "aws_iam_policy",
-    "elastic beanstalk": "aws_elastic_beanstalk_environment",
-    "beanstalk": "aws_elastic_beanstalk_environment",
-    "sqs": "aws_sqs_queue",
-    "sns": "aws_sns_topic",
-    "dynamodb": "aws_dynamodb_table",
-    "kinesis": "aws_kinesis_stream",
+    "cloudtrail": "aws_cloudtrail",
+    "ssm": "aws_ssm_parameter",
+    "parameter store": "aws_ssm_parameter",
+    "systems manager": "aws_ssm_parameter",
+    # AWS containers
     "eks": "aws_eks_cluster",
     "ecs": "aws_ecs_cluster",
-    "elasticache": "aws_elasticache_cluster",
+    "ecr": "aws_ecr_repository",
+    "fargate": "aws_ecs_cluster",
+    # AWS messaging/streaming
+    "sqs": "aws_sqs_queue",
+    "sns": "aws_sns_topic",
+    "kinesis": "aws_kinesis_stream",
+    "eventbridge": "aws_cloudwatch_event_rule",
+    "event bridge": "aws_cloudwatch_event_rule",
+    "msk": "aws_msk_cluster",
+    # AWS IAM/security
+    "iam role": "aws_iam_role",
+    "iam policy": "aws_iam_policy",
+    "iam user": "aws_iam_user",
+    "iam group": "aws_iam_group",
+    "kms": "aws_kms_key",
+    "waf": "aws_wafv2_web_acl",
+    "secret": "aws_secretsmanager_secret",
+    "secrets manager": "aws_secretsmanager_secret",
+    "certificate": "aws_acm_certificate",
+    # AWS application
+    "elastic beanstalk": "aws_elastic_beanstalk_environment",
+    "beanstalk": "aws_elastic_beanstalk_environment",
     "cloudfront": "aws_cloudfront_distribution",
     "api gateway": "aws_api_gateway_rest_api",
+    "step function": "aws_sfn_state_machine",
+    "sfn": "aws_sfn_state_machine",
+    # AWS analytics
+    "emr": "aws_emr_cluster",
+    "glue": "aws_glue_job",
+    "athena": "aws_athena_database",
+    # AWS devops
+    "codepipeline": "aws_codepipeline",
+    "codecommit": "aws_codecommit_repository",
+    "codebuild": "aws_codebuild_project",
+    "cloudformation": "aws_cloudformation_stack",
     # GCP
     "gcp": "google_compute_instance",
     "google cloud": "google_compute_instance",
@@ -119,21 +164,49 @@ RESOURCE_MAP = {
     "cloud run": "google_cloud_run_service",
     "bigquery": "google_bigquery_dataset",
     "cloud storage": "google_storage_bucket",
+    "bigtable": "google_bigtable_instance",
+    "pub/sub": "google_pubsub_topic",
+    "pubsub": "google_pubsub_topic",
+    "cloud sql": "google_sql_database_instance",
+    "cloud function": "google_cloudfunctions_function",
+    "cloud dns": "google_dns_managed_zone",
+    "cloud nat": "google_compute_router_nat",
     # Azure
     "azure": "azurerm_virtual_machine",
     "azure vm": "azurerm_virtual_machine",
     "azure storage": "azurerm_storage_account",
     "azure sql": "azurerm_sql_server",
+    "azure function": "azurerm_function_app",
+    "aks": "azurerm_kubernetes_cluster",
+    "azure kubernetes": "azurerm_kubernetes_cluster",
+    "network watcher": "azurerm_network_watcher",
+    "azure firewall": "azurerm_firewall",
 }
+
+# Implicit property/behaviour terms present in prompts but not named as resource types.
+# Each maps to a constraint type that verifies the property in generated Terraform.
+_IMPLICIT_CONSTRAINTS = [
+    # (keyword_in_prompt, constraint_dict)
+    ("encrypt",      {"type": "implicit_property", "keyword": "encrypt",      "hcl_patterns": [r'kms_key_id\s*=', r'sse_algorithm\s*=', r'encrypt_at_rest\s*=\s*true', r'encrypted\s*=\s*true', r'server_side_encryption']}),
+    ("kms",          {"type": "implicit_property", "keyword": "kms",          "hcl_patterns": [r'kms_key_id\s*=', r'aws_kms_key']}),
+    ("multi-az",     {"type": "implicit_property", "keyword": "multi-az",     "hcl_patterns": [r'multi_az\s*=\s*true', r'availability_zones\s*=']}),
+    ("highly available", {"type": "implicit_property", "keyword": "highly available", "hcl_patterns": [r'multi_az\s*=\s*true', r'desired_capacity\s*=\s*[2-9]', r'availability_zones\s*=']}),
+    ("high availability", {"type": "implicit_property", "keyword": "high availability", "hcl_patterns": [r'multi_az\s*=\s*true', r'desired_capacity\s*=\s*[2-9]', r'availability_zones\s*=']}),
+    ("monitoring",   {"type": "implicit_property", "keyword": "monitoring",   "hcl_patterns": [r'aws_cloudwatch', r'monitoring\s*=\s*true', r'enable_monitoring\s*=\s*true']}),
+    ("logging",      {"type": "implicit_property", "keyword": "logging",      "hcl_patterns": [r'aws_cloudwatch_log', r'aws_cloudtrail', r'logging\s*\{', r'access_logs\s*\{']}),
+    ("backup",       {"type": "implicit_property", "keyword": "backup",       "hcl_patterns": [r'backup_retention_period\s*=\s*[1-9]', r'aws_backup']}),
+    ("lifecycle",    {"type": "implicit_property", "keyword": "lifecycle",    "hcl_patterns": [r'lifecycle_rule\s*\{', r'aws_s3_bucket_lifecycle']}),
+    ("versioning",   {"type": "implicit_property", "keyword": "versioning",   "hcl_patterns": [r'versioning\s*\{', r'enabled\s*=\s*true']}),
+]
 
 
 def extract_constraints(prompt: str) -> List[Dict[str, Any]]:
-    """Rule-based extraction of constraints from a prompt."""
+    """Rule-based extraction of constraints from a free-form natural-language prompt."""
     constraints = []
     seen_resources = set()
     p_lower = prompt.lower()
 
-    # 1. Resource existence (longest-match first to avoid "s3" clobbering "s3 bucket")
+    # 1. Resource existence — longest-match first prevents "s3" shadowing "s3 bucket"
     for keyword in sorted(RESOURCE_MAP, key=len, reverse=True):
         if keyword in p_lower:
             rtype = RESOURCE_MAP[keyword]
@@ -141,31 +214,22 @@ def extract_constraints(prompt: str) -> List[Dict[str, Any]]:
                 seen_resources.add(rtype)
                 constraints.append({"type": "resource_exists", "resource_type": rtype})
 
-    # 2. Instance type (e.g. t3.micro)
-    match = re.search(r"\bt[0-9]\.[a-z]+", p_lower)
+    # 2. Instance type: t3.micro, m5.large, c5.2xlarge, r5.4xlarge, g4dn.xlarge, etc.
+    match = re.search(r"\b([a-z][0-9][a-z]{0,3}(?:dn|en)?\.[0-9]{0,2}(?:nano|micro|small|medium|large|xlarge|metal))", p_lower)
     if match:
         constraints.append({
             "type": "property_equals",
             "resource_type": "aws_instance",
             "property": "instance_type",
-            "value": match.group(0),
+            "value": match.group(1),
         })
 
-    # 3. Provider region
-    match = re.search(r"(us|eu|ap|sa|ca|me|af)-[a-z]+-[0-9]", p_lower)
+    # 3. Provider region (AWS, GCP, Azure region strings)
+    match = re.search(r"(us|eu|ap|sa|ca|me|af|us-central|us-east|us-west|europe-west|asia-east)-[a-z]+-[0-9]", p_lower)
     if match:
         constraints.append({"type": "provider_region", "value": match.group(0)})
 
-    # 4. S3 versioning
-    if "versioning" in p_lower:
-        constraints.append({
-            "type": "property_equals",
-            "resource_type": "aws_s3_bucket",
-            "property": "versioning.enabled",
-            "value": True,
-        })
-
-    # 5. Private S3 ACL
+    # 4. Private S3 ACL
     if "private s3" in p_lower or "private bucket" in p_lower:
         constraints.append({
             "type": "property_equals",
@@ -174,7 +238,7 @@ def extract_constraints(prompt: str) -> List[Dict[str, Any]]:
             "value": "private",
         })
 
-    # 6. Security ingress ports
+    # 5. Security ingress ports
     if "ssh" in p_lower:
         constraints.append({"type": "security_ingress", "port": 22})
     if "https" in p_lower:
@@ -182,29 +246,118 @@ def extract_constraints(prompt: str) -> List[Dict[str, Any]]:
     elif "http" in p_lower:
         constraints.append({"type": "security_ingress", "port": 80})
 
-    # 7. Autoscaling bounds  "scale from N to M"
+    # 6. Autoscaling bounds — "scale from N to M" or "min N, max M"
     match = re.search(r"(\d+)\s+to\s+(\d+)", p_lower)
     if match:
         constraints.append({"type": "autoscaling_min", "value": int(match.group(1))})
         constraints.append({"type": "autoscaling_max", "value": int(match.group(2))})
 
+    # 7. Implicit property constraints (encryption, HA, monitoring, logging, etc.)
+    seen_implicit = set()
+    for keyword, constraint in _IMPLICIT_CONSTRAINTS:
+        if keyword in p_lower and keyword not in seen_implicit:
+            seen_implicit.add(keyword)
+            constraints.append(dict(constraint))
+
     return constraints
 
 
+# Patterns used to capture attribute-existence and attribute-equality constraints
+# from IaC-Eval Intent "with ..." lines.  Order matters: equality checked first.
+_INTENT_ATTR_EQUALS = re.compile(
+    r'with\s+(?:a specified |one |multiple |an? )?\"([^\"]+)\"\s+equal\s+to\s+\"([^\"]+)\"'
+)
+_INTENT_ATTR_EXISTS = re.compile(
+    r'with\s+(?:a specified |one |multiple |an? )?\"([^\"]+)\"'
+)
+# Lines that express cross-resource references or nested-block constraints —
+# too complex for regex satisfaction checking; we skip them.
+_INTENT_SKIP = re.compile(r"referencing|enabling|block\s+that\s+contains|block\s+with")
+
+
 def parse_intent_field(intent_str: str) -> List[Dict[str, Any]]:
-    """Parse the 'Intent' field from iac_eval_dataset into resource_exists constraints."""
-    constraints = []
-    for line in intent_str.split("\n"):
-        line = line.strip()
-        # Lines like: Has one "aws_route53_zone" resource
+    """
+    Parse an IaC-Eval Intent field into structured constraints.
+
+    Captures three constraint types:
+      resource_exists  — from "Has [one|multiple] \"type\" resource" lines
+      attribute_equals — from "with \"attr\" equal to \"value\"" lines
+      attribute_exists — from "with \"attr\"" lines (simple attribute presence)
+
+    Lines containing cross-resource references, block-contains clauses, or
+    policy-enabling clauses are not capturable by regex and are skipped.
+    Falls back to extract_constraints(intent_str) when no resource lines are found.
+    """
+    constraints: List[Dict[str, Any]] = []
+    current_resource: Optional[str] = None
+
+    for raw_line in intent_str.split("\n"):
+        line = raw_line.strip()
+        if not line:
+            continue
+
+        # Resource existence line
         if line.startswith("Has") and "resource" in line:
-            match = re.search(r'"([^"]+)"', line)
-            if match:
+            m = re.search(r'"([^"]+)"', line)
+            if m:
+                current_resource = m.group(1)
                 constraints.append({
                     "type": "resource_exists",
-                    "resource_type": match.group(1),
+                    "resource_type": current_resource,
                 })
-    return constraints or extract_constraints(intent_str)
+            continue
+
+        # Property constraint line ("with ...")
+        if line.startswith("with") and current_resource:
+            # Skip lines that require cross-resource or nested-block semantics
+            if _INTENT_SKIP.search(line):
+                continue
+
+            # attribute equals value
+            m = _INTENT_ATTR_EQUALS.search(line)
+            if m:
+                constraints.append({
+                    "type": "attribute_equals",
+                    "resource_type": current_resource,
+                    "attribute": m.group(1),
+                    "value": m.group(2),
+                })
+                continue
+
+            # attribute existence
+            m = _INTENT_ATTR_EXISTS.search(line)
+            if m:
+                constraints.append({
+                    "type": "attribute_exists",
+                    "resource_type": current_resource,
+                    "attribute": m.group(1),
+                })
+
+    return constraints if constraints else extract_constraints(intent_str)
+
+
+def _resource_block_content(tf_code: str, resource_type: str) -> str:
+    """
+    Return the concatenated body text of all resource blocks whose type matches
+    resource_type.  Uses a simple brace-counting approach that handles one level
+    of nested blocks reliably for standard Terraform patterns.
+    """
+    out: List[str] = []
+    pattern = re.compile(
+        r'resource\s+"' + re.escape(resource_type) + r'"\s+"[^"]*"\s*\{',
+    )
+    for header_m in pattern.finditer(tf_code):
+        start = header_m.end()
+        depth = 1
+        i = start
+        while i < len(tf_code) and depth > 0:
+            if tf_code[i] == "{":
+                depth += 1
+            elif tf_code[i] == "}":
+                depth -= 1
+            i += 1
+        out.append(tf_code[start : i - 1])
+    return "\n".join(out)
 
 
 def terraform_to_facts(tf_code: str) -> Dict[str, Any]:
@@ -214,6 +367,7 @@ def terraform_to_facts(tf_code: str) -> Dict[str, Any]:
         "properties": {},
         "region": None,
         "ports": set(),
+        "_raw": tf_code,  # kept for attribute_exists / implicit_property checks
     }
     if not isinstance(tf_code, str) or not tf_code.strip():
         return facts
@@ -252,18 +406,42 @@ def terraform_to_facts(tf_code: str) -> Dict[str, Any]:
 
 def is_satisfied(constraint: Dict[str, Any], facts: Dict[str, Any]) -> bool:
     ctype = constraint.get("type")
+
     if ctype == "resource_exists":
         return constraint["resource_type"] in facts["resources"]
+
     if ctype == "property_equals":
         return facts["properties"].get(constraint["property"]) == constraint["value"]
+
     if ctype == "provider_region":
         return facts.get("region") == constraint["value"]
+
     if ctype == "security_ingress":
         return constraint["port"] in facts["ports"]
+
     if ctype == "autoscaling_min":
         return facts["properties"].get("min_size", 0) >= constraint["value"]
+
     if ctype == "autoscaling_max":
         return facts["properties"].get("max_size", float("inf")) <= constraint["value"]
+
+    if ctype == "attribute_exists":
+        # Check that the attribute key appears inside the correct resource block.
+        block = _resource_block_content(facts.get("_raw", ""), constraint["resource_type"])
+        attr = re.escape(constraint["attribute"])
+        return bool(re.search(r'\b' + attr + r'\s*=', block))
+
+    if ctype == "attribute_equals":
+        block = _resource_block_content(facts.get("_raw", ""), constraint["resource_type"])
+        attr = re.escape(constraint["attribute"])
+        val = re.escape(constraint["value"])
+        return bool(re.search(r'\b' + attr + r'\s*=\s*"' + val + r'"', block))
+
+    if ctype == "implicit_property":
+        # Any of the HCL patterns matching anywhere in the file suffices.
+        raw = facts.get("_raw", "")
+        return any(re.search(p, raw, re.I) for p in constraint["hcl_patterns"])
+
     return False
 
 
