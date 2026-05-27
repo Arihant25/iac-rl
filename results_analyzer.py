@@ -38,6 +38,7 @@ import numpy as np
 
 RESULTS_PATH = Path("results/final_results.json")
 SUMMARY_PATH = Path("results/summary.csv")
+ICS_PER_PROMPT_PATH = Path("results/ics_per_prompt.csv")
 FIGURES_DIR = Path("figures")
 
 # Colorblind-friendly palette (Wong 2011)
@@ -87,10 +88,24 @@ def ics_bucket(v: float) -> str:
     return "full"
 
 
-def analyze_dataset(name: str, entries: list[dict]) -> dict:
-    ics_vals = [e["mean_ics"] for e in entries]
-    srs_vals = [e["srs"] for e in entries]
-    n = len(entries)
+def analyze_dataset(
+    name: str,
+    entries: list[dict],
+    ics_vals_override: list[float] | None = None,
+    ics_scatter_override: list[float] | None = None,
+) -> dict:
+    # flat ICS observations (for distribution figure)
+    ics_vals = ics_vals_override if ics_vals_override is not None else [e["mean_ics"] for e in entries]
+    # per-scenario ICS means (for ICS vs SRS scatter — must match SRS count)
+    if ics_scatter_override is not None:
+        n_min = min(len(ics_scatter_override), len(entries))
+        ics_scatter = ics_scatter_override[:n_min]
+        srs_vals = [e["srs"] for e in entries[:n_min]]
+    else:
+        ics_scatter = [e["mean_ics"] for e in entries]
+        srs_vals = [e["srs"] for e in entries]
+    n_ics = len(ics_vals)
+    n_srs = len(srs_vals)
 
     buckets = {"zero": 0, "low": 0, "mid": 0, "high": 0, "full": 0}
     for v in ics_vals:
@@ -102,27 +117,29 @@ def analyze_dataset(name: str, entries: list[dict]) -> dict:
     return {
         "name": name,
         "label": DATASET_LABELS.get(name, name),
-        "n": n,
+        "n": n_srs,
+        "n_ics": n_ics,
         "ics_vals": ics_vals,
+        "ics_scatter": ics_scatter,
         "srs_vals": srs_vals,
         "mean_ics": statistics.mean(ics_vals),
         "median_ics": statistics.median(ics_vals),
         "mean_srs": statistics.mean(srs_vals),
         "median_srs": statistics.median(srs_vals),
         "ics_full": buckets["full"],
-        "ics_full_pct": 100 * buckets["full"] / n,
+        "ics_full_pct": 100 * buckets["full"] / n_ics,
         "ics_zero": buckets["zero"],
-        "ics_zero_pct": 100 * buckets["zero"] / n,
+        "ics_zero_pct": 100 * buckets["zero"] / n_ics,
         "ics_mid": buckets["mid"],
-        "ics_mid_pct": 100 * buckets["mid"] / n,
+        "ics_mid_pct": 100 * buckets["mid"] / n_ics,
         "ics_high": buckets["high"],
-        "ics_high_pct": 100 * buckets["high"] / n,
+        "ics_high_pct": 100 * buckets["high"] / n_ics,
         "ics_low": buckets["low"],
-        "ics_low_pct": 100 * buckets["low"] / n,
+        "ics_low_pct": 100 * buckets["low"] / n_ics,
         "srs_full": srs_full,
-        "srs_full_pct": 100 * srs_full / n,
+        "srs_full_pct": 100 * srs_full / n_srs,
         "srs_low": srs_low,
-        "srs_low_pct": 100 * srs_low / n,
+        "srs_low_pct": 100 * srs_low / n_srs,
         "low_srs_entries": [
             (e.get("prompt", "")[:80], round(e["srs"], 3))
             for e in entries
@@ -145,7 +162,7 @@ def print_table1(stats: list[dict]) -> None:
     print("-" * len(header))
     for s in stats:
         print(
-            f"{s['label']:<12} {s['n']:>5} {s['mean_ics']:>10.3f} "
+            f"{s['label']:<12} {s['n_ics']:>5} {s['mean_ics']:>10.3f} "
             f"{s['median_ics']:>11.3f} {s['ics_full_pct']:>9.1f}% "
             f"{s['ics_zero_pct']:>9.1f}% {s['mean_srs']:>10.3f} "
             f"{s['srs_full_pct']:>9.1f}%"
@@ -281,7 +298,7 @@ def fig_ics_vs_srs(stats: list[dict]) -> None:
         fig, ax = plt.subplots(figsize=(5.5, 4.0))
 
         for s in stats:
-            ics = np.array(s["ics_vals"])
+            ics = np.array(s["ics_scatter"])
             srs = np.array(s["srs_vals"])
             colour = COLORS.get(s["name"], "#333333")
 
@@ -740,16 +757,50 @@ def generate_figures(stats: list[dict]) -> None:
 # Main
 # ---------------------------------------------------------------------------
 
+def load_revised_ics() -> dict[str, dict]:
+    """
+    Load ICS from ics_per_prompt.csv (revised attribute-level extraction).
+    Returns per-dataset dicts with:
+      "flat"        — every (scenario, model, strategy) ICS observation
+      "per_scenario"— mean ICS per unique scenario_id
+    """
+    if not ICS_PER_PROMPT_PATH.exists():
+        return {}
+    from collections import defaultdict
+    scenario_vals: dict[str, dict[str, list[float]]] = {}
+    flat: dict[str, list[float]] = {}
+    with open(ICS_PER_PROMPT_PATH, newline="") as f:
+        for row in csv.DictReader(f):
+            ds = row["dataset"]
+            sid = row["scenario_id"]
+            v = float(row["ics"])
+            flat.setdefault(ds, []).append(v)
+            scenario_vals.setdefault(ds, {}).setdefault(sid, []).append(v)
+    result = {}
+    for ds in flat:
+        per_scenario = [sum(vs) / len(vs) for vs in scenario_vals[ds].values()]
+        result[ds] = {"flat": flat[ds], "per_scenario": per_scenario}
+    return result
+
+
 def main() -> None:
     with open(RESULTS_PATH) as f:
         data = json.load(f)
+
+    revised_ics = load_revised_ics()
 
     datasets = data["datasets"]
     stats = []
     for name, content in datasets.items():
         if "entries" not in content:
             continue
-        stats.append(analyze_dataset(name, content["entries"]))
+        rev = revised_ics.get(name, {})
+        stats.append(analyze_dataset(
+            name,
+            content["entries"],
+            ics_vals_override=rev.get("flat"),
+            ics_scatter_override=rev.get("per_scenario"),
+        ))
 
     print_table1(stats)
     print_overall(stats)
@@ -757,7 +808,7 @@ def main() -> None:
     # ICS distribution detail (used in Results §5.1)
     print("\n=== ICS distribution detail (Results §5.1) ===")
     for s in stats:
-        n = s["n"]
+        n = s["n_ics"]
         print(f"\n{s['label']} (n={n}):")
         print(f"  ICS = 1.0 : {s['ics_full']:>4} / {n}  ({s['ics_full_pct']:.1f}%)")
         print(f"  ICS = 0.0 : {s['ics_zero']:>4} / {n}  ({s['ics_zero_pct']:.1f}%)")
