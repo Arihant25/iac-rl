@@ -1,4 +1,4 @@
-# IaC-RL
+# IaC-Bench
 
 ## Generating Baselines
 Generate Terraform configurations from the IaC-Eval datasets using LLM APIs.
