@@ -335,7 +335,7 @@ MODEL_SHORT = {
     "glm-4.7":           "GLM",
     "grok-4.1-fast":     "Grok",
     "kimi-k2.5":         "Kimi",
-    "ministral-8b":      "Mistral",
+    "ministral-8b":      "Ministral",
     "phi-4":             "Phi-4",
     "qwen3-235b":        "Qwen3",
 }
