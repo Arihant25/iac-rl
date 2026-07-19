@@ -31,9 +31,10 @@ import statistics
 from pathlib import Path
 
 import matplotlib
+
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
 import numpy as np
 
 RESULTS_PATH = Path("results/final_results.json")
@@ -43,27 +44,27 @@ FIGURES_DIR = Path("figures")
 
 # Colorblind-friendly palette (Wong 2011)
 COLORS = {
-    "iac_eval": "#0072B2",   # blue
-    "llm_iac":  "#D55E00",   # vermilion
+    "iac_eval": "#0072B2",  # blue
+    "llm_iac": "#D55E00",  # vermilion
 }
 
 DATASET_LABELS = {
     "iac_eval": "IaC-Eval",
-    "llm_iac":  "llm-iac",
+    "llm_iac": "llm-iac",
 }
 
 # ICS bucket colours for stacked bars
 BUCKET_COLORS = {
-    "ICS = 1.0":        "#2ca02c",   # green
-    "0.5 < ICS < 1.0":  "#98df8a",   # light green
-    "ICS = 0.5":        "#ff7f0e",   # orange
-    "0 < ICS < 0.5":    "#ffbb78",   # light orange
-    "ICS = 0.0":        "#d62728",   # red
+    "ICS = 1.0": "#2ca02c",  # green
+    "0.5 < ICS < 1.0": "#98df8a",  # light green
+    "ICS = 0.5": "#ff7f0e",  # orange
+    "0 < ICS < 0.5": "#ffbb78",  # light orange
+    "ICS = 0.0": "#d62728",  # red
 }
 
 FIG_STYLE = {
-    "font.family":  "serif",
-    "font.size":    10,
+    "font.family": "serif",
+    "font.size": 10,
     "axes.titlesize": 11,
     "axes.labelsize": 10,
     "legend.fontsize": 9,
@@ -75,6 +76,7 @@ FIG_STYLE = {
 # ---------------------------------------------------------------------------
 # Data helpers
 # ---------------------------------------------------------------------------
+
 
 def ics_bucket(v: float) -> str:
     if v == 0.0:
@@ -95,7 +97,11 @@ def analyze_dataset(
     ics_scatter_override: list[float] | None = None,
 ) -> dict:
     # flat ICS observations (for distribution figure)
-    ics_vals = ics_vals_override if ics_vals_override is not None else [e["mean_ics"] for e in entries]
+    ics_vals = (
+        ics_vals_override
+        if ics_vals_override is not None
+        else [e["mean_ics"] for e in entries]
+    )
     # per-scenario ICS means (for ICS vs SRS scatter — must match SRS count)
     if ics_scatter_override is not None:
         n_min = min(len(ics_scatter_override), len(entries))
@@ -152,6 +158,7 @@ def analyze_dataset(
 # Print helpers
 # ---------------------------------------------------------------------------
 
+
 def print_table1(stats: list[dict]) -> None:
     print("\n=== Table 1: ICS and SRS distribution by dataset ===")
     header = (
@@ -190,6 +197,7 @@ def print_low_srs(stats: list[dict]) -> None:
 # Figure generation
 # ---------------------------------------------------------------------------
 
+
 def _save(fig: plt.Figure, path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(path, dpi=300, bbox_inches="tight", format="pdf")
@@ -205,8 +213,20 @@ def fig_ics_distribution(stats: list[dict]) -> None:
     with plt.rc_context(FIG_STYLE):
         fig, ax = plt.subplots(figsize=(6.5, 2.4))
 
-        bucket_keys  = ["ics_zero_pct", "ics_low_pct", "ics_mid_pct", "ics_high_pct", "ics_full_pct"]
-        bucket_labels = ["ICS = 0.0", "0 < ICS < 0.5", "ICS = 0.5", "0.5 < ICS < 1.0", "ICS = 1.0"]
+        bucket_keys = [
+            "ics_zero_pct",
+            "ics_low_pct",
+            "ics_mid_pct",
+            "ics_high_pct",
+            "ics_full_pct",
+        ]
+        bucket_labels = [
+            "ICS = 0.0",
+            "0 < ICS < 0.5",
+            "ICS = 0.5",
+            "0.5 < ICS < 1.0",
+            "ICS = 1.0",
+        ]
         colours = [BUCKET_COLORS[l] for l in bucket_labels]
 
         y_pos = np.arange(len(stats))
@@ -216,26 +236,46 @@ def fig_ics_distribution(stats: list[dict]) -> None:
             left = 0.0
             for key, colour, lbl in zip(bucket_keys, colours, bucket_labels):
                 val = s[key]
-                ax.barh(y_pos[i], val, bar_h, left=left, color=colour,
-                        edgecolor="white", linewidth=0.4)
+                ax.barh(
+                    y_pos[i],
+                    val,
+                    bar_h,
+                    left=left,
+                    color=colour,
+                    edgecolor="white",
+                    linewidth=0.4,
+                )
                 if val >= 4:
-                    ax.text(left + val / 2, y_pos[i], f"{val:.0f}%",
-                            ha="center", va="center", fontsize=7, color="white",
-                            fontweight="bold")
+                    ax.text(
+                        left + val / 2,
+                        y_pos[i],
+                        f"{val:.0f}%",
+                        ha="center",
+                        va="center",
+                        fontsize=7,
+                        color="white",
+                        fontweight="bold",
+                    )
                 left += val
 
         ax.set_yticks(y_pos)
         ax.set_yticklabels([s["label"] for s in stats])
         ax.set_xlabel("Percentage of prompts (%)")
         ax.set_xlim(0, 100)
-        ax.set_title("ICS Distribution by Dataset")
         ax.xaxis.grid(True, linestyle="--", alpha=0.4)
         ax.set_axisbelow(True)
 
-        patches = [mpatches.Patch(color=c, label=l) for c, l in zip(colours, bucket_labels)]
-        ax.legend(handles=patches, loc="upper center",
-                  bbox_to_anchor=(0.5, -0.22), ncol=5, frameon=False,
-                  fontsize=8)
+        patches = [
+            mpatches.Patch(color=c, label=l) for c, l in zip(colours, bucket_labels)
+        ]
+        ax.legend(
+            handles=patches,
+            loc="upper center",
+            bbox_to_anchor=(0.5, -0.22),
+            ncol=5,
+            frameon=False,
+            fontsize=8,
+        )
 
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_ics_distribution.pdf")
@@ -261,12 +301,24 @@ def fig_srs_distribution(stats: list[dict]) -> None:
             counts, edges = np.histogram(vals, bins=bins)
             pcts = 100 * counts / n
 
-            ax.bar(edges[:-1], pcts, width=np.diff(edges),
-                   align="edge", color=colour, alpha=0.85,
-                   edgecolor="white", linewidth=0.3)
+            ax.bar(
+                edges[:-1],
+                pcts,
+                width=np.diff(edges),
+                align="edge",
+                color=colour,
+                alpha=0.85,
+                edgecolor="white",
+                linewidth=0.3,
+            )
 
-            ax.axvline(x=s["mean_srs"], color="black", linestyle="--",
-                       linewidth=1.0, label=f"Mean = {s['mean_srs']:.3f}")
+            ax.axvline(
+                x=s["mean_srs"],
+                color="black",
+                linestyle="--",
+                linewidth=1.0,
+                label=f"Mean = {s['mean_srs']:.3f}",
+            )
             ax.set_title(s["label"])
             ax.set_xlabel("SRS")
             ax.set_ylabel("Prompts (%)" if ax is axes[0] else "")
@@ -282,7 +334,6 @@ def fig_srs_distribution(stats: list[dict]) -> None:
                 arrowprops=dict(arrowstyle="->", lw=0.8),
             )
 
-        fig.suptitle("SRS Distribution by Dataset", y=1.01)
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_srs_distribution.pdf")
 
@@ -306,17 +357,27 @@ def fig_ics_vs_srs(stats: list[dict]) -> None:
             jx = rng.normal(0, 0.008, size=len(ics))
             jy = rng.normal(0, 0.008, size=len(srs))
 
-            ax.scatter(ics + jx, srs + jy,
-                       s=12, alpha=0.35, color=colour,
-                       linewidths=0, label=s["label"])
+            ax.scatter(
+                ics + jx,
+                srs + jy,
+                s=12,
+                alpha=0.35,
+                color=colour,
+                linewidths=0,
+                label=s["label"],
+            )
 
         ax.set_xlabel("Intent Coverage Score (ICS)")
         ax.set_ylabel("Semantic Robustness Score (SRS)")
-        ax.set_title("ICS vs. SRS per Prompt")
         ax.set_xlim(-0.05, 1.05)
         ax.set_ylim(-0.05, 1.08)
-        ax.axhline(y=0.7, color="gray", linestyle=":", linewidth=0.8,
-                   label="SRS = 0.7 threshold")
+        ax.axhline(
+            y=0.7,
+            color="gray",
+            linestyle=":",
+            linewidth=0.8,
+            label="SRS = 0.7 threshold",
+        )
         ax.legend(frameon=False)
         ax.grid(True, linestyle="--", alpha=0.3)
 
@@ -330,21 +391,21 @@ def fig_ics_vs_srs(stats: list[dict]) -> None:
 
 MODEL_SHORT = {
     "claude-4.5-sonnet": "Claude",
-    "gemini-3-flash":    "Gemini",
-    "gemma-3-27b":       "Gemma",
-    "glm-4.7":           "GLM",
-    "grok-4.1-fast":     "Grok",
-    "kimi-k2.5":         "Kimi",
-    "ministral-8b":      "Ministral",
-    "phi-4":             "Phi-4",
-    "qwen3-235b":        "Qwen3",
+    "gemini-3-flash": "Gemini",
+    "gemma-3-27b": "Gemma",
+    "glm-4.7": "GLM",
+    "grok-4.1-fast": "Grok",
+    "kimi-k2.5": "Kimi",
+    "ministral-8b": "Ministral",
+    "phi-4": "Phi-4",
+    "qwen3-235b": "Qwen3",
 }
 
 # Prompt-strategy colours
 PT_COLORS = {
     "zero-shot": "#4477AA",
-    "few-shot":  "#EE6677",
-    "cot":       "#228833",
+    "few-shot": "#EE6677",
+    "cot": "#228833",
 }
 
 
@@ -367,7 +428,7 @@ def fig_validation_rate(summary: list[dict]) -> None:
     strategies side-by-side within each model group.
     """
     base_datasets = ["iac_eval", "llm_iac"]
-    prompt_types  = ["zero-shot", "few-shot", "cot"]
+    prompt_types = ["zero-shot", "few-shot", "cot"]
     models = list(MODEL_SHORT.keys())
     model_labels = [MODEL_SHORT[m] for m in models]
 
@@ -383,35 +444,45 @@ def fig_validation_rate(summary: list[dict]) -> None:
                 rates = []
                 for m in models:
                     row = next(
-                        (r for r in summary
-                         if r["dataset"] == ds and r["model"] == m and r["prompt_type"] == pt),
+                        (
+                            r
+                            for r in summary
+                            if r["dataset"] == ds
+                            and r["model"] == m
+                            and r["prompt_type"] == pt
+                        ),
                         None,
                     )
                     rates.append(float(row["gen_success_rate"]) * 100 if row else 0.0)
 
-                bars = ax.bar(x + offset, rates, width,
-                              color=PT_COLORS[pt], label=pt,
-                              edgecolor="white", linewidth=0.3)
+                bars = ax.bar(
+                    x + offset,
+                    rates,
+                    width,
+                    color=PT_COLORS[pt],
+                    label=pt,
+                    edgecolor="white",
+                    linewidth=0.3,
+                )
 
             ax.set_title("IaC-Eval" if ds == "iac_eval" else "llm-iac")
             ax.set_xticks(x)
             ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
             ax.set_ylim(96, 101)
-            ax.yaxis.set_major_formatter(
-                plt.FuncFormatter(lambda v, _: f"{v:.0f}%")
-            )
+            ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0f}%"))
             ax.grid(axis="y", linestyle="--", alpha=0.4)
             ax.set_axisbelow(True)
             if ax is axes[0]:
                 ax.set_ylabel("Pass rate (%)")
 
-        handles = [
-            mpatches.Patch(color=PT_COLORS[pt], label=pt) for pt in prompt_types
-        ]
-        fig.legend(handles=handles, loc="upper center",
-                   bbox_to_anchor=(0.5, 1.02), ncol=3, frameon=False)
-        fig.suptitle("Hard-gate Validation Pass Rate by Model and Prompting Strategy",
-                     y=1.08, fontsize=11)
+        handles = [mpatches.Patch(color=PT_COLORS[pt], label=pt) for pt in prompt_types]
+        fig.legend(
+            handles=handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 1.02),
+            ncol=3,
+            frameon=False,
+        )
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_validation_rate.pdf")
 
@@ -423,10 +494,14 @@ def fig_structural_quality(summary: list[dict]) -> None:
     Shows whether LLMs over/under-generate compared to reference configs.
     """
     metrics = [
-        ("mean_gen_num_resources",      "mean_ref_num_resources",      "Num Resources"),
-        ("mean_gen_num_lines_of_code",  "mean_ref_num_lines_of_code",  "Lines of Code"),
-        ("mean_gen_avgMccabeCC",        "mean_ref_avgMccabeCC",        "Avg McCabe CC"),
-        ("mean_gen_maxDepthNestedBlocks","mean_ref_maxDepthNestedBlocks","Max Nesting Depth"),
+        ("mean_gen_num_resources", "mean_ref_num_resources", "Num Resources"),
+        ("mean_gen_num_lines_of_code", "mean_ref_num_lines_of_code", "Lines of Code"),
+        ("mean_gen_avgMccabeCC", "mean_ref_avgMccabeCC", "Avg McCabe CC"),
+        (
+            "mean_gen_maxDepthNestedBlocks",
+            "mean_ref_maxDepthNestedBlocks",
+            "Max Nesting Depth",
+        ),
     ]
     base_datasets = ["iac_eval", "llm_iac"]
     ds_labels = {"iac_eval": "IaC-Eval", "llm_iac": "llm-iac"}
@@ -437,17 +512,36 @@ def fig_structural_quality(summary: list[dict]) -> None:
         for ax, (gen_col, ref_col, label) in zip(axes, metrics):
             gen_vals, ref_vals = [], []
             for ds in base_datasets:
-                rows = [r for r in summary
-                        if isinstance(r["dataset"], str) and r["dataset"] == ds]
-                gen_vals.append(np.mean([float(r[gen_col]) for r in rows if r[gen_col] != ""]))
+                rows = [
+                    r
+                    for r in summary
+                    if isinstance(r["dataset"], str) and r["dataset"] == ds
+                ]
+                gen_vals.append(
+                    np.mean([float(r[gen_col]) for r in rows if r[gen_col] != ""])
+                )
                 ref_vals.append(float(rows[0][ref_col]) if rows else 0.0)
 
             x = np.arange(len(base_datasets))
             width = 0.35
-            ax.bar(x - width / 2, gen_vals, width, label="Generated",
-                   color="#0072B2", alpha=0.85, edgecolor="white")
-            ax.bar(x + width / 2, ref_vals, width, label="Reference",
-                   color="#009E73", alpha=0.85, edgecolor="white")
+            ax.bar(
+                x - width / 2,
+                gen_vals,
+                width,
+                label="Generated",
+                color="#0072B2",
+                alpha=0.85,
+                edgecolor="white",
+            )
+            ax.bar(
+                x + width / 2,
+                ref_vals,
+                width,
+                label="Reference",
+                color="#009E73",
+                alpha=0.85,
+                edgecolor="white",
+            )
 
             ax.set_title(label, fontsize=9)
             ax.set_xticks(x)
@@ -459,10 +553,13 @@ def fig_structural_quality(summary: list[dict]) -> None:
             mpatches.Patch(color="#0072B2", label="Generated"),
             mpatches.Patch(color="#009E73", label="Reference"),
         ]
-        fig.legend(handles=handles, loc="upper center",
-                   bbox_to_anchor=(0.5, 1.02), ncol=2, frameon=False)
-        fig.suptitle("Structural Quality: Generated vs. Reference (TerraMetrics)",
-                     y=1.08, fontsize=11)
+        fig.legend(
+            handles=handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 1.02),
+            ncol=2,
+            frameon=False,
+        )
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_structural_quality.pdf")
 
@@ -474,14 +571,26 @@ def fig_risk_indicators(summary: list[dict]) -> None:
     Lower values are better; reference baseline annotated per column.
     """
     risk_cols = [
-        ("mean_gen_numWildCardSuffixString_sum", "mean_ref_numWildCardSuffixString_sum",
-         "Wildcard\nSuffix Strings"),
-        ("mean_gen_numStarString_sum",           "mean_ref_numStarString_sum",
-         "Star Strings\n(* perms)"),
-        ("mean_gen_numDeprecatedFunctions_sum",  "mean_ref_numDeprecatedFunctions_sum",
-         "Deprecated\nFunctions"),
-        ("mean_gen_numEmptyString_sum",          "mean_ref_numEmptyString_sum",
-         "Empty\nStrings"),
+        (
+            "mean_gen_numWildCardSuffixString_sum",
+            "mean_ref_numWildCardSuffixString_sum",
+            "Wildcard\nSuffix Strings",
+        ),
+        (
+            "mean_gen_numStarString_sum",
+            "mean_ref_numStarString_sum",
+            "Star Strings\n(* perms)",
+        ),
+        (
+            "mean_gen_numDeprecatedFunctions_sum",
+            "mean_ref_numDeprecatedFunctions_sum",
+            "Deprecated\nFunctions",
+        ),
+        (
+            "mean_gen_numEmptyString_sum",
+            "mean_ref_numEmptyString_sum",
+            "Empty\nStrings",
+        ),
     ]
     models = list(MODEL_SHORT.keys())
     model_labels = [MODEL_SHORT[m] for m in models]
@@ -489,10 +598,13 @@ def fig_risk_indicators(summary: list[dict]) -> None:
     prompt_type = "zero-shot"
     dataset = "iac_eval"
 
-    rows_zs = [r for r in summary
-               if isinstance(r["dataset"], str)
-               and r["dataset"] == dataset
-               and r["prompt_type"] == prompt_type]
+    rows_zs = [
+        r
+        for r in summary
+        if isinstance(r["dataset"], str)
+        and r["dataset"] == dataset
+        and r["prompt_type"] == prompt_type
+    ]
 
     # Build matrix: rows = models, cols = risk metrics
     matrix = np.zeros((len(models), len(risk_cols)))
@@ -521,20 +633,31 @@ def fig_risk_indicators(summary: list[dict]) -> None:
         # Annotate cells
         for i in range(len(models)):
             for j in range(len(risk_cols)):
-                ax.text(j, i, f"{matrix[i, j]:.2f}", ha="center", va="center",
-                        fontsize=7.5,
-                        color="white" if matrix[i, j] > matrix[:, j].max() * 0.6 else "black")
+                ax.text(
+                    j,
+                    i,
+                    f"{matrix[i, j]:.2f}",
+                    ha="center",
+                    va="center",
+                    fontsize=7.5,
+                    color="white"
+                    if matrix[i, j] > matrix[:, j].max() * 0.6
+                    else "black",
+                )
 
         # Reference baseline as text below x-axis
         for j, rv in enumerate(ref_vals):
-            ax.text(j, len(models) - 0.3, f"ref={rv:.2f}",
-                    ha="center", va="bottom", fontsize=6.5,
-                    color="gray", style="italic")
+            ax.text(
+                j,
+                len(models) - 0.3,
+                f"ref={rv:.2f}",
+                ha="center",
+                va="bottom",
+                fontsize=6.5,
+                color="gray",
+                style="italic",
+            )
 
-        ax.set_title(
-            "Risk Indicators per Model — IaC-Eval, Zero-Shot (TerraMetrics)",
-            fontsize=10,
-        )
         ax.tick_params(top=False, bottom=True, labeltop=False, labelbottom=True)
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_risk_indicators.pdf")
@@ -570,8 +693,12 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
     model_labels = [MODEL_SHORT[m] for m in models]
     prompt_type = "zero-shot"
 
-    SEV_COLORS = {"error": "#d62728", "warning": "#ff7f0e",
-                  "notice": "#aec7e8", "info": "#c7c7c7"}
+    SEV_COLORS = {
+        "error": "#d62728",
+        "warning": "#ff7f0e",
+        "notice": "#aec7e8",
+        "info": "#c7c7c7",
+    }
     show_sevs = ["error", "warning", "notice"]
 
     with plt.rc_context(FIG_STYLE):
@@ -586,19 +713,29 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
                 vals = []
                 for m in models:
                     row = next(
-                        (r for r in lint_summary
-                         if isinstance(r.get("dataset"), str)
-                         and r["dataset"] == ds
-                         and r.get("model") == m
-                         and r.get("prompt_type") == prompt_type),
+                        (
+                            r
+                            for r in lint_summary
+                            if isinstance(r.get("dataset"), str)
+                            and r["dataset"] == ds
+                            and r.get("model") == m
+                            and r.get("prompt_type") == prompt_type
+                        ),
                         None,
                     )
                     vals.append(float(row[f"mean_tflint_{sev}"]) if row else 0.0)
 
                 vals = np.array(vals)
-                ax.bar(x, vals, width, bottom=bottoms,
-                       color=SEV_COLORS[sev], label=sev.capitalize(),
-                       edgecolor="white", linewidth=0.3)
+                ax.bar(
+                    x,
+                    vals,
+                    width,
+                    bottom=bottoms,
+                    color=SEV_COLORS[sev],
+                    label=sev.capitalize(),
+                    edgecolor="white",
+                    linewidth=0.3,
+                )
                 bottoms += vals
 
             ax.set_title(ds_labels[ds])
@@ -609,12 +746,16 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
             if ax is axes[0]:
                 ax.set_ylabel("Mean violations per config")
 
-        handles = [mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize())
-                   for s in show_sevs]
-        fig.legend(handles=handles, loc="upper center",
-                   bbox_to_anchor=(0.5, 1.02), ncol=3, frameon=False)
-        fig.suptitle("TFLint Violations per Config by Model (Zero-Shot)",
-                     y=1.08, fontsize=11)
+        handles = [
+            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize()) for s in show_sevs
+        ]
+        fig.legend(
+            handles=handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 1.02),
+            ncol=3,
+            frameon=False,
+        )
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_tflint_violations.pdf")
 
@@ -631,8 +772,10 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
     prompt_type = "zero-shot"
 
     SEV_COLORS = {
-        "critical": "#7b0000", "high": "#d62728",
-        "medium": "#ff7f0e",   "low": "#ffbb78",
+        "critical": "#7b0000",
+        "high": "#d62728",
+        "medium": "#ff7f0e",
+        "low": "#ffbb78",
     }
     show_sevs = ["critical", "high", "medium", "low"]
 
@@ -648,19 +791,29 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
                 vals = []
                 for m in models:
                     row = next(
-                        (r for r in lint_summary
-                         if isinstance(r.get("dataset"), str)
-                         and r["dataset"] == ds
-                         and r.get("model") == m
-                         and r.get("prompt_type") == prompt_type),
+                        (
+                            r
+                            for r in lint_summary
+                            if isinstance(r.get("dataset"), str)
+                            and r["dataset"] == ds
+                            and r.get("model") == m
+                            and r.get("prompt_type") == prompt_type
+                        ),
                         None,
                     )
                     vals.append(float(row[f"mean_trivy_{sev}"]) if row else 0.0)
 
                 vals = np.array(vals)
-                ax.bar(x, vals, width, bottom=bottoms,
-                       color=SEV_COLORS[sev], label=sev.capitalize(),
-                       edgecolor="white", linewidth=0.3)
+                ax.bar(
+                    x,
+                    vals,
+                    width,
+                    bottom=bottoms,
+                    color=SEV_COLORS[sev],
+                    label=sev.capitalize(),
+                    edgecolor="white",
+                    linewidth=0.3,
+                )
                 bottoms += vals
 
             ax.set_title(ds_labels[ds])
@@ -671,12 +824,16 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
             if ax is axes[0]:
                 ax.set_ylabel("Mean misconfigs per config")
 
-        handles = [mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize())
-                   for s in show_sevs]
-        fig.legend(handles=handles, loc="upper center",
-                   bbox_to_anchor=(0.5, 1.02), ncol=4, frameon=False)
-        fig.suptitle("Trivy Security Misconfigurations per Config by Model (Zero-Shot)",
-                     y=1.08, fontsize=11)
+        handles = [
+            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize()) for s in show_sevs
+        ]
+        fig.legend(
+            handles=handles,
+            loc="upper center",
+            bbox_to_anchor=(0.5, 1.02),
+            ncol=4,
+            frameon=False,
+        )
         fig.tight_layout()
         _save(fig, FIGURES_DIR / "fig_trivy_misconfigs.pdf")
 
@@ -706,11 +863,14 @@ def fig_lint_vs_prompting(lint_summary: list[dict]) -> None:
                 total, count = 0.0, 0
                 for ds in base_datasets:
                     row = next(
-                        (r for r in lint_summary
-                         if isinstance(r.get("dataset"), str)
-                         and r["dataset"] == ds
-                         and r.get("model") == m
-                         and r.get("prompt_type") == pt),
+                        (
+                            r
+                            for r in lint_summary
+                            if isinstance(r.get("dataset"), str)
+                            and r["dataset"] == ds
+                            and r.get("model") == m
+                            and r.get("prompt_type") == pt
+                        ),
                         None,
                     )
                     if row:
@@ -718,14 +878,19 @@ def fig_lint_vs_prompting(lint_summary: list[dict]) -> None:
                         count += 1
                 vals.append(total / count if count else 0.0)
 
-            ax.bar(x + offset, vals, width,
-                   color=PT_COLORS[pt], label=pt_labels[pt],
-                   edgecolor="white", linewidth=0.3)
+            ax.bar(
+                x + offset,
+                vals,
+                width,
+                color=PT_COLORS[pt],
+                label=pt_labels[pt],
+                edgecolor="white",
+                linewidth=0.3,
+            )
 
         ax.set_xticks(x)
         ax.set_xticklabels(model_labels, rotation=40, ha="right", fontsize=8)
         ax.set_ylabel("Mean TFLint violations per config")
-        ax.set_title("TFLint Violations by Model and Prompting Strategy")
         ax.legend(frameon=False)
         ax.grid(axis="y", linestyle="--", alpha=0.4)
         ax.set_axisbelow(True)
@@ -757,6 +922,7 @@ def generate_figures(stats: list[dict]) -> None:
 # Main
 # ---------------------------------------------------------------------------
 
+
 def load_revised_ics() -> dict[str, dict]:
     """
     Load ICS from ics_per_prompt.csv (revised attribute-level extraction).
@@ -766,7 +932,6 @@ def load_revised_ics() -> dict[str, dict]:
     """
     if not ICS_PER_PROMPT_PATH.exists():
         return {}
-    from collections import defaultdict
     scenario_vals: dict[str, dict[str, list[float]]] = {}
     flat: dict[str, list[float]] = {}
     with open(ICS_PER_PROMPT_PATH, newline="") as f:
@@ -795,12 +960,14 @@ def main() -> None:
         if "entries" not in content:
             continue
         rev = revised_ics.get(name, {})
-        stats.append(analyze_dataset(
-            name,
-            content["entries"],
-            ics_vals_override=rev.get("flat"),
-            ics_scatter_override=rev.get("per_scenario"),
-        ))
+        stats.append(
+            analyze_dataset(
+                name,
+                content["entries"],
+                ics_vals_override=rev.get("flat"),
+                ics_scatter_override=rev.get("per_scenario"),
+            )
+        )
 
     print_table1(stats)
     print_overall(stats)
