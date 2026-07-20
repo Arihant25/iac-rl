@@ -479,11 +479,11 @@ def fig_validation_rate(summary: list[dict]) -> None:
         fig.legend(
             handles=handles,
             loc="upper center",
-            bbox_to_anchor=(0.5, 1.02),
+            bbox_to_anchor=(0.5, 1.05),
             ncol=3,
             frameon=False,
         )
-        fig.tight_layout()
+        fig.tight_layout(rect=[0, 0, 1, 0.92])
         _save(fig, FIGURES_DIR / "fig_validation_rate.pdf")
 
 
@@ -699,6 +699,12 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
         "notice": "#aec7e8",
         "info": "#c7c7c7",
     }
+    SEV_HATCHES = {
+        "error": "//",
+        "warning": "xx",
+        "notice": "..",
+        "info": "",
+    }
     show_sevs = ["error", "warning", "notice"]
 
     with plt.rc_context(FIG_STYLE):
@@ -735,6 +741,7 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
                     label=sev.capitalize(),
                     edgecolor="white",
                     linewidth=0.3,
+                    hatch=SEV_HATCHES[sev],
                 )
                 bottoms += vals
 
@@ -747,16 +754,17 @@ def fig_tflint_violations(lint_summary: list[dict]) -> None:
                 ax.set_ylabel("Mean violations per config")
 
         handles = [
-            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize()) for s in show_sevs
+            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize(), hatch=SEV_HATCHES[s])
+            for s in show_sevs
         ]
         fig.legend(
             handles=handles,
             loc="upper center",
-            bbox_to_anchor=(0.5, 1.02),
+            bbox_to_anchor=(0.5, 1.05),
             ncol=3,
             frameon=False,
         )
-        fig.tight_layout()
+        fig.tight_layout(rect=[0, 0, 1, 0.92])
         _save(fig, FIGURES_DIR / "fig_tflint_violations.pdf")
 
 
@@ -776,6 +784,12 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
         "high": "#d62728",
         "medium": "#ff7f0e",
         "low": "#ffbb78",
+    }
+    SEV_HATCHES = {
+        "critical": "//",
+        "high": "xx",
+        "medium": "..",
+        "low": "oo",
     }
     show_sevs = ["critical", "high", "medium", "low"]
 
@@ -813,6 +827,7 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
                     label=sev.capitalize(),
                     edgecolor="white",
                     linewidth=0.3,
+                    hatch=SEV_HATCHES[sev],
                 )
                 bottoms += vals
 
@@ -825,16 +840,17 @@ def fig_trivy_misconfigs(lint_summary: list[dict]) -> None:
                 ax.set_ylabel("Mean misconfigs per config")
 
         handles = [
-            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize()) for s in show_sevs
+            mpatches.Patch(color=SEV_COLORS[s], label=s.capitalize(), hatch=SEV_HATCHES[s])
+            for s in show_sevs
         ]
         fig.legend(
             handles=handles,
             loc="upper center",
-            bbox_to_anchor=(0.5, 1.02),
+            bbox_to_anchor=(0.5, 1.05),
             ncol=4,
             frameon=False,
         )
-        fig.tight_layout()
+        fig.tight_layout(rect=[0, 0, 1, 0.92])
         _save(fig, FIGURES_DIR / "fig_trivy_misconfigs.pdf")
 
 
